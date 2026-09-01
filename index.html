@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>王玉璇 | 视觉传达设计</title>
+    <link rel="icon" href="data:,">
     <link href="assets/fonts/fonts.css" rel="stylesheet">
+    <link rel="preload" as="image" href="portfolio-hero-poster.jpg" fetchpriority="high">
+    <link rel="preload" as="font" href="assets/fonts/font-012.woff2" type="font/woff2" crossorigin>
 
     <script src="assets/vendor/react.production.min.js"></script>
     <script src="assets/vendor/react-dom.production.min.js"></script>
@@ -8243,6 +8246,303 @@ body.ds-active header .text-white\/40 {
 .stu-case.in-view .stu-anim-2 { transition-delay: 0.12s; }
 .stu-case.in-view .stu-anim-3 { transition-delay: 0.24s; }
 
+/* ---------- 日光补给站 · Game lobby UI case study ---------- */
+.sun-case {
+  --sun-paper: #eee9de;
+  --sun-ink: #182022;
+  --sun-muted: rgba(24,32,34,0.64);
+  --sun-line: rgba(24,32,34,0.15);
+  --sun-amber: #c77c11;
+  --sun-cyan: #278f8d;
+  min-height: 100vh;
+  padding: clamp(112px,12vh,140px) clamp(32px,6vw,100px) clamp(116px,14vh,168px);
+  position: relative;
+  overflow: hidden;
+  background: var(--sun-paper);
+  color: var(--sun-ink);
+  font-family: 'Noto Sans SC','Inter',sans-serif;
+}
+.sun-case--cover { padding-top: clamp(92px,10vh,116px); }
+.sun-case--breakdown {
+  min-height: auto;
+  padding-top: clamp(132px,15vh,170px);
+  overflow: visible;
+}
+.sun-case__inner {
+  width: min(1480px,100%);
+  margin: 0 auto;
+  position: relative;
+}
+.sun-case__topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--sun-line);
+  font-family: 'Inter',sans-serif;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.16em;
+  color: rgba(24,32,34,0.46);
+}
+.sun-case__cover-head {
+  margin-top: clamp(28px,4vh,48px);
+  display: grid;
+  grid-template-columns: minmax(310px,0.84fr) minmax(420px,1.16fr);
+  gap: clamp(52px,8vw,128px);
+  align-items: end;
+}
+.sun-case__title {
+  margin: 0;
+  font-size: clamp(54px,5.8vw,86px);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+.sun-case__subtitle {
+  display: block;
+  margin-top: 15px;
+  font-size: clamp(18px,1.6vw,24px);
+  font-weight: 400;
+  line-height: 1.38;
+  letter-spacing: 0.1em;
+}
+.sun-case__en-label {
+  display: block;
+  margin-top: 9px;
+  font-family: 'Inter',sans-serif;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.18em;
+  color: var(--sun-amber);
+}
+.sun-case__intro {
+  margin: 0;
+  max-width: 48em;
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--sun-muted);
+}
+.sun-case__keywords {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 0;
+}
+.sun-case__keywords li {
+  padding: 0 18px;
+  border-left: 1px solid rgba(199,124,17,0.42);
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+}
+.sun-case__keywords li:first-child { padding-left: 0; border-left: 0; }
+.sun-case__keywords small {
+  display: block;
+  margin-top: 5px;
+  font-family: 'Inter',sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.13em;
+  color: rgba(24,32,34,0.4);
+}
+.sun-case__hero,
+.sun-case__annotated,
+.sun-case__icons-visual {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(24,32,34,0.13);
+  background: #102b33;
+}
+.sun-case__hero { margin-top: clamp(24px,3.4vh,38px); }
+.sun-case__hero img,
+.sun-case__annotated img,
+.sun-case__icons-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.sun-case__hero img,
+.sun-case__annotated img { aspect-ratio: 2340 / 1080; }
+.sun-case__icons-visual img { aspect-ratio: 2200 / 1400; }
+.sun-case__hero figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 11px 2px 0;
+  border-top: 1px solid var(--sun-line);
+  background: var(--sun-paper);
+  font-family: 'Inter',sans-serif;
+  font-size: 8px;
+  line-height: 1.5;
+  letter-spacing: 0.15em;
+  color: rgba(24,32,34,0.44);
+}
+.sun-case__section-head {
+  margin-top: clamp(44px,5.5vh,66px);
+  display: grid;
+  grid-template-columns: minmax(320px,0.82fr) minmax(420px,1.18fr);
+  gap: clamp(54px,9vw,138px);
+  align-items: end;
+  scroll-margin-top: 124px;
+}
+.sun-case__section-head h2,
+.sun-case__icons-head h3 {
+  margin: 0;
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+.sun-case__section-head h2 { font-size: clamp(44px,5vw,74px); }
+.sun-case__section-index {
+  display: block;
+  margin-bottom: 14px;
+  font-family: 'Inter',sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.18em;
+  color: var(--sun-amber);
+}
+.sun-case__section-head p,
+.sun-case__icons-head p {
+  margin: 0;
+  max-width: 46em;
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--sun-muted);
+}
+.sun-case__annotated {
+  margin-top: clamp(40px,5.5vh,62px);
+  position: relative;
+}
+.sun-case__marker {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%,-50%);
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(245,242,232,0.9);
+  border-radius: 50%;
+  background: rgba(199,124,17,0.95);
+  color: #fbf7ec;
+  font-family: 'Inter',sans-serif;
+  font-size: 9px;
+  box-shadow: 0 6px 18px rgba(8,20,23,0.24);
+}
+.sun-case__marker--1 { left: 12%; top: 11%; }
+.sun-case__marker--2 { left: 49%; top: 48%; }
+.sun-case__marker--3 { left: 84%; top: 86%; }
+.sun-case__marker--4 { left: 25%; top: 87%; }
+.sun-case__structure-list {
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  border-top: 1px solid var(--sun-line);
+  border-bottom: 1px solid var(--sun-line);
+}
+.sun-case__structure-item {
+  min-width: 0;
+  padding: 22px 24px 24px;
+  display: grid;
+  grid-template-columns: 32px minmax(0,1fr);
+  gap: 12px;
+  border-left: 1px solid var(--sun-line);
+}
+.sun-case__structure-item:first-child { padding-left: 0; border-left: 0; }
+.sun-case__structure-num {
+  padding-top: 2px;
+  font-family: 'Inter',sans-serif;
+  font-size: 9px;
+  line-height: 1.5;
+  color: var(--sun-amber);
+}
+.sun-case__structure-item h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+}
+.sun-case__structure-item small {
+  display: block;
+  margin-top: 5px;
+  font-family: 'Inter',sans-serif;
+  font-size: 8px;
+  line-height: 1.5;
+  letter-spacing: 0.13em;
+  color: rgba(24,32,34,0.4);
+}
+.sun-case__structure-item p {
+  margin: 10px 0 0;
+  font-size: 11.5px;
+  line-height: 1.72;
+  color: var(--sun-muted);
+}
+.sun-case__icons {
+  margin-top: clamp(116px,14vh,168px);
+  padding-top: 38px;
+  border-top: 1px solid var(--sun-line);
+  scroll-margin-top: 124px;
+}
+#game-ui-sunlight-icons-title { scroll-margin-top: 140px; }
+.sun-case__icons-head {
+  display: grid;
+  grid-template-columns: minmax(320px,0.82fr) minmax(420px,1.18fr);
+  gap: clamp(54px,9vw,138px);
+  align-items: end;
+}
+.sun-case__icons-head h3 { font-size: clamp(36px,4vw,58px); }
+.sun-case__icons-visual { margin-top: clamp(34px,4.5vh,52px); }
+.sun-case__icon-notes {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  border-top: 1px solid var(--sun-line);
+  border-bottom: 1px solid var(--sun-line);
+}
+.sun-case__icon-notes li {
+  padding: 16px 20px 17px;
+  border-left: 1px solid var(--sun-line);
+}
+.sun-case__icon-notes li:first-child { padding-left: 0; border-left: 0; }
+.sun-case__icon-notes strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.sun-case__icon-notes span {
+  display: block;
+  margin-top: 5px;
+  font-family: 'Inter',sans-serif;
+  font-size: 8px;
+  line-height: 1.5;
+  letter-spacing: 0.14em;
+  color: var(--sun-cyan);
+}
+.sun-anim {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.sun-case.in-view .sun-anim { opacity: 1; transform: translateY(0); }
+.sun-case.in-view .sun-anim-2 { transition-delay: 0.12s; }
+.sun-case.in-view .sun-anim-3 { transition-delay: 0.24s; }
+.sun-reveal img {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.95s cubic-bezier(0.22,1,0.36,1);
+}
+.sun-case.in-view .sun-reveal img { clip-path: inset(0 0 0 0); }
+
 @media(min-width:901px) and (max-height:800px) {
   .stu-case--cover { padding-top: 64px; }
   .stu-case--cover .stu-case__cover-head { margin-top: 14px; }
@@ -8253,6 +8553,13 @@ body.ds-active header .text-white\/40 {
   .stu-case--cover .stu-case__hero {
     width: min(1080px,100%);
     margin: 14px auto 0;
+  }
+  .sun-case--cover { padding-top: 64px; }
+  .sun-case--cover .sun-case__cover-head { margin-top: 14px; }
+  .sun-case--cover .sun-case__title { font-size: clamp(48px,5vw,68px); }
+  .sun-case--cover .sun-case__hero {
+    width: min(1160px,100%);
+    margin: 16px auto 0;
   }
 }
 
@@ -8478,6 +8785,28 @@ body.ds-active header .text-white\/40 {
   .stu-case__state--tabs,
   .stu-case__state--core { grid-column: span 6; }
   .stu-case__state--rarity { grid-column: 3 / span 8; }
+  .sun-case {
+    min-height: auto;
+    padding: 108px 20px 82px;
+    overflow: visible;
+  }
+  .sun-case--breakdown { padding-top: 120px; }
+  .sun-case__topline { font-size: 8px; }
+  .sun-case__cover-head,
+  .sun-case__section-head,
+  .sun-case__icons-head {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .sun-case__title { font-size: clamp(46px,14vw,68px); }
+  .sun-case__section-head,
+  .sun-case__icons { scroll-margin-top: 132px; }
+  .sun-case__structure-list { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .sun-case__structure-item:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .sun-case__structure-item:nth-child(-n+2) { border-bottom: 1px solid var(--sun-line); }
+  .sun-case__icon-notes { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .sun-case__icon-notes li:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .sun-case__icon-notes li:nth-child(-n+2) { border-bottom: 1px solid var(--sun-line); }
 }
 
 @media(max-width:520px) {
@@ -8537,6 +8866,25 @@ body.ds-active header .text-white\/40 {
   .stu-case__state--core,
   .stu-case__state--rarity { grid-column: auto; }
   .stu-case__state-visual { height: clamp(210px,61vw,290px); }
+  .sun-case__cover-head { gap: 26px; }
+  .sun-case__intro { font-size: 14px; }
+  .sun-case__keywords { display: grid; grid-template-columns: repeat(3,1fr); }
+  .sun-case__keywords li { padding: 0 10px; }
+  .sun-case__structure-list,
+  .sun-case__icon-notes { grid-template-columns: 1fr; }
+  .sun-case__structure-item,
+  .sun-case__structure-item:nth-child(odd),
+  .sun-case__icon-notes li,
+  .sun-case__icon-notes li:nth-child(odd) {
+    padding: 15px 0 16px;
+    border-left: 0;
+    border-bottom: 1px solid var(--sun-line);
+  }
+  .sun-case__structure-item:last-child,
+  .sun-case__icon-notes li:last-child { border-bottom: 0; }
+  .sun-case__structure-item p { font-size: 13px; }
+  .sun-case__marker { width: 23px; height: 23px; font-size: 8px; }
+  .sun-case__icons { margin-top: 92px; padding-top: 28px; }
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -8561,6 +8909,13 @@ body.ds-active header .text-white\/40 {
   .stu-anim {
     opacity: 1!important;
     transform: none!important;
+    transition: none!important;
+  }
+  .sun-anim,
+  .sun-reveal img {
+    opacity: 1!important;
+    transform: none!important;
+    clip-path: none!important;
     transition: none!important;
   }
   .mp-filmstrip {
@@ -10467,6 +10822,177 @@ body.ds-active header .text-white\/40 {
 <script>
 const { useRef, useEffect, useLayoutEffect, useState } = React;
 
+/* ---------- Media loading primitives ---------- */
+const PORTFOLIO_IMAGE_DIMENSIONS = {"about-portrait.jpg":[600,600],"game-ui-erosion-hero.jpg":[1334,750],"game-ui-erosion-reset-confirm.png":[1280,720],"game-ui-shuaitu-character-detail.png":[2340,1080],"gameplay-combat.jpg":[1920,1080],"gameplay-drag.jpg":[1920,1080],"gameplay-mirror-after.jpg":[1920,1080],"gameplay-mirror-before.jpg":[1920,1080],"portfolio-hero-poster.jpg":[1756,1176],"qr-demo.png":[200,200],"story-combat-2.jpg":[1920,1080],"story-elder.jpg":[1920,1080],"story-forest.jpg":[1920,1080],"story-mirror-after.jpg":[1920,1080],"story-mirror-before.jpg":[1920,1080],"story-puzzle.jpg":[1920,1080],"story-scholar.png":[1920,1080],"story-temple.jpg":[1920,1080],"taishan-concept1.jpg":[1920,1080],"taishan-concept2.jpg":[1920,1080],"taishan-hero-poster.jpg":[1920,1080],"taishan-puppet.jpg":[735,412],"taishan-puppet2.jpg":[1200,754],"packaging-assets/psd-extract/board-02-asset-01-pixel-1379-721-531x356.png":[531,356],"packaging-assets/psd-extract/board-02-asset-02-pixel-1000-721-356x356.png":[356,356],"packaging-assets/psd-extract/board-02-asset-03-pixel-1236-309-289x405.png":[289,405],"packaging-assets/psd-extract/board-02-asset-04-pixel-1525-230-390x320.png":[390,320],"packaging-assets/psd-extract/board-02-asset-05-pixel-1532-550-383x164.png":[383,164],"packaging-assets/psd-extract/board-02-asset-06-pixel-862-478-367x226.png":[367,226],"packaging-assets/psd-extract/board-03-asset-01-pixel-3546-691-382x382.png":[382,382],"packaging-assets/psd-extract/board-03-asset-02-pixel-3123-678-402x402.png":[402,402],"packaging-assets/psd-extract/board-03-asset-03-pixel-3251-263-284x411.png":[284,411],"packaging-assets/psd-extract/board-03-asset-04-pixel-2980-259-261x417.png":[261,417],"packaging-assets/psd-extract/board-03-asset-05-pixel-3544-497-384x179.png":[384,179],"packaging-assets/psd-extract/board-03-asset-06-pixel-3537-183-399x333.png":[399,333],"packaging-assets/psd-extract/board-04-asset-01-smartobject-3492-1303-353x363.png":[353,363],"packaging-assets/psd-extract/board-04-asset-02-smartobject-3070-1747-353x347.png":[353,347],"packaging-assets/psd-extract/board-04-asset-03-smartobject-3048-1319-391x337.png":[391,337],"packaging-assets/psd-extract/board-04-asset-04-smartobject-3511-1737-349x359.png":[349,359],"packaging-assets/psd-extract/board-04-asset-05-pixel-2021-1264-747x552.png":[747,552],"packaging-assets/psd-extract/board-05-asset-01-pixel-786-1817-110x47.png":[110,47],"packaging-assets/psd-extract/board-05-asset-02-pixel-159-1744-152x152.png":[152,152],"packaging-assets/psd-extract/board-05-asset-03-pixel-158-1943-154x156.png":[154,156],"packaging-assets/psd-extract/board-05-asset-04-pixel-596-1745-176x176.png":[176,176],"packaging-assets/psd-extract/board-05-asset-05-pixel-355-1745-180x300.png":[180,300],"packaging-assets/psd-extract/board-05-asset-06-pixel-607-1945-154x150.png":[154,150],"packaging-assets/psd-extract/board-05-asset-07-smartobject-1281-1746-527x333.png":[527,333],"packaging-assets/psd-extract/board-05-asset-08-smartobject-913-1756-330x322.png":[330,322],"packaging-assets/psd-extract/board-06-asset-01-pixel--9-2360-928x1239.png":[928,1239],"packaging-assets/psd-extract/board-06-asset-02-pixel-922-2324-1004x1226.png":[1004,1226],"packaging-assets/psd-extract/board-07-asset-01-pixel-2020-2341-940x1253.png":[940,1253],"packaging-assets/psd-extract/board-07-asset-02-pixel-2960-2343-980x1306.png":[980,1306],"poster-assets/�ּ���ɽ_���� 1 ���� 2_���� 1 ���� 2.png":[2481,3508],"poster-assets/�ּ���ɽ_���� 1 ����.png":[2482,3508],"poster-assets/�ּ���ɽ_���� 1.png":[2481,3508],"slides/mp-01.png":[1500,3000],"slides/mp-02.png":[1500,3000],"slides/mp-03.png":[1500,3000],"slides/mp-04.png":[1501,2906],"slides/mp-05.png":[1620,3000],"slides/mp-06.png":[1500,3000],"slides/mp-07.png":[1500,3000],"slides/mp-08.png":[1500,3000],"slides/mp-09.png":[1500,3000],"slides/mp-10.png":[1500,3000],"slides/mp-11.png":[1500,3000],"slides/mp-12.png":[1500,3000],"slides/mp-13.png":[1500,3000],"slides/slide-game-cover.png":[929,521],"slides/slide-mp-landing.png":[382,776],"slides/slide-pkg-scene1.png":[928,1239]};
+
+const PORTFOLIO_RESPONSIVE_IMAGES = {"slides/slide-pkg-scene1.png":{"srcSet":"assets/optimized/slide-pkg-scene1.38ae2a878e.webp 928w","sizes":"(max-width: 760px) 82vw, 400px"},"slides/slide-game-cover.png":{"srcSet":"assets/optimized/slide-game-cover.ad7ad2dca0.webp 929w","sizes":"(max-width: 760px) 82vw, 400px"},"story-scholar.png":{"srcSet":"assets/optimized/story-scholar.5f9cabf41b.webp 1920w","sizes":"(max-width: 760px) 92vw, 42vw"},"slides/mp-01.png":{"srcSet":"assets/optimized/mp-01.c8fa1b1cec.webp 1500w","sizes":"(max-width: 760px) 78vw, 350px"},"slides/mp-02.png":{"srcSet":"assets/optimized/mp-02.a210951974.webp 1500w","sizes":"(max-width: 760px) 78vw, 350px"},"slides/mp-03.png":{"srcSet":"assets/optimized/mp-03.f68be3a725.webp 1500w","sizes":"(max-width: 760px) 78vw, 350px"},"slides/mp-04.png":{"srcSet":"assets/optimized/mp-04.d1cf69e738.webp 1501w","sizes":"(max-width: 760px) 78vw, 350px"},"slides/mp-05.png":{"srcSet":"assets/optimized/mp-05.622cf80526.webp 1620w","sizes":"(max-width: 760px) 78vw, 350px"},"slides/mp-06.png":{"srcSet":"assets/optimized/mp-06.30b86bffcd.webp 1500w","sizes":"(max-width: 760px) 78vw, 350px"},"slides/mp-07.png":{"srcSet":"assets/optimized/mp-07.de2a3c3276.webp 1500w","sizes":"(max-width: 760px) 78vw, 350px"},"slides/mp-08.png":{"srcSet":"assets/optimized/mp-08.5c39f2eaa5.webp 1500w","sizes":"(max-width: 760px) 78vw, 350px"},"slides/mp-09.png":{"srcSet":"assets/optimized/mp-09.0221a2a397.webp 1500w","sizes":"(max-width: 760px) 78vw, 350px"},"slides/mp-10.png":{"srcSet":"assets/optimized/mp-10.17f4628306.webp 1500w","sizes":"(max-width: 760px) 78vw, 350px"},"slides/mp-11.png":{"srcSet":"assets/optimized/mp-11.76fb5938bd.webp 1500w","sizes":"(max-width: 760px) 78vw, 350px"},"slides/mp-12.png":{"srcSet":"assets/optimized/mp-12.2318047008.webp 1500w","sizes":"(max-width: 760px) 78vw, 350px"},"slides/mp-13.png":{"srcSet":"assets/optimized/mp-13.dd63e20432.webp 1500w","sizes":"(max-width: 760px) 78vw, 350px"},"poster-assets/\u67da\u89c1\u5e38\u5c71_\u753b\u677f 1 \u526f\u672c 2_\u753b\u677f 1 \u526f\u672c 2.png":{"srcSet":"assets/optimized/\u67da\u89c1\u5e38\u5c71_\u753b\u677f 1 \u526f\u672c 2_\u753b\u677f 1 \u526f\u672c 2.94d097e505.webp 2481w","sizes":"(max-width: 760px) 92vw, 35vw"},"poster-assets/\u67da\u89c1\u5e38\u5c71_\u753b\u677f 1 \u526f\u672c.png":{"srcSet":"assets/optimized/\u67da\u89c1\u5e38\u5c71_\u753b\u677f 1 \u526f\u672c.644759d525.webp 2482w","sizes":"(max-width: 760px) 92vw, 35vw"},"poster-assets/\u67da\u89c1\u5e38\u5c71_\u753b\u677f 1.png":{"srcSet":"assets/optimized/\u67da\u89c1\u5e38\u5c71_\u753b\u677f 1.ba5faa6740.webp 2481w","sizes":"(max-width: 760px) 92vw, 35vw"}};
+
+function normalizeAssetPath(src) {
+  if (!src || typeof src !== 'string') return '';
+  try {
+    return decodeURIComponent(new URL(src, window.location.href).pathname.replace(/^\//, ''));
+  } catch (error) {
+    return src.split('?')[0].replace(/^\.\//, '');
+  }
+}
+
+function responsiveCandidateUrl(responsive) {
+  var value = responsive && responsive.srcSet ? responsive.srcSet : '';
+  var splitAt = value.lastIndexOf(' ');
+  var assetUrl = splitAt > 0 ? value.slice(0, splitAt) : value;
+  var descriptor = splitAt > 0 ? value.slice(splitAt + 1) : '';
+  return {
+    url: encodeURI(assetUrl),
+    srcSet: encodeURI(assetUrl) + (descriptor ? ' ' + descriptor : '')
+  };
+}
+
+function PortfolioImage(props) {
+  var nextProps = Object.assign({}, props);
+  var assetPath = normalizeAssetPath(nextProps.src);
+  var dimensions = PORTFOLIO_IMAGE_DIMENSIONS[assetPath];
+  var responsive = PORTFOLIO_RESPONSIVE_IMAGES[assetPath];
+  if (dimensions) {
+    if (!nextProps.width) nextProps.width = dimensions[0];
+    if (!nextProps.height) nextProps.height = dimensions[1];
+  }
+  if (!nextProps.loading || nextProps.loading === 'auto') nextProps.loading = 'lazy';
+  if (!nextProps.decoding) nextProps.decoding = 'async';
+  if (responsive) {
+    nextProps.srcSet = responsiveCandidateUrl(responsive).srcSet;
+    nextProps.sizes = responsive.sizes;
+  }
+  return React.createElement('img', nextProps);
+}
+
+function DeferredPortfolioImage(props) {
+  var ref = useRef(null);
+  var loadState = useState(false);
+  var shouldLoad = loadState[0];
+  var setShouldLoad = loadState[1];
+  useEffect(function() {
+    var image = ref.current;
+    if (!image) return;
+    if (!('IntersectionObserver' in window)) {
+      setShouldLoad(true);
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        setShouldLoad(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: '400px 600px', threshold: 0 });
+    observer.observe(image);
+    return function() { observer.disconnect(); };
+  }, []);
+
+  var assetPath = normalizeAssetPath(props.src);
+  var dimensions = PORTFOLIO_IMAGE_DIMENSIONS[assetPath];
+  var imageProps = Object.assign({}, props, {
+    ref: ref,
+    src: shouldLoad ? props.src : undefined,
+    width: props.width || (dimensions && dimensions[0]),
+    height: props.height || (dimensions && dimensions[1]),
+    'data-deferred-src': shouldLoad ? undefined : props.src
+  });
+  return React.createElement(PortfolioImage, imageProps);
+}
+
+function DeferredVideo(props) {
+  var ref = useRef(null);
+  var source = props.src;
+  var poster = props.poster;
+  useEffect(function() {
+    var video = ref.current;
+    if (!video || !source) return;
+    var loaded = false;
+    function hydrateVideo() {
+      if (loaded) return;
+      loaded = true;
+      if (poster) video.poster = poster;
+      video.src = source;
+      video.preload = 'auto';
+      video.load();
+      if (props.autoPlay !== false) {
+        var playback = video.play();
+        if (playback && typeof playback.catch === 'function') playback.catch(function() {});
+      }
+    }
+    if (!('IntersectionObserver' in window)) {
+      hydrateVideo();
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        hydrateVideo();
+        observer.disconnect();
+      }
+    }, { rootMargin: '600px 0px', threshold: 0 });
+    observer.observe(video);
+    return function() { observer.disconnect(); };
+  }, [source, poster]);
+
+  var videoProps = Object.assign({}, props, {
+    ref: ref,
+    src: undefined,
+    poster: undefined,
+    autoPlay: false,
+    preload: 'none',
+    'data-deferred-src': source,
+    'data-deferred-poster': poster || undefined
+  });
+  delete videoProps.children;
+  return React.createElement('video', videoProps);
+}
+
+function ProjectAssetWarmup() {
+  useEffect(function() {
+    if (!('IntersectionObserver' in window)) return;
+    var groups = [
+      { selector: '#section-01', assets: ['taishan-hero-poster.jpg', 'taishan-puppet.jpg'] },
+      { selector: '#section-game-ui', assets: ['game-ui-erosion-hero.jpg', 'game-ui-shuaitu-character-detail.png'] },
+      { selector: '#game-ui-shuaitu-visual', assets: ['game-ui-sunlight-lobby.jpg', 'game-ui-sunlight-icons.jpg'] },
+      { selector: '#section-02', assets: ['slides/mp-01.png', 'slides/mp-02.png'] },
+      { selector: '#section-03', assets: [
+        'packaging-assets/psd-extract/board-02-asset-01-pixel-1379-721-531x356.png',
+        'packaging-assets/psd-extract/board-02-asset-02-pixel-1000-721-356x356.png'
+      ] }
+    ];
+    var warmed = new Set();
+    function warmAssets(assets) {
+      assets.forEach(function(asset) {
+        var responsive = PORTFOLIO_RESPONSIVE_IMAGES[asset];
+        var requestAsset = responsive ? responsiveCandidateUrl(responsive).url : asset;
+        if (warmed.has(requestAsset)) return;
+        warmed.add(requestAsset);
+        var link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = requestAsset;
+        link.fetchPriority = 'low';
+        document.head.appendChild(link);
+      });
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        var assets = entry.target.__portfolioWarmAssets || [];
+        warmAssets(assets);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '1600px 0px', threshold: 0 });
+    groups.forEach(function(group) {
+      var target = document.querySelector(group.selector);
+      if (!target) return;
+      target.__portfolioWarmAssets = group.assets;
+      observer.observe(target);
+    });
+    return function() { observer.disconnect(); };
+  }, []);
+  return null;
+}
+
 /* ---------- useInView hook ---------- */
 function useInView(options) {
   var ref = useRef(null);
@@ -10786,7 +11312,7 @@ function TableOfContents() {
             }},
               /* Top: square image area */
               React.createElement('div', { style: { position: 'relative', width: '100%', height: 0, paddingBottom: '100%', overflow: 'hidden' } },
-                item.image ? React.createElement('img', { src: item.image, alt: item.title, loading: 'lazy', className: 'absolute inset-0 w-full h-full object-contain p-4' })
+                item.image ? React.createElement(PortfolioImage, { src: item.image, alt: item.title, loading: 'lazy', className: 'absolute inset-0 w-full h-full object-contain p-4' })
                   : React.createElement('div', { className: 'absolute inset-0 flex items-center justify-center px-8 text-center' }, React.createElement('span', { className: 'font-serif italic', style: { fontSize: 'clamp(2rem,5vw,4rem)', lineHeight: 1, color: '#666' } }, item.placeholderLabel || item.num)),
                 React.createElement('div', { className: 'absolute top-4 left-5 z-10' }, React.createElement('span', { className: 'text-white/60 text-xs font-mono tracking-wider' }, item.num)),
                 isActive ? React.createElement('div', { className: 'absolute top-4 right-5 z-10 flex items-center gap-1.5' }, React.createElement('span', { className: 'w-1.5 h-1.5 rounded-full bg-white dot-pulse' }), React.createElement('span', { className: 'text-white/60 text-[10px] tracking-wider uppercase' }, 'View')) : null
@@ -10819,7 +11345,7 @@ function TableOfContents() {
           gBtn(iNext, function() { goTo(active + 1); }, 'Next')
         ),
         /* Mini cover thumbnail */
-        items[active].image ? React.createElement('img', { src: items[active].image, alt: '', className: 'w-9 h-9 sm:w-10 sm:h-10 rounded-lg object-cover flex-shrink-0' }) : React.createElement('div', { className: 'w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0', style: { background: 'rgba(255,255,255,0.05)' } }, React.createElement('span', { className: 'font-serif italic text-white/30 text-sm' }, items[active].num)),
+        items[active].image ? React.createElement(PortfolioImage, { src: items[active].image, alt: '', className: 'w-9 h-9 sm:w-10 sm:h-10 rounded-lg object-cover flex-shrink-0' }) : React.createElement('div', { className: 'w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0', style: { background: 'rgba(255,255,255,0.05)' } }, React.createElement('span', { className: 'font-serif italic text-white/30 text-sm' }, items[active].num)),
         /* Title + subtitle */
         React.createElement('div', { className: 'text-left flex-shrink-0 min-w-0' },
           React.createElement('p', { className: 'text-white text-xs sm:text-sm font-serif italic truncate' }, items[active].title),
@@ -10859,7 +11385,7 @@ function Slide(props) {
   return React.createElement('section', { className: 'snap-slide relative min-h-screen flex items-center justify-center overflow-hidden bg-black' },
     React.createElement('div', { className: 'absolute inset-0 pointer-events-none', style: { background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 60%)' } }),
     React.createElement(Reveal, { y: 40, duration: 0.7, className: 'relative z-10' },
-      React.createElement('img', {
+      React.createElement(PortfolioImage, {
         src: props.image, alt: props.title, loading: 'lazy',
         className: 'max-w-[90vw] max-h-[78vh] object-contain',
         style: { filter: 'drop-shadow(0 8px 40px rgba(0,0,0,0.5))' }
@@ -11066,7 +11592,7 @@ function AboutCenterBadge() {
       React.createElement('div', { style:{ position:'absolute', top:'-16px', left:'50%', transform:'translateX(-50%) translateZ(8px)', width:'54px', height:'18px', background:'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06))', borderRadius:'4px 4px 10px 10px', border:'1px solid rgba(255,255,255,0.12)', boxShadow:'0 2px 6px rgba(0,0,0,0.3), 0 0 15px rgba(59,130,246,0.2), inset 0 1px 0 rgba(255,255,255,0.1)' } }),
       React.createElement('div', { style:{ position:'absolute', inset:0, borderRadius:'18px', border:'1px solid rgba(59,130,246,0.25)', background:'linear-gradient(145deg, rgba(22,22,26,0.96), rgba(12,12,15,0.99))', boxShadow:'0 25px 70px rgba(0,0,0,0.55), 0 0 50px rgba(59,130,246,0.35), 0 0 100px rgba(59,130,246,0.15), inset 0 0 30px rgba(59,130,246,0.05), inset 0 1px 0 rgba(255,255,255,0.06)', overflow:'hidden', transform:'translateZ(0px)' } },
         React.createElement('div', { style:{ position:'absolute', top:'20px', left:'20px', right:'20px', height:'220px', borderRadius:'12px', overflow:'hidden', transform:'translateZ(5px)' } },
-          React.createElement('img', { src:'about-portrait.jpg', alt:'王玉璇', style:{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'center top' } })
+          React.createElement(PortfolioImage, { src:'about-portrait.jpg', alt:'王玉璇', style:{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'center top' } })
         ),
         React.createElement('div', { style:{ position:'absolute', bottom:'82px', left:0, right:0, textAlign:'center', transform:'translateZ(20px)' } },
           React.createElement('p', { style:{ fontFamily:"'Noto Sans SC','Sora',sans-serif", fontWeight:600, fontSize:'24px', color:'white', letterSpacing:'0.05em' } }, '王玉璇')
@@ -11242,7 +11768,7 @@ function AboutFeaturedProjects() {
         projects.map(function(p, i) {
           return React.createElement('div', { key:i, className:'about-proj-card about-sub-reveal', style:{animationDelay:(0.2+i*0.12)+'s'} },
             React.createElement('div', { className:'about-proj-cover' },
-              p.image ? React.createElement('img', { src:p.image, alt:p.name, loading:'lazy' })
+              p.image ? React.createElement(PortfolioImage, { src:p.image, alt:p.name, loading:'lazy' })
                 : React.createElement('div', { className:'about-proj-cover-placeholder' },
                     React.createElement('span', { style:{fontFamily:"'EB Garamond',serif", fontStyle:'italic', fontSize:'2rem', color:'rgba(255,255,255,0.15)'} }, String(i+1).padStart(2,'0'))
                   )
@@ -11404,7 +11930,7 @@ function MPShowcase(props) {
       };
       return React.createElement('div', { key: i, className: 'mp-showcase-item', style: style },
         React.createElement('span', { className: 'mp-showcase-badge' }, 'SCREEN ' + page.id),
-        React.createElement('img', { src: page.image, alt: page.title, loading: 'lazy' })
+        React.createElement(PortfolioImage, { src: page.image, alt: page.title, loading: 'lazy' })
       );
     })
     )
@@ -11444,7 +11970,7 @@ function MPFilmstrip(props) {
             'aria-label': isDuplicate ? undefined : 'Show screen ' + page.id + ': ' + page.title,
             'aria-pressed': isDuplicate ? undefined : active
           },
-            React.createElement('img', { src: page.image, alt: page.title, loading: 'lazy' }),
+            React.createElement(DeferredPortfolioImage, { src: page.image, alt: page.title, loading: 'lazy' }),
             React.createElement('span', { className: 'mp-thumb-num' }, page.id)
           );
         })
@@ -11491,7 +12017,7 @@ function MiniProgramResult() {
     React.createElement('div', { className: 'mp-result-screens' },
       resultPages.map(function(page, i) {
         return React.createElement('figure', { key: page.id, className: 'mp-result-screen mp-result-screen-' + (i + 1) },
-          React.createElement('img', { src: page.image, alt: page.title, loading: 'lazy' }),
+          React.createElement(PortfolioImage, { src: page.image, alt: page.title, loading: 'lazy' }),
           React.createElement('figcaption', null, page.id + ' / ' + page.title)
         );
       })
@@ -12258,7 +12784,7 @@ function GameUICaseCover() {
         )
       ),
       React.createElement('figure', { className: 'gui-case__hero gui-anim gui-anim-3' },
-        React.createElement('img', {
+        React.createElement(PortfolioImage, {
           src: 'game-ui-erosion-hero.jpg',
           alt: '侵蚀序章天赋系统最终界面效果图',
           loading: 'lazy',
@@ -12300,7 +12826,7 @@ function GameUISystemAnalysis() {
       ),
       React.createElement('div', { className: 'gui-case__analysis-grid gui-anim gui-anim-3' },
         React.createElement('figure', { className: 'gui-case__analysis-visual' },
-          React.createElement('img', {
+          React.createElement(PortfolioImage, {
             src: 'game-ui-erosion-hero.jpg',
             alt: '侵蚀序章天赋网络界面结构',
             loading: 'lazy',
@@ -12361,7 +12887,7 @@ function GameUIMotionPreview() {
         )
       ),
       React.createElement('div', { className: 'gui-case__video-frame gui-anim gui-anim-3' },
-        React.createElement('video', {
+        React.createElement(DeferredVideo, {
           className: 'gui-case__video',
           src: 'game-ui-erosion-motion.mp4',
           poster: 'game-ui-erosion-hero.jpg',
@@ -12385,7 +12911,7 @@ function GameUIMotionPreview() {
         ),
         React.createElement('figure', { className: 'gui-case__reset-visual' },
           React.createElement('span', { className: 'gui-case__reset-visual-picture' },
-            React.createElement('img', {
+            React.createElement(PortfolioImage, {
               src: 'game-ui-erosion-reset-confirm.png',
               alt: '侵蚀序章确认重置天赋界面，包含取消与确认重置操作',
               loading: 'lazy',
@@ -12442,7 +12968,7 @@ function ShuaituCaseCover() {
         )
       ),
       React.createElement('figure', { className: 'stu-case__hero stu-anim stu-anim-3' },
-        React.createElement('img', {
+        React.createElement(PortfolioImage, {
           src: 'game-ui-shuaitu-character-detail.png',
           alt: '率土之滨司马懿武将详情完整界面',
           loading: 'lazy',
@@ -12541,7 +13067,7 @@ function ShuaituStructureComponents() {
         React.createElement('p', null, '通过角色视觉、核心属性、技能信息与操作入口之间的层级关系，将高密度武将信息划分为明确的阅读区域，在保证角色表现力的同时提升信息获取效率。')
       ),
       React.createElement('figure', { className: 'stu-case__annotated stu-anim stu-anim-3' },
-        React.createElement('img', {
+        React.createElement(PortfolioImage, {
           src: 'game-ui-shuaitu-character-detail.png',
           alt: '率土之滨武将详情界面信息结构编号标注',
           loading: 'lazy',
@@ -12580,7 +13106,7 @@ function ShuaituStructureComponents() {
         details.map(function(item) {
           return React.createElement('figure', { key: item.num, className: 'stu-case__module stu-case__module--' + item.cls },
             React.createElement('div', { className: 'stu-case__module-visual' },
-              React.createElement('img', {
+              React.createElement(PortfolioImage, {
                 src: 'game-ui-shuaitu-character-detail.png',
                 alt: '率土之滨武将详情' + item.title + '界面局部',
                 loading: 'lazy',
@@ -12755,7 +13281,7 @@ function ShuaituVisualSystem() {
           states.map(function(item) {
             return React.createElement('figure', { key: item.num, className: 'stu-case__state stu-case__state--' + item.cls },
               React.createElement('div', { className: 'stu-case__state-visual' },
-                React.createElement('img', {
+                React.createElement(PortfolioImage, {
                   src: 'game-ui-shuaitu-character-detail.png',
                   alt: '率土之滨武将详情' + item.title + '真实界面状态',
                   loading: 'lazy',
@@ -12770,6 +13296,158 @@ function ShuaituVisualSystem() {
                   React.createElement('p', null, item.text)
                 )
               )
+            );
+          })
+        )
+      )
+    )
+  );
+}
+
+function SunlightLobbyCaseCover() {
+  var result = useInView({ threshold: 0.1 });
+  var ref = result[0]; var inView = result[1];
+  var viewClass = inView ? ' in-view' : '';
+  var keywords = [
+    { cn: '角色焦点', en: 'CHARACTER FOCUS' },
+    { cn: '操作层级', en: 'ACTION HIERARCHY' },
+    { cn: '基地氛围', en: 'SAFEHOUSE MOOD' }
+  ];
+
+  return React.createElement('section', {
+    ref: ref,
+    id: 'game-ui-sunlight-cover',
+    className: 'sun-case sun-case--cover snap-slide' + viewClass,
+    'aria-labelledby': 'game-ui-sunlight-title'
+  },
+    React.createElement('div', { className: 'sun-case__inner' },
+      React.createElement('div', { className: 'sun-case__topline sun-anim' },
+        React.createElement('span', null, 'GAME UI DESIGN'),
+        React.createElement('span', null, 'CASE 03 · PAGE 01 / 02')
+      ),
+      React.createElement('div', { className: 'sun-case__cover-head sun-anim sun-anim-2' },
+        React.createElement('h2', { id: 'game-ui-sunlight-title', className: 'sun-case__title' },
+          '日光补给站',
+          React.createElement('span', { className: 'sun-case__subtitle' }, '安全基地大厅界面设计'),
+          React.createElement('span', { className: 'sun-case__en-label' }, 'GAME LOBBY UI')
+        ),
+        React.createElement('div', null,
+          React.createElement('p', { className: 'sun-case__intro' }, '围绕三人小队出发前的基地大厅场景，以中央角色、队伍关系与行前备战为主要阅读路径，统一玩家信息、功能导航和辅助入口，在轻末日氛围中保持清晰直观的操作层级。'),
+          React.createElement('ul', { className: 'sun-case__keywords', 'aria-label': '设计重点' },
+            keywords.map(function(item) {
+              return React.createElement('li', { key: item.en },
+                item.cn,
+                React.createElement('small', null, item.en)
+              );
+            })
+          )
+        )
+      ),
+      React.createElement('figure', { className: 'sun-case__hero sun-anim sun-anim-3 sun-reveal' },
+        React.createElement(PortfolioImage, {
+          src: 'game-ui-sunlight-lobby.jpg',
+          alt: '日光补给站安全基地大厅完整游戏界面',
+          loading: 'lazy',
+          decoding: 'async',
+          width: 2340,
+          height: 1080
+        }),
+        React.createElement('figcaption', null,
+          React.createElement('span', null, 'FINAL INTERFACE / SAFEHOUSE LOBBY'),
+          React.createElement('span', null, '2340 × 1080')
+        )
+      )
+    )
+  );
+}
+
+function SunlightLobbyBreakdown() {
+  var result = useInView({ threshold: 0.06 });
+  var ref = result[0]; var inView = result[1];
+  var viewClass = inView ? ' in-view' : '';
+  var structures = [
+    { num: '01', title: '玩家身份', en: 'PLAYER IDENTITY', text: '头像、等级、在线状态与经验信息集中于左上，快速确认当前身份与基础状态。' },
+    { num: '02', title: '角色与队伍', en: 'SQUAD FOCUS', text: '当前白兔角色居中前置，两名队友向后展开，建立明确的小队主次关系。' },
+    { num: '03', title: '行前备战', en: 'PRIMARY ACTION', text: '高对比暖黄色操作区集中任务入口与出发动作，形成界面最明确的功能焦点。' },
+    { num: '04', title: '功能导航', en: 'FUNCTION NAVIGATION', text: '底部常用功能与右上辅助入口分层布置，避免导航信息干扰中央角色展示。' }
+  ];
+  var iconNotes = [
+    { cn: '统一视角', en: '3/4 VIEW' },
+    { cn: '统一光向', en: 'TOP-LEFT LIGHT' },
+    { cn: '柔和材质', en: 'SOFT VOLUME' },
+    { cn: '小尺寸识别', en: '48PX VALIDATION' }
+  ];
+
+  return React.createElement('section', {
+    ref: ref,
+    id: 'game-ui-sunlight-breakdown',
+    className: 'sun-case sun-case--breakdown snap-slide' + viewClass,
+    'aria-labelledby': 'game-ui-sunlight-breakdown-title'
+  },
+    React.createElement('div', { className: 'sun-case__inner' },
+      React.createElement('div', { className: 'sun-case__topline sun-anim' },
+        React.createElement('span', null, 'LOBBY STRUCTURE & ICON SYSTEM'),
+        React.createElement('span', null, 'CASE 03 · PAGE 02 / 02')
+      ),
+      React.createElement('header', { className: 'sun-case__section-head sun-anim sun-anim-2' },
+        React.createElement('div', null,
+          React.createElement('span', { className: 'sun-case__section-index' }, '01 / INFORMATION HIERARCHY'),
+          React.createElement('h2', { id: 'game-ui-sunlight-breakdown-title' }, '大厅界面结构')
+        ),
+        React.createElement('p', null, '从玩家身份、角色队伍、主要行动与功能导航四个层级组织大厅信息，让玩家先识别当前角色与队伍，再完成出发前的准备操作。')
+      ),
+      React.createElement('figure', { className: 'sun-case__annotated sun-anim sun-anim-3 sun-reveal' },
+        React.createElement(PortfolioImage, {
+          src: 'game-ui-sunlight-lobby.jpg',
+          alt: '日光补给站大厅界面信息层级编号标注',
+          loading: 'lazy',
+          decoding: 'async',
+          width: 2340,
+          height: 1080
+        }),
+        structures.map(function(item, index) {
+          return React.createElement('span', {
+            key: item.num,
+            className: 'sun-case__marker sun-case__marker--' + (index + 1),
+            'aria-hidden': 'true'
+          }, item.num);
+        })
+      ),
+      React.createElement('ol', { className: 'sun-case__structure-list sun-anim sun-anim-3', 'aria-label': '大厅界面信息结构索引' },
+        structures.map(function(item) {
+          return React.createElement('li', { key: item.num, className: 'sun-case__structure-item' },
+            React.createElement('span', { className: 'sun-case__structure-num' }, item.num),
+            React.createElement('div', null,
+              React.createElement('h3', null, item.title),
+              React.createElement('small', null, item.en),
+              React.createElement('p', null, item.text)
+            )
+          );
+        })
+      ),
+      React.createElement('section', { className: 'sun-case__icons sun-anim', 'aria-labelledby': 'game-ui-sunlight-icons-title' },
+        React.createElement('header', { className: 'sun-case__icons-head' },
+          React.createElement('div', null,
+            React.createElement('span', { className: 'sun-case__section-index' }, '02 / FUNCTION ICONS'),
+            React.createElement('h3', { id: 'game-ui-sunlight-icons-title' }, '功能图标设计')
+          ),
+          React.createElement('p', null, '八枚功能图标采用统一的卡通微 3D 语言，通过圆润剪影、固定视角与一致光向，在接近实际 HUD 的小尺寸下保持清晰识别。')
+        ),
+        React.createElement('figure', { className: 'sun-case__icons-visual sun-anim sun-anim-2 sun-reveal' },
+          React.createElement(PortfolioImage, {
+            src: 'game-ui-sunlight-icons.jpg',
+            alt: '日光补给站八枚卡通微三维功能图标设计',
+            loading: 'lazy',
+            decoding: 'async',
+            width: 2200,
+            height: 1400
+          })
+        ),
+        React.createElement('ul', { className: 'sun-case__icon-notes sun-anim sun-anim-3' },
+          iconNotes.map(function(item) {
+            return React.createElement('li', { key: item.en },
+              React.createElement('strong', null, item.cn),
+              React.createElement('span', null, item.en)
             );
           })
         )
@@ -12847,8 +13525,9 @@ function CaseStudyOverview() {
         React.createElement('div', { className: 'cs-preview-label cs-anim cs-anim-4' }, 'GAMEPLAY PREVIEW'),
 
         /* Hero video */
-        React.createElement('video', {
+        React.createElement(DeferredVideo, {
           className: 'cs-hero-video cs-anim cs-anim-4',
+          src: 'taishan-hero.mp4',
           poster: 'taishan-hero-poster.jpg',
           autoPlay: true,
           muted: true,
@@ -12856,15 +13535,13 @@ function CaseStudyOverview() {
           playsInline: true,
           preload: 'none',
           'webkit-playsinline': 'true'
-        },
-          React.createElement('source', { src: 'taishan-hero.mp4', type: 'video/mp4' })
-        ),
+        }),
 
         /* Playable Demo card */
         React.createElement('div', { className: 'cs-demo-card cs-anim cs-anim-6' },
           /* QR code */
           React.createElement('div', { className: 'cs-demo-qr' },
-            React.createElement('img', { src: 'qr-demo.png', alt: 'Playable Demo QR Code' })
+            React.createElement(PortfolioImage, { src: 'qr-demo.png', alt: 'Playable Demo QR Code' })
           ),
           /* Divider */
           React.createElement('div', { className: 'cs-demo-divider' }),
@@ -12925,12 +13602,12 @@ function CaseStudyBackground() {
     React.createElement('div', { className: 'dbg-main' },
       /* Left side — cultural visual */
       React.createElement('div', { className: 'dbg-left dbg-anim dbg-anim-2' },
-        React.createElement('img', {
+        React.createElement(PortfolioImage, {
           className: 'dbg-image',
           src: 'taishan-puppet.jpg',
           alt: 'Taishan Shadow Puppet'
         }),
-        React.createElement('img', {
+        React.createElement(PortfolioImage, {
           className: 'dbg-image',
           src: 'taishan-puppet2.jpg',
           alt: 'Taishan Shadow Puppet Detail'
@@ -13078,7 +13755,7 @@ function CaseStudyConcept() {
           React.createElement('span', { className: 'dcp-visual-tag-cn' }, '伪装状态'),
           React.createElement('span', { className: 'dcp-visual-tag-sub' }, 'Hidden Form')
         ),
-        React.createElement('img', {
+        React.createElement(PortfolioImage, {
           className: 'dcp-visual-image',
           src: 'taishan-concept1.jpg',
           alt: 'Mirror scene - before reveal'
@@ -13103,7 +13780,7 @@ function CaseStudyConcept() {
           React.createElement('span', { className: 'dcp-visual-tag-cn' }, '真实显现'),
           React.createElement('span', { className: 'dcp-visual-tag-sub' }, 'True Form')
         ),
-        React.createElement('img', {
+        React.createElement(PortfolioImage, {
           className: 'dcp-visual-image',
           src: 'taishan-concept2.jpg',
           alt: 'Mirror scene - after reveal'
@@ -13241,8 +13918,8 @@ function CaseStudyStory() {
         ),
         React.createElement('div', { className: 'dss-scene-right' },
           React.createElement('div', { className: 'dss-scene-images' },
-            React.createElement('img', { className: 'dss-scene-img dss-scene-img-tall', src: 'story-scholar.png', alt: 'Scholar reading' }),
-            React.createElement('img', { className: 'dss-scene-img', src: 'story-forest.jpg', alt: 'Forest encounter' })
+            React.createElement(PortfolioImage, { className: 'dss-scene-img dss-scene-img-tall', src: 'story-scholar.png', alt: 'Scholar reading' }),
+            React.createElement(PortfolioImage, { className: 'dss-scene-img', src: 'story-forest.jpg', alt: 'Forest encounter' })
           ),
           React.createElement('p', { className: 'dss-scene-text' },
             '王生读书疲倦后出门散心，于深山林间偶遇神秘女子，故事由此展开。'
@@ -13270,8 +13947,8 @@ function CaseStudyStory() {
         ),
         React.createElement('div', { className: 'dss-scene-right' },
           React.createElement('div', { className: 'dss-scene-images' },
-            React.createElement('img', { className: 'dss-scene-img', src: 'story-elder.jpg', alt: 'Elder gives puppet' }),
-            React.createElement('img', { className: 'dss-scene-img', src: 'story-puzzle.jpg', alt: 'Puzzle interaction' })
+            React.createElement(PortfolioImage, { className: 'dss-scene-img', src: 'story-elder.jpg', alt: 'Elder gives puppet' }),
+            React.createElement(PortfolioImage, { className: 'dss-scene-img', src: 'story-puzzle.jpg', alt: 'Puzzle interaction' })
           ),
           React.createElement('p', { className: 'dss-scene-text' },
             '玩家进入泰山古街，通过寻找皮影线索完成探索与解谜。'
@@ -13303,7 +13980,7 @@ function CaseStudyStory() {
                   React.createElement('span', { className: 'dss-mirror-tag-cn' }, '伪装状态'),
                   React.createElement('span', { className: 'dss-mirror-tag-sub' }, 'Hidden Form')
                 ),
-                React.createElement('img', { className: 'dss-mirror-img', src: 'story-mirror-before.jpg', alt: 'Mirror before reveal' })
+                React.createElement(PortfolioImage, { className: 'dss-mirror-img', src: 'story-mirror-before.jpg', alt: 'Mirror before reveal' })
               ),
               /* Mirror center */
               React.createElement('div', { className: 'dss-mirror-mid' },
@@ -13322,7 +13999,7 @@ function CaseStudyStory() {
                   React.createElement('span', { className: 'dss-mirror-tag-cn' }, '真实显现'),
                   React.createElement('span', { className: 'dss-mirror-tag-sub' }, 'True Form')
                 ),
-                React.createElement('img', { className: 'dss-mirror-img', src: 'story-mirror-after.jpg', alt: 'Mirror after reveal' })
+                React.createElement(PortfolioImage, { className: 'dss-mirror-img', src: 'story-mirror-after.jpg', alt: 'Mirror after reveal' })
               )
             ),
             React.createElement('p', { className: 'dss-mirror-text' },
@@ -13348,8 +14025,8 @@ function CaseStudyStory() {
         ),
         React.createElement('div', { className: 'dss-scene-right' },
           React.createElement('div', { className: 'dss-scene-images' },
-            React.createElement('img', { className: 'dss-scene-img', src: 'story-temple.jpg', alt: 'Temple battle scene' }),
-            React.createElement('img', { className: 'dss-scene-img', src: 'story-combat-2.jpg', alt: 'Monster form reveal' })
+            React.createElement(PortfolioImage, { className: 'dss-scene-img', src: 'story-temple.jpg', alt: 'Temple battle scene' }),
+            React.createElement(PortfolioImage, { className: 'dss-scene-img', src: 'story-combat-2.jpg', alt: 'Monster form reveal' })
           ),
           React.createElement('p', { className: 'dss-scene-text' },
             '玩家操控皮影完成最终战斗，实现传统技艺与游戏机制融合。'
@@ -13455,21 +14132,21 @@ function CaseStudyGameplay() {
         React.createElement('div', { className: 'dpi-mirror-item' },
           React.createElement('div', { className: 'dpi-mirror-label' }, 'BEFORE'),
           React.createElement('div', { className: 'dpi-mirror-img' },
-            React.createElement('img', { src: m.beforeImg, alt: '\u955c\u9762\u672a\u89e6\u53d1' })
+            React.createElement(PortfolioImage, { src: m.beforeImg, alt: '\u955c\u9762\u672a\u89e6\u53d1' })
           )
         ),
         React.createElement('div', { className: 'dpi-mirror-flow' }, flowSteps),
         React.createElement('div', { className: 'dpi-mirror-item' },
           React.createElement('div', { className: 'dpi-mirror-label' }, 'AFTER'),
           React.createElement('div', { className: 'dpi-mirror-img' },
-            React.createElement('img', { src: m.afterImg, alt: '\u5996\u602a\u663e\u5f62' })
+            React.createElement(PortfolioImage, { src: m.afterImg, alt: '\u5996\u602a\u663e\u5f62' })
           )
         )
       );
     } else {
       var imgClass = 'dpi-mod-img' + (m.imgCompact ? ' dpi-mod-img-compact' : '');
       imgElement = React.createElement('div', { className: imgClass },
-        React.createElement('img', { src: m.img, alt: m.imgAlt })
+        React.createElement(PortfolioImage, { src: m.img, alt: m.imgAlt })
       );
     }
 
@@ -13642,7 +14319,8 @@ function CaseStudyInteraction() {
         )
       ),
       React.createElement('div', { className: 'iev-video-wrap' },
-        React.createElement('video', {
+        React.createElement(DeferredVideo, {
+          src: mod.video,
           autoPlay: !reduceMotion,
           muted: true,
           loop: !reduceMotion,
@@ -13651,9 +14329,7 @@ function CaseStudyInteraction() {
           playsInline: true,
           preload: 'metadata',
           'webkit-playsinline': 'true'
-        },
-          React.createElement('source', { src: mod.video, type: 'video/mp4' })
-        )
+        })
       ),
       React.createElement('div', { className: 'iev-mod-info' }, infoElements)
     );
@@ -13771,7 +14447,8 @@ function CaseStudyPlayable() {
           React.createElement('span', { className: 'pe-video-label-cn' }, '\u6e38\u620f\u8fd0\u884c\u5c55\u793a')
         ),
         React.createElement('div', { className: 'pe-video-wrap' },
-          React.createElement('video', {
+          React.createElement(DeferredVideo, {
+            src: 'gameplay-demo.mp4',
             autoPlay: !reduceMotion,
             muted: true,
             loop: !reduceMotion,
@@ -13780,9 +14457,7 @@ function CaseStudyPlayable() {
             playsInline: true,
             preload: 'metadata',
             'webkit-playsinline': 'true'
-          },
-            React.createElement('source', { src: 'gameplay-demo.mp4', type: 'video/mp4' })
-          )
+          })
         )
       ),
 
@@ -13793,7 +14468,7 @@ function CaseStudyPlayable() {
           React.createElement('div', { className: 'pe-demo-en-label' }, 'PLAYABLE DEMO'),
           React.createElement('div', { className: 'pe-demo-en-sub' }, 'SCAN TO PLAY'),
           React.createElement('div', { className: 'pe-demo-qr' },
-            React.createElement('img', { src: 'qr-demo.png', alt: 'QR Code' })
+            React.createElement(PortfolioImage, { src: 'qr-demo.png', alt: 'QR Code' })
           ),
           React.createElement('div', { className: 'pe-demo-type' }, 'H5 Interactive Game'),
           React.createElement('div', { className: 'pe-demo-cn' }, '\u626b\u7801\u4f53\u9a8c\u5b8c\u6574\u6e38\u620f')
@@ -13973,7 +14648,7 @@ function PackagingProjectVisual() {
       React.createElement('figure', { className: 'pkg-case__hero-grid pkg-case__figure pkg-reveal' },
         React.createElement('div', { className: 'pkg-case__matchcut' + (flavor === 1 ? ' is-pink' : '') },
           React.createElement('div', { className: 'pkg-case__matchcut-frame' + (flavor === 0 ? ' is-active' : ''), 'aria-hidden': flavor !== 0 },
-            React.createElement('img', {
+            React.createElement(PortfolioImage, {
               src: 'packaging-assets/pkg-viz-green-bag.png',
               alt: '绿色龙井乌龙包装数字效果图',
               className: 'pkg-reveal-image', width: 861, height: 861,
@@ -13981,7 +14656,7 @@ function PackagingProjectVisual() {
             })
           ),
           React.createElement('div', { className: 'pkg-case__matchcut-frame' + (flavor === 1 ? ' is-active' : ''), 'aria-hidden': flavor !== 1 },
-            React.createElement('img', {
+            React.createElement(PortfolioImage, {
               src: 'packaging-assets/pkg-viz-pink-bag.png',
               alt: '粉色九曲红梅包装数字效果图',
               className: 'pkg-reveal-image', width: 861, height: 861,
@@ -14023,14 +14698,14 @@ function PackagingVisualSystem() {
       React.createElement('div', { className: 'pkg-case__system-grid' },
         React.createElement('div', { className: 'pkg-case__c-stage pkg-reveal pkg-reveal--vertical' + (flavor === 1 ? ' is-pink' : '') },
           React.createElement('div', { className: 'pkg-case__c-item pkg-case__c-item--green' + (flavor === 0 ? ' is-active' : ''), 'aria-hidden': flavor !== 0 },
-            React.createElement('img', { src: 'packaging-assets/pkg-c-green.png', alt: '绿色茶叶花卉 C 形主视觉', className: 'pkg-reveal-image', width: 639, height: 657, loading: 'lazy', decoding: 'async' }),
+            React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-c-green.png', alt: '绿色茶叶花卉 C 形主视觉', className: 'pkg-reveal-image', width: 639, height: 657, loading: 'lazy', decoding: 'async' }),
             React.createElement('div', { className: 'pkg-case__asset-label' },
               React.createElement('span', null, '龙井乌龙'),
               React.createElement('span', null, 'TEA LEAF')
             )
           ),
           React.createElement('div', { className: 'pkg-case__c-item pkg-case__c-item--pink' + (flavor === 1 ? ' is-active' : ''), 'aria-hidden': flavor !== 1 },
-            React.createElement('img', { src: 'packaging-assets/pkg-c-pink.png', alt: '粉色花卉 C 形主视觉', className: 'pkg-reveal-image', width: 415, height: 426, loading: 'lazy', decoding: 'async' }),
+            React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-c-pink.png', alt: '粉色花卉 C 形主视觉', className: 'pkg-reveal-image', width: 415, height: 426, loading: 'lazy', decoding: 'async' }),
             React.createElement('div', { className: 'pkg-case__asset-label' },
               React.createElement('span', null, '九曲红梅'),
               React.createElement('span', null, 'RED PLUM')
@@ -14039,7 +14714,7 @@ function PackagingVisualSystem() {
         ),
         React.createElement('div', { className: 'pkg-case__system-side' },
           React.createElement('figure', { className: 'pkg-case__figure pkg-case__wordmark pkg-reveal', style: { '--pkg-delay': '80ms' } },
-            React.createElement('img', { src: 'packaging-assets/pkg-wordmark.png', alt: '龙井闻茶中文定制字标', className: 'pkg-reveal-image', width: 490, height: 172, loading: 'lazy', decoding: 'async' }),
+            React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-wordmark.png', alt: '龙井闻茶中文定制字标', className: 'pkg-reveal-image', width: 490, height: 172, loading: 'lazy', decoding: 'async' }),
             React.createElement('figcaption', { className: 'pkg-case__caption' },
               React.createElement('span', null, '龙井闻茶'),
               React.createElement('span', null, 'CUSTOM WORDMARK')
@@ -14048,23 +14723,23 @@ function PackagingVisualSystem() {
           React.createElement('div', { className: 'pkg-case__illustrations' },
             React.createElement('figure', { className: 'pkg-case__figure pkg-reveal', style: { '--pkg-delay': '120ms' } },
               React.createElement('div', { className: 'pkg-case__image' },
-                React.createElement('img', { src: 'packaging-assets/pkg-illustration-green.png', alt: '龙井茶叶水彩图形', className: 'pkg-reveal-image', width: 854, height: 736, loading: 'lazy', decoding: 'async' })
+                React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-illustration-green.png', alt: '龙井茶叶水彩图形', className: 'pkg-reveal-image', width: 854, height: 736, loading: 'lazy', decoding: 'async' })
               ),
               React.createElement('figcaption', { className: 'pkg-case__caption' }, React.createElement('span', null, '茶叶水彩'))
             ),
             React.createElement('figure', { className: 'pkg-case__figure pkg-reveal', style: { '--pkg-delay': '220ms' } },
               React.createElement('div', { className: 'pkg-case__image pkg-case__image--plum' },
-                React.createElement('img', { src: 'packaging-assets/pkg-illustration-pink.png', alt: '九曲红梅水彩图形', className: 'pkg-reveal-image', width: 718, height: 706, loading: 'lazy', decoding: 'async' })
+                React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-illustration-pink.png', alt: '九曲红梅水彩图形', className: 'pkg-reveal-image', width: 718, height: 706, loading: 'lazy', decoding: 'async' })
               ),
               React.createElement('figcaption', { className: 'pkg-case__caption' }, React.createElement('span', null, '红梅水彩'))
             )
           ),
           React.createElement('div', { className: 'pkg-case__patterns' },
             React.createElement('figure', { className: 'pkg-case__pattern pkg-reveal', style: { '--pkg-delay': '80ms' } },
-              React.createElement('img', { src: 'packaging-assets/pkg-pattern-green.png', alt: '绿色龙井纹样边框', className: 'pkg-reveal-image', width: 784, height: 495, loading: 'lazy', decoding: 'async' })
+              React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-pattern-green.png', alt: '绿色龙井纹样边框', className: 'pkg-reveal-image', width: 784, height: 495, loading: 'lazy', decoding: 'async' })
             ),
             React.createElement('figure', { className: 'pkg-case__pattern pkg-case__pattern--secondary pkg-reveal', style: { '--pkg-delay': '180ms' } },
-              React.createElement('img', { src: 'packaging-assets/pkg-pattern-pink.png', alt: '粉色红梅纹样边框', className: 'pkg-reveal-image', width: 784, height: 495, loading: 'lazy', decoding: 'async' })
+              React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-pattern-pink.png', alt: '粉色红梅纹样边框', className: 'pkg-reveal-image', width: 784, height: 495, loading: 'lazy', decoding: 'async' })
             )
           )
         )
@@ -14090,7 +14765,7 @@ function PackagingApplicationLegacy() {
     var size = dielineSizes[src];
     return React.createElement('figure', { className: 'pkg-case__figure pkg-reveal pkg-reveal--center', style: { '--pkg-delay': delay || '0ms' } },
       React.createElement('div', { className: 'pkg-case__dieline' },
-        React.createElement('img', { src: src, alt: alt, className: 'pkg-reveal-image', width: size[0], height: size[1], loading: 'lazy', decoding: 'async' })
+        React.createElement(PortfolioImage, { src: src, alt: alt, className: 'pkg-reveal-image', width: size[0], height: size[1], loading: 'lazy', decoding: 'async' })
       ),
       React.createElement('figcaption', { className: 'pkg-case__caption' },
         React.createElement('span', null, cn),
@@ -14130,7 +14805,7 @@ function PackagingApplicationLegacy() {
           React.createElement('div', { className: 'pkg-case__core-spread' },
             React.createElement('figure', { className: 'pkg-case__figure pkg-reveal pkg-reveal--center' },
               React.createElement('div', { className: 'pkg-case__core-front' },
-                React.createElement('img', { src: 'packaging-assets/pkg-core-front-green.png', alt: '龙井闻茶绿色包装正面核心视觉', className: 'pkg-reveal-image', width: 604, height: 801, loading: 'lazy', decoding: 'async' })
+                React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-core-front-green.png', alt: '龙井闻茶绿色包装正面核心视觉', className: 'pkg-reveal-image', width: 604, height: 801, loading: 'lazy', decoding: 'async' })
               ),
               React.createElement('figcaption', { className: 'pkg-case__caption' },
                 React.createElement('span', null, '包装正面核心视觉'),
@@ -14157,7 +14832,7 @@ function PackagingApplicationLegacy() {
         React.createElement('div', { className: 'pkg-case__viz-grid' },
           React.createElement('figure', { className: 'pkg-case__figure pkg-reveal pkg-reveal--vertical' },
             React.createElement('div', { className: 'pkg-case__viz pkg-case__viz--pink pkg-breathe-frame' },
-              React.createElement('img', { src: 'packaging-assets/pkg-viz-pink-scene.png', alt: '九曲红梅茶盒数字包装效果图', className: 'pkg-reveal-image pkg-breathe', width: 646, height: 861, loading: 'lazy', decoding: 'async' })
+              React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-viz-pink-scene.png', alt: '九曲红梅茶盒数字包装效果图', className: 'pkg-reveal-image pkg-breathe', width: 646, height: 861, loading: 'lazy', decoding: 'async' })
             ),
             React.createElement('figcaption', { className: 'pkg-case__caption' },
               React.createElement('span', null, '九曲红梅茶盒'),
@@ -14167,7 +14842,7 @@ function PackagingApplicationLegacy() {
           React.createElement('div', { className: 'pkg-case__viz-stack' },
             React.createElement('figure', { className: 'pkg-case__figure pkg-reveal pkg-reveal--vertical', style: { '--pkg-delay': '110ms' } },
               React.createElement('div', { className: 'pkg-case__viz pkg-case__viz--green' },
-                React.createElement('img', { src: 'packaging-assets/pkg-viz-green-cup.png', alt: '龙井乌龙杯装数字包装效果图', className: 'pkg-reveal-image', width: 646, height: 861, loading: 'lazy', decoding: 'async' })
+                React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-viz-green-cup.png', alt: '龙井乌龙杯装数字包装效果图', className: 'pkg-reveal-image', width: 646, height: 861, loading: 'lazy', decoding: 'async' })
               ),
               React.createElement('figcaption', { className: 'pkg-case__caption' },
                 React.createElement('span', null, '龙井乌龙杯装'),
@@ -14176,7 +14851,7 @@ function PackagingApplicationLegacy() {
             ),
             React.createElement('figure', { className: 'pkg-case__figure pkg-reveal pkg-reveal--vertical', style: { '--pkg-delay': '210ms' } },
               React.createElement('div', { className: 'pkg-case__viz pkg-case__viz--green' },
-                React.createElement('img', { src: 'packaging-assets/pkg-viz-green-box.png', alt: '龙井乌龙茶盒数字包装效果图', className: 'pkg-reveal-image', width: 646, height: 789, loading: 'lazy', decoding: 'async' })
+                React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-viz-green-box.png', alt: '龙井乌龙茶盒数字包装效果图', className: 'pkg-reveal-image', width: 646, height: 789, loading: 'lazy', decoding: 'async' })
               ),
               React.createElement('figcaption', { className: 'pkg-case__caption' },
                 React.createElement('span', null, '龙井乌龙茶盒'),
@@ -14195,10 +14870,10 @@ function PackagingApplicationLegacy() {
           ),
           React.createElement('div', { className: 'pkg-case__final-duo' },
             React.createElement('figure', { className: 'pkg-reveal pkg-reveal--vertical' },
-              React.createElement('img', { src: 'packaging-assets/pkg-hero-green.png', alt: '龙井乌龙茶盒手提袋与杯装数字包装组合', className: 'pkg-reveal-image', width: 862, height: 575, loading: 'lazy', decoding: 'async' })
+              React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-hero-green.png', alt: '龙井乌龙茶盒手提袋与杯装数字包装组合', className: 'pkg-reveal-image', width: 862, height: 575, loading: 'lazy', decoding: 'async' })
             ),
             React.createElement('figure', { className: 'pkg-reveal pkg-reveal--vertical', style: { '--pkg-delay': '130ms' } },
-              React.createElement('img', { src: 'packaging-assets/pkg-hero-pink.png', alt: '九曲红梅茶盒手提袋与杯装数字包装组合', className: 'pkg-reveal-image', width: 426, height: 426, loading: 'lazy', decoding: 'async' })
+              React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-hero-pink.png', alt: '九曲红梅茶盒手提袋与杯装数字包装组合', className: 'pkg-reveal-image', width: 426, height: 426, loading: 'lazy', decoding: 'async' })
             )
           ),
           React.createElement('div', { className: 'pkg-case__closing' },
@@ -14226,7 +14901,7 @@ function PackagingApplication() {
     },
       React.createElement('div', { className: 'pkg-case__dieline-pair-stage' },
         React.createElement('div', { className: 'pkg-case__dieline-pair-layer' + (flavor === 0 ? ' is-active' : ''), 'aria-hidden': flavor !== 0 },
-          React.createElement('img', {
+          React.createElement(PortfolioImage, {
             src: 'packaging-assets/pkg-dieline-' + index + '-green.png',
             alt: flavor === 0 ? '龙井乌龙绿色包装刀版 ' + index : '',
             width: width,
@@ -14236,7 +14911,7 @@ function PackagingApplication() {
           })
         ),
         React.createElement('div', { className: 'pkg-case__dieline-pair-layer' + (flavor === 1 ? ' is-active' : ''), 'aria-hidden': flavor !== 1 },
-          React.createElement('img', {
+          React.createElement(PortfolioImage, {
             src: 'packaging-assets/pkg-dieline-' + index + '-pink.png',
             alt: flavor === 1 ? '九曲红梅粉色包装刀版 ' + index : '',
             width: width,
@@ -14277,7 +14952,7 @@ function PackagingApplication() {
         React.createElement('div', { className: 'pkg-case__package-family' },
           React.createElement('figure', { className: 'pkg-case__figure pkg-reveal pkg-reveal--vertical' },
             React.createElement('div', { className: 'pkg-case__package-visual pkg-case__package-visual--primary' },
-              React.createElement('img', { src: 'packaging-assets/pkg-viz-green-box.png', alt: '龙井乌龙绿色茶盒完整数字包装效果', className: 'pkg-reveal-image', width: 646, height: 789, loading: 'lazy', decoding: 'async' })
+              React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-viz-green-box.png', alt: '龙井乌龙绿色茶盒完整数字包装效果', className: 'pkg-reveal-image', width: 646, height: 789, loading: 'lazy', decoding: 'async' })
             ),
             React.createElement('figcaption', { className: 'pkg-case__caption' },
               React.createElement('span', null, '龙井乌龙'),
@@ -14286,7 +14961,7 @@ function PackagingApplication() {
           ),
           React.createElement('figure', { className: 'pkg-case__figure pkg-reveal pkg-reveal--vertical', style: { '--pkg-delay': '120ms' } },
             React.createElement('div', { className: 'pkg-case__package-visual pkg-case__package-visual--secondary' },
-              React.createElement('img', { src: 'packaging-assets/pkg-viz-pink-box.png', alt: '九曲红梅粉色茶盒完整数字包装效果', className: 'pkg-reveal-image', width: 861, height: 861, loading: 'lazy', decoding: 'async' })
+              React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-viz-pink-box.png', alt: '九曲红梅粉色茶盒完整数字包装效果', className: 'pkg-reveal-image', width: 861, height: 861, loading: 'lazy', decoding: 'async' })
             ),
             React.createElement('figcaption', { className: 'pkg-case__caption' },
               React.createElement('span', null, '九曲红梅'),
@@ -14353,7 +15028,7 @@ function PackagingFinalVisuals() {
       React.createElement('div', { className: 'pkg-case__final-gallery' },
         React.createElement('figure', { className: 'pkg-case__figure pkg-reveal pkg-reveal--vertical' },
           React.createElement('div', { className: 'pkg-case__final-visual pkg-case__final-visual--primary pkg-breathe-frame' },
-            React.createElement('img', { src: 'packaging-assets/pkg-viz-pink-scene.png', alt: '九曲红梅茶盒场景数字包装效果', className: 'pkg-reveal-image pkg-breathe', width: 646, height: 861, loading: 'lazy', decoding: 'async' })
+            React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-viz-pink-scene.png', alt: '九曲红梅茶盒场景数字包装效果', className: 'pkg-reveal-image pkg-breathe', width: 646, height: 861, loading: 'lazy', decoding: 'async' })
           ),
           React.createElement('figcaption', { className: 'pkg-case__caption' },
             React.createElement('span', null, '九曲红梅茶盒'),
@@ -14362,7 +15037,7 @@ function PackagingFinalVisuals() {
         ),
         React.createElement('figure', { className: 'pkg-case__figure pkg-reveal pkg-reveal--vertical', style: { '--pkg-delay': '120ms' } },
           React.createElement('div', { className: 'pkg-case__final-visual pkg-case__final-visual--secondary' },
-            React.createElement('img', { src: 'packaging-assets/pkg-viz-green-cup.png', alt: '龙井乌龙杯装数字包装效果', className: 'pkg-reveal-image', width: 646, height: 861, loading: 'lazy', decoding: 'async' })
+            React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-viz-green-cup.png', alt: '龙井乌龙杯装数字包装效果', className: 'pkg-reveal-image', width: 646, height: 861, loading: 'lazy', decoding: 'async' })
           ),
           React.createElement('figcaption', { className: 'pkg-case__caption' },
             React.createElement('span', null, '龙井乌龙杯装'),
@@ -14379,10 +15054,10 @@ function PackagingFinalVisuals() {
           ),
           React.createElement('div', { className: 'pkg-case__final-duo' },
             React.createElement('figure', { className: 'pkg-reveal pkg-reveal--vertical' },
-              React.createElement('img', { src: 'packaging-assets/pkg-hero-green.png', alt: '龙井乌龙茶盒手提袋与杯装数字包装组合', className: 'pkg-reveal-image', width: 862, height: 575, loading: 'lazy', decoding: 'async' })
+              React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-hero-green.png', alt: '龙井乌龙茶盒手提袋与杯装数字包装组合', className: 'pkg-reveal-image', width: 862, height: 575, loading: 'lazy', decoding: 'async' })
             ),
             React.createElement('figure', { className: 'pkg-reveal pkg-reveal--vertical', style: { '--pkg-delay': '120ms' } },
-              React.createElement('img', { src: 'packaging-assets/pkg-hero-pink.png', alt: '九曲红梅茶盒手提袋与杯装数字包装组合', className: 'pkg-reveal-image', width: 426, height: 426, loading: 'lazy', decoding: 'async' })
+              React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-hero-pink.png', alt: '九曲红梅茶盒手提袋与杯装数字包装组合', className: 'pkg-reveal-image', width: 426, height: 426, loading: 'lazy', decoding: 'async' })
             )
           ),
           React.createElement('div', { className: 'pkg-case__closing' },
@@ -14510,7 +15185,7 @@ function PackagingProjectVisualV2() {
         ),
         React.createElement('div', { className: 'pkg2-hero-art pkg2-hero-breathe' },
           React.createElement('figure', { className: 'pkg2-figure pkg2-hero-green pkg2-mask-left' },
-            React.createElement('img', {
+            React.createElement(PortfolioImage, {
               src: 'packaging-assets/pkg-hero-green.png',
               alt: '龙井乌龙茶盒、手提袋与杯装数字包装组合视觉',
               width: 862, height: 575, loading: 'eager', fetchpriority: 'high', decoding: 'async'
@@ -14520,7 +15195,7 @@ function PackagingProjectVisualV2() {
             )
           ),
           React.createElement('figure', { className: 'pkg2-figure pkg2-hero-pink pkg2-mask-down', style: { '--pkg2-delay': '130ms' } },
-            React.createElement('img', {
+            React.createElement(PortfolioImage, {
               src: 'packaging-assets/pkg-hero-pink.png',
               alt: '九曲红梅茶盒、手提袋与杯装数字包装组合视觉',
               width: 426, height: 426, loading: 'eager', decoding: 'async'
@@ -14554,20 +15229,20 @@ function PackagingVisualLanguageV2() {
       React.createElement('div', { className: 'pkg2-language-grid' },
         React.createElement('div', { className: 'pkg2-source-stack' },
           React.createElement('figure', { className: 'pkg2-figure pkg2-mask-down' },
-            React.createElement('img', { src: 'packaging-assets/pkg-illustration-green.png', alt: '龙井茶叶水彩植物视觉', width: 854, height: 736, loading: 'lazy', decoding: 'async' }),
+            React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-illustration-green.png', alt: '龙井茶叶水彩植物视觉', width: 854, height: 736, loading: 'lazy', decoding: 'async' }),
             React.createElement('figcaption', { className: 'pkg2-caption' }, React.createElement('span', null, '茶叶 / TEA LEAF'))
           ),
           React.createElement('figure', { className: 'pkg2-figure pkg2-mask-down', style: { '--pkg2-delay': '120ms' } },
-            React.createElement('img', { src: 'packaging-assets/pkg-illustration-pink.png', alt: '九曲红梅水彩植物视觉', width: 718, height: 706, loading: 'lazy', decoding: 'async' }),
+            React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-illustration-pink.png', alt: '九曲红梅水彩植物视觉', width: 718, height: 706, loading: 'lazy', decoding: 'async' }),
             React.createElement('figcaption', { className: 'pkg2-caption' }, React.createElement('span', null, '红梅 / RED PLUM'))
           )
         ),
         React.createElement('div', { className: 'pkg2-c-stage' + (isPink ? ' is-pink' : '') },
           React.createElement('figure', { className: 'pkg2-c-layer pkg2-c-layer--green' + (!isPink ? ' is-active' : ''), 'aria-hidden': isPink },
-            React.createElement('img', { src: 'packaging-assets/pkg-c-green.png', alt: isPink ? '' : '绿色茶叶花卉 C 形包装主视觉', width: 639, height: 657, loading: 'lazy', decoding: 'async' })
+            React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-c-green.png', alt: isPink ? '' : '绿色茶叶花卉 C 形包装主视觉', width: 639, height: 657, loading: 'lazy', decoding: 'async' })
           ),
           React.createElement('figure', { className: 'pkg2-c-layer pkg2-c-layer--pink' + (isPink ? ' is-active' : ''), 'aria-hidden': !isPink },
-            React.createElement('img', { src: 'packaging-assets/pkg-c-pink.png', alt: isPink ? '粉色红梅 C 形包装主视觉' : '', width: 415, height: 426, loading: 'lazy', decoding: 'async' })
+            React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-c-pink.png', alt: isPink ? '粉色红梅 C 形包装主视觉' : '', width: 415, height: 426, loading: 'lazy', decoding: 'async' })
           ),
           React.createElement('div', { className: 'pkg2-c-label' },
             React.createElement('span', null, isPink ? '九曲红梅' : '龙井乌龙'),
@@ -14599,15 +15274,15 @@ function PackagingWordmarkPattern() {
       ),
       React.createElement('div', { className: 'pkg2-wordpattern-grid' },
         React.createElement('figure', { className: 'pkg2-figure pkg2-wordmark-visual pkg2-mask-left' },
-          React.createElement('img', { src: 'packaging-assets/pkg-wordmark.png', alt: '龙井闻茶中文定制字标', width: 490, height: 172, loading: 'lazy', decoding: 'async' }),
+          React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-wordmark.png', alt: '龙井闻茶中文定制字标', width: 490, height: 172, loading: 'lazy', decoding: 'async' }),
           React.createElement('figcaption', { className: 'pkg2-caption' }, React.createElement('span', null, '龙井闻茶'), React.createElement('span', null, 'CUSTOM WORDMARK'))
         ),
         React.createElement('div', { className: 'pkg2-pattern-stack' },
           React.createElement('figure', { className: 'pkg2-figure pkg2-mask-down', style: { '--pkg2-delay': '100ms' } },
-            React.createElement('img', { src: 'packaging-assets/pkg-pattern-green.png', alt: '绿色龙井连续纹样', width: 784, height: 495, loading: 'lazy', decoding: 'async' })
+            React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-pattern-green.png', alt: '绿色龙井连续纹样', width: 784, height: 495, loading: 'lazy', decoding: 'async' })
           ),
           React.createElement('figure', { className: 'pkg2-figure pkg2-mask-down', style: { '--pkg2-delay': '220ms' } },
-            React.createElement('img', { src: 'packaging-assets/pkg-pattern-pink.png', alt: '粉色红梅连续纹样', width: 784, height: 495, loading: 'lazy', decoding: 'async' })
+            React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-pattern-pink.png', alt: '粉色红梅连续纹样', width: 784, height: 495, loading: 'lazy', decoding: 'async' })
           )
         )
       )
@@ -14641,7 +15316,7 @@ function PackagingGreenDieline() {
       React.createElement('div', { className: 'pkg2-dieline-grid' },
         items.map(function(item, index) {
           return React.createElement('figure', { key: item.id, className: 'pkg2-figure pkg2-dieline-item pkg2-dieline-item--' + item.id + ' pkg2-mask-down', style: { '--pkg2-delay': (index * 110) + 'ms' } },
-            React.createElement('img', { src: item.src, alt: item.alt, width: item.width, height: item.height, loading: 'lazy', decoding: 'async' }),
+            React.createElement(PortfolioImage, { src: item.src, alt: item.alt, width: item.width, height: item.height, loading: 'lazy', decoding: 'async' }),
             React.createElement('figcaption', { className: 'pkg2-dieline-label pkg2-caption' },
               React.createElement('span', null, item.id + ' / ' + item.label), React.createElement('span', null, 'LONGJING / GREEN')
             )
@@ -14667,10 +15342,10 @@ function PackagingMatchStage(props) {
       'aria-label': props.title + '双口味固定舞台切换'
     },
       React.createElement('div', { className: 'pkg2-match-layer pkg2-match-layer--green', 'aria-hidden': isPink },
-        React.createElement('img', { src: props.green.src, alt: isPink ? '' : props.green.alt, width: props.green.width, height: props.green.height, loading: 'lazy', decoding: 'async' })
+        React.createElement(PortfolioImage, { src: props.green.src, alt: isPink ? '' : props.green.alt, width: props.green.width, height: props.green.height, loading: 'lazy', decoding: 'async' })
       ),
       React.createElement('div', { className: 'pkg2-match-layer pkg2-match-layer--pink', 'aria-hidden': !isPink },
-        React.createElement('img', { src: props.pink.src, alt: isPink ? props.pink.alt : '', width: props.pink.width, height: props.pink.height, loading: 'lazy', decoding: 'async' })
+        React.createElement(PortfolioImage, { src: props.pink.src, alt: isPink ? props.pink.alt : '', width: props.pink.width, height: props.pink.height, loading: 'lazy', decoding: 'async' })
       )
     ),
     React.createElement('div', { className: 'pkg2-match-state pkg2-caption' },
@@ -14750,10 +15425,10 @@ function PackagingFinalVisualsV2() {
           ),
           React.createElement('div', { className: 'pkg2-diptych pkg2-diptych--green' },
             React.createElement('figure', { className: 'pkg2-figure pkg2-mask-left' },
-              React.createElement('img', { src: 'packaging-assets/pkg-viz-green-box.png', alt: '龙井乌龙绿色茶盒数字包装效果', width: 646, height: 789, loading: 'lazy', decoding: 'async' })
+              React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-viz-green-box.png', alt: '龙井乌龙绿色茶盒数字包装效果', width: 646, height: 789, loading: 'lazy', decoding: 'async' })
             ),
             React.createElement('figure', { className: 'pkg2-figure pkg2-mask-right', style: { '--pkg2-delay': '140ms' } },
-              React.createElement('img', { src: 'packaging-assets/pkg-viz-green-cup.png', alt: '龙井乌龙绿色杯装数字包装效果', width: 646, height: 861, loading: 'lazy', decoding: 'async' })
+              React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-viz-green-cup.png', alt: '龙井乌龙绿色杯装数字包装效果', width: 646, height: 861, loading: 'lazy', decoding: 'async' })
             )
           )
         ),
@@ -14763,10 +15438,10 @@ function PackagingFinalVisualsV2() {
           ),
           React.createElement('div', { className: 'pkg2-diptych pkg2-diptych--pink' },
             React.createElement('figure', { className: 'pkg2-figure pkg2-mask-left' },
-              React.createElement('img', { src: 'packaging-assets/pkg-viz-pink-box.png', alt: '九曲红梅粉色茶盒数字包装效果', width: 861, height: 861, loading: 'lazy', decoding: 'async' })
+              React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-viz-pink-box.png', alt: '九曲红梅粉色茶盒数字包装效果', width: 861, height: 861, loading: 'lazy', decoding: 'async' })
             ),
             React.createElement('figure', { className: 'pkg2-figure pkg2-mask-right', style: { '--pkg2-delay': '140ms' } },
-              React.createElement('img', { src: 'packaging-assets/pkg-hero-pink.png', alt: '九曲红梅茶盒、杯装与手提袋组合数字包装视觉', width: 426, height: 426, loading: 'lazy', decoding: 'async' })
+              React.createElement(PortfolioImage, { src: 'packaging-assets/pkg-hero-pink.png', alt: '九曲红梅茶盒、杯装与手提袋组合数字包装视觉', width: 426, height: 426, loading: 'lazy', decoding: 'async' })
             )
           )
         )
@@ -14823,12 +15498,12 @@ function PackagingWork4Overview(props) {
         key: asset.src,
         className: 'pkg4-collage-item pkg4-collage-0' + (index + 1) + ' pkg2-mask-down' + (isPink ? ' pkg4-flavour-crossfade' : ''),
         style: { '--pkg2-delay': (220 + order * 95) + 'ms' }
-      }, React.createElement('img', {
+      }, React.createElement(PortfolioImage, {
         src: pkg4Extract + asset.src,
         alt: asset.alt,
         width: asset.w,
         height: asset.h,
-        loading: isPink ? 'lazy' : (index < 2 ? 'eager' : 'lazy'),
+        loading: 'lazy',
         decoding: 'async'
       }));
     })
@@ -14856,14 +15531,14 @@ function PackagingWork4System() {
     'aria-label': '字标、双味色彩与 C 形视觉系统'
   },
     React.createElement('figure', { className: 'pkg4-system-wordmark pkg2-mask-left' },
-      React.createElement('img', { src: pkg4Extract + 'board-04-asset-05-pixel-2021-1264-747x552.png', alt: '龙井闻茶拆解字标', width: 747, height: 552, loading: 'lazy', decoding: 'async' })
+      React.createElement(PortfolioImage, { src: pkg4Extract + 'board-04-asset-05-pixel-2021-1264-747x552.png', alt: '龙井闻茶拆解字标', width: 747, height: 552, loading: 'lazy', decoding: 'async' })
     ),
     visuals.map(function(item, index) {
       return React.createElement('figure', {
         key: item.cls,
         className: 'pkg4-system-visual pkg4-system-visual--' + item.cls + ' pkg2-mask-down',
         style: { '--pkg2-delay': (index * 100) + 'ms' }
-      }, React.createElement('img', { src: pkg4Extract + item.src, alt: item.alt, width: item.w, height: item.h, loading: 'lazy', decoding: 'async' }));
+      }, React.createElement(PortfolioImage, { src: pkg4Extract + item.src, alt: item.alt, width: item.w, height: item.h, loading: 'lazy', decoding: 'async' }));
     }),
     React.createElement('div', { className: 'pkg4-palette', 'aria-label': '绿色与粉色包装色板' },
       swatches.map(function(item, index) {
@@ -14915,7 +15590,7 @@ function PackagingWork4Pattern() {
           className: 'pkg4-pattern-asset pkg4-pattern-asset--' + item.cls + ' pkg4-process-' + phase + ' pkg2-mask-down',
           style: { '--pkg2-delay': delays[index] + 'ms' },
           'aria-hidden': item.alt ? undefined : true
-        }, React.createElement('img', { src: pkg4Extract + item.src, alt: item.alt, width: item.w, height: item.h, loading: 'lazy', decoding: 'async' }));
+        }, React.createElement(PortfolioImage, { src: pkg4Extract + item.src, alt: item.alt, width: item.w, height: item.h, loading: 'lazy', decoding: 'async' }));
       })
     ),
     React.createElement('p', { className: 'pkg4-keep-exploring pkg2-reveal', style: { '--pkg2-delay': '240ms' } }, 'KEEP', React.createElement('br'), 'EXPLORING')
@@ -14945,7 +15620,7 @@ function PackagingWork4Final(props) {
         key: item.src,
         className: 'pkg4-final-panel ' + (index === 0 ? 'pkg2-mask-left' : 'pkg2-mask-right'),
         style: { '--pkg2-delay': (index * 140) + 'ms' }
-      }, React.createElement('img', { src: pkg4Extract + item.src, alt: item.alt, width: item.w, height: item.h, loading: 'lazy', decoding: 'async' }));
+      }, React.createElement(PortfolioImage, { src: pkg4Extract + item.src, alt: item.alt, width: item.w, height: item.h, loading: 'lazy', decoding: 'async' }));
     })
   );
 }
@@ -15056,7 +15731,7 @@ function PosterProject(props) {
           };
           var media;
           if (work.type === 'video') {
-            media = React.createElement('video', Object.assign({}, mediaProps, {
+            media = React.createElement(DeferredVideo, Object.assign({}, mediaProps, {
               autoPlay: true,
               muted: true,
               loop: true,
@@ -15066,7 +15741,7 @@ function PosterProject(props) {
               'webkit-playsinline': 'true'
             }));
           } else {
-            media = React.createElement('img', Object.assign({}, mediaProps, {
+            media = React.createElement(PortfolioImage, Object.assign({}, mediaProps, {
               alt: work.alt,
               width: work.width,
               height: work.height,
@@ -15169,6 +15844,8 @@ function App() {
   slideElements.push(React.createElement(ShuaituCaseCover, { key: 'game-ui-shuaitu-cover' }));
   slideElements.push(React.createElement(ShuaituStructureComponents, { key: 'game-ui-shuaitu-structure' }));
   slideElements.push(React.createElement(ShuaituVisualSystem, { key: 'game-ui-shuaitu-visual' }));
+  slideElements.push(React.createElement(SunlightLobbyCaseCover, { key: 'game-ui-sunlight-cover' }));
+  slideElements.push(React.createElement(SunlightLobbyBreakdown, { key: 'game-ui-sunlight-breakdown' }));
 
   /* 03: Digital Interface Design — existing Mini Program case study */
   slideElements.push(React.createElement(ChapterDivider, { key: 'cc-02', chapter: ccChapters.digital, sectionId: 'section-02' }));
@@ -15195,6 +15872,7 @@ function App() {
   });
 
   return React.createElement(React.Fragment, null,
+    React.createElement(ProjectAssetWarmup),
     React.createElement(ScrollProgress),
     React.createElement(Navbar),
     React.createElement(Hero),
