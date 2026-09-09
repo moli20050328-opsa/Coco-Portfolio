@@ -8327,6 +8327,54 @@ body.ds-active header .text-white\/40 {
   .rain-reveal { opacity: 1; transform: none; transition: none; }
 }
 
+/* One-page portrait GUI exhibition, following the Game UI chapter. */
+.warehouse-case {
+  background: #eee9de; color: #182022;
+  font-family: 'Noto Sans SC','Inter',sans-serif;
+  padding: 112px clamp(28px,6vw,100px) 40px;
+  min-height: 100svh; scroll-margin-top: 0;
+}
+.warehouse-case__inner { width: min(1120px,100%); margin: auto; }
+.warehouse-case__topline { display: flex; justify-content: space-between; gap: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(24,32,34,.18); color: #626863; font: 10px/1.6 'Inter',sans-serif; letter-spacing: .13em; }
+.warehouse-case__layout { display: grid; grid-template-columns: minmax(0,5fr) minmax(0,7fr); gap: clamp(48px,7vw,100px); align-items: center; margin-top: 24px; }
+.warehouse-case__copy h2 { margin: 0; font-size: clamp(28px,2.6vw,38px); font-weight: 400; line-height: 1.4; letter-spacing: -.02em; }
+.warehouse-case__copy .warehouse-case__subtitle { margin: 12px 0 0; color: #182022; font-size: 15px; line-height: 1.65; }
+.warehouse-case__copy .warehouse-case__intro { margin: 16px 0 0; max-width: 38em; color: #59615e; font-size: 13px; line-height: 1.9; }
+.warehouse-case__copy .warehouse-case__metadata { margin: 12px 0 0; color: #626863; font: 9px/1.8 'Inter',sans-serif; letter-spacing: .09em; }
+.warehouse-case__hero { margin: 0; justify-self: center; }
+.warehouse-case__hero img { display: block; width: auto; height: clamp(520px,calc(100svh - 210px),760px); max-width: 100%; aspect-ratio: 720 / 1560; object-fit: contain; }
+.warehouse-case__details { min-width: 0; }
+.warehouse-case__details h3 { margin: 0; font-size: 18px; font-weight: 400; }
+.warehouse-case__details p { margin: 10px 0 16px; color: #59615e; font-size: 12px; line-height: 1.8; }
+.warehouse-case__reward-row { display: grid; grid-template-columns: minmax(0,280px) minmax(0,1fr); gap: 28px; align-items: center; margin-top: 24px; }
+.warehouse-case__reward { position: relative; overflow: hidden; aspect-ratio: 680 / 635; margin: 0; }
+.warehouse-case__reward img { display: block; position: absolute; height: auto; max-width: none; width: 105.882353%; left: -2.941176%; top: -140.472441%; }
+.warehouse-case__icons { margin-top: 25px; padding-top: 18px; border-top: 1px solid rgba(24,32,34,.18); }
+.warehouse-case__icon-row { display: flex; gap: clamp(12px,1.7vw,24px); align-items: end; margin-top: 16px; }
+.warehouse-case__icon-row figure { margin: 0; flex: 1; min-width: 0; }
+.warehouse-case__icon-row img { display: block; width: min(100%,76px); height: auto; aspect-ratio: 1; object-fit: contain; }
+.warehouse-case__icon-row figure:last-child img { width: min(100%,96px); }
+.warehouse-case__icon-row figcaption { margin-top: 8px; font-size: 10px; color: #59615e; }
+@media(max-width:1050px) {
+  .warehouse-case__layout { column-gap: 40px; }
+  .warehouse-case__copy h2 { font-size: 28px; }
+  .warehouse-case__hero img { height: clamp(520px,calc(100svh - 210px),650px); }
+}
+@media(max-width:760px) {
+  .warehouse-case { padding: 108px 20px 56px; }
+  .warehouse-case__topline { font-size: 8px; letter-spacing: .08em; }
+  .warehouse-case__layout { grid-template-columns: minmax(0,1fr); gap: 32px; }
+  .warehouse-case__copy h2 { font-size: 28px; }
+  .warehouse-case__copy .warehouse-case__intro { font-size: 14px; }
+  .warehouse-case__hero { justify-self: center; width: min(100%,340px); }
+  .warehouse-case__hero img { width: 100%; height: auto; }
+  .warehouse-case__details { width: min(100%,420px); margin: auto; }
+  .warehouse-case__details p { font-size: 13px; }
+  .warehouse-case__reward-row { grid-template-columns: minmax(0,1fr); gap: 16px; }
+  .warehouse-case__icon-row img { width: 76px; max-width: 100%; }
+  .warehouse-case__icon-row figure:last-child img { width: 96px; }
+}
+
 /* ---------- 日光补给站 · Game lobby UI case study ---------- */
 .sun-case {
   --sun-paper: #eee9de;
@@ -10892,6 +10940,39 @@ body.ds-active header .text-white\/40 {
   }
 }
 
+/* Short GUI cases: preserve artwork, consolidate repeated analysis. */
+.stu-case--compact, .sun-case--compact { padding-top: 112px; padding-bottom: 64px; }
+.stu-case--compact .stu-case__inner { max-width: 1240px; }
+.stu-case__compact-head { margin: 28px 0 32px; }
+.stu-case__compact-head h2 { margin: 0; font-size: clamp(28px,3vw,44px); font-weight: 300; line-height: 1.3; }
+.stu-case__compact-head p { margin: 16px 0 0; font-size: 14px; line-height: 1.8; color: var(--stu-muted); }
+.stu-case__compact-details { display: grid; grid-template-columns: 5fr 6fr; gap: 32px; align-items: start; }
+.stu-case__compact-details figure { margin: 0; min-width: 0; }
+.stu-case__detail-crop { position: relative; overflow: hidden; background: #0b0d0e; }
+.stu-case__detail-crop img { position: absolute; display: block; max-width: none; height: auto; }
+.stu-case__compact-details figcaption { padding-top: 16px; }
+.stu-case__compact-details h3, .stu-case__compact-colors h3 { margin: 0; font-size: 17px; font-weight: 400; }
+.stu-case__compact-details p, .stu-case__compact-colors p { margin: 8px 0 0; font-size: 13px; line-height: 1.8; color: var(--stu-muted); }
+.stu-case__compact-colors { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--stu-line); scroll-margin-top: 112px; }
+.stu-case__compact-colors ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 16px; }
+.stu-case__compact-colors li { font-size: 11px; }
+.stu-case__compact-colors small { display: block; margin-top: 4px; font-size: 9px; color: var(--stu-muted); }
+.stu-case__compact-swatch { display: block; height: 24px; margin-bottom: 8px; }
+.sun-case--compact .sun-case__cover-head { margin-top: 32px; gap: 64px; grid-template-columns: 1fr 1fr; }
+.sun-case--compact .sun-case__title { font-size: clamp(36px,3.6vw,54px); }
+.sun-case--compact .sun-case__subtitle { font-size: 18px; }
+.sun-case__compact-layout { display: grid; grid-template-columns: minmax(0,2.4fr) minmax(0,1fr); gap: 36px; align-items: center; margin-top: 48px; }
+.sun-case--compact .sun-case__hero { margin: 0; }
+.sun-case__compact-icons { min-width: 0; scroll-margin-top: 112px; }
+.sun-case__compact-icons h3 { margin: 20px 0 0; font-size: 18px; font-weight: 400; }
+.sun-case__compact-icons p { margin: 10px 0 0; font-size: 13px; line-height: 1.8; color: var(--sun-muted); }
+@media(max-width:760px) {
+  .stu-case--compact, .sun-case--compact { padding: 108px 20px 56px; }
+  .stu-case__compact-details, .stu-case__compact-colors, .sun-case--compact .sun-case__cover-head, .sun-case__compact-layout { grid-template-columns: minmax(0,1fr); gap: 28px; }
+  .stu-case__compact-colors ul { gap: 8px; }
+  .sun-case__compact-layout { margin-top: 28px; }
+  .sun-case__compact-icons { max-width: 440px; }
+}
 </style>
 </head>
 <body>
@@ -11035,6 +11116,7 @@ function ProjectAssetWarmup() {
       { selector: '#game-ui-rain-collection', assets: ['game-ui-erosion-hero.jpg', 'game-ui-shuaitu-character-detail.png'] },
       { selector: '#section-game-ui', assets: ['assets/rain/rain-main.webp', 'assets/rain/rain-collection.webp'] },
       { selector: '#game-ui-shuaitu-visual', assets: ['game-ui-sunlight-lobby.jpg', 'game-ui-sunlight-icons.jpg'] },
+      { selector: '#game-ui-sunlight-breakdown', assets: ['assets/warehouse/level.webp'] },
       { selector: '#section-02', assets: ['slides/mp-01.png', 'slides/mp-02.png'] },
       { selector: '#section-03', assets: [
         'packaging-assets/psd-extract/board-02-asset-01-pixel-1379-721-531x356.png',
@@ -13029,7 +13111,7 @@ function ShuaituCaseCover() {
     React.createElement('div', { className: 'stu-case__inner' },
       React.createElement('div', { className: 'stu-case__topline stu-anim' },
         React.createElement('span', null, 'GAME UI DESIGN'),
-        React.createElement('span', null, 'CASE 02 · PAGE 01 / 03')
+        React.createElement('span', null, 'PAGE 01 / 02')
       ),
       React.createElement('div', { className: 'stu-case__cover-head stu-anim stu-anim-2' },
         React.createElement('h2', { id: 'game-ui-shuaitu-title', className: 'stu-case__title' },
@@ -13065,322 +13147,59 @@ function ShuaituCaseCover() {
 
 function ShuaituStructureComponents() {
   var result = useInView({ threshold: 0.08 });
-  var ref = result[0]; var inView = result[1];
-  var viewClass = inView ? ' in-view' : '';
-  var structures = [
-    {
-      num: '01',
-      title: '武将身份与角色展示',
-      en: 'CHARACTER IDENTITY',
-      text: '立绘、姓名、阵营、星级与定位信息共同建立角色识别。'
-    },
-    {
-      num: '02',
-      title: '页签导航',
-      en: 'TAB NAVIGATION',
-      text: '详情、战法与兵种构成同层级信息切换，通过当前状态强化页面定位。'
-    },
-    {
-      num: '03',
-      title: '核心属性',
-      en: 'CORE ATTRIBUTES',
-      text: '等级、兵力、体力及战斗属性集中形成核心数据读取区域。'
-    },
-    {
-      num: '04',
-      title: '武将技能',
-      en: 'SKILL SYSTEM',
-      text: '技能名称、等级、品质、类型与效果建立统一的信息阅读顺序。'
-    },
-    {
-      num: '05',
-      title: '功能操作',
-      en: 'ACTION AREA',
-      text: '强化、战法及资源相关操作集中于对应内容区域，降低操作寻找成本。'
-    },
-    {
-      num: '06',
-      title: '辅助导航',
-      en: 'SECONDARY NAVIGATION',
-      text: '领兵、内政、列传、外观等入口构成武将相关功能导航。'
-    }
-  ];
   var details = [
-    {
-      cls: 'attributes',
-      num: '01',
-      title: '属性信息',
-      en: 'ATTRIBUTE SYSTEM',
-      text: '数值、属性名称与成长反馈形成稳定的横向阅读关系，提升高密度数据的读取效率。',
-      keywords: 'DATA HIERARCHY / PROGRESS / COMBAT STATS'
-    },
-    {
-      cls: 'skills',
-      num: '02',
-      title: '技能卡',
-      en: 'SKILL CARDS',
-      text: '通过品质色、类型标签、等级与效果信息建立技能卡内部层级，同时保持不同技能之间统一的阅读结构。',
-      keywords: 'RARITY / TYPE / LEVEL / EFFECT'
-    },
-    {
-      cls: 'identity',
-      num: '03',
-      title: '武将身份',
-      en: 'CHARACTER IDENTITY',
-      text: '通过角色立绘、阵营、定位与星级信息强化武将识别，并与右侧数据区域形成明确的视觉主次。',
-      keywords: 'PORTRAIT / FACTION / ROLE / RATING'
-    }
+    { title: '属性信息', text: '属性名称、数值与成长反馈形成稳定的横向阅读关系。', bounds: [1350,135,800,400] },
+    { title: '技能与品质', text: '三张技能卡统一信息顺序，以品质色、类型和等级建立差异。', bounds: [1350,555,800,405] }
   ];
-
+  var colors = [
+    { name: '墨黑', hex: '#0B0D0E' }, { name: '深灰', hex: '#111416' },
+    { name: '青铜金', hex: '#98713B' }, { name: '鎏金', hex: '#D6A84A' },
+    { name: '朱砂红', hex: '#A52B22' }
+  ];
   return React.createElement('section', {
-    ref: ref,
-    id: 'game-ui-shuaitu-structure',
-    className: 'stu-case stu-case--structure snap-slide' + viewClass,
+    ref: result[0], id: 'game-ui-shuaitu-structure',
+    className: 'stu-case stu-case--compact snap-slide' + (result[1] ? ' in-view' : ''),
     'aria-labelledby': 'game-ui-shuaitu-structure-title'
   },
     React.createElement('div', { className: 'stu-case__inner' },
       React.createElement('div', { className: 'stu-case__topline stu-anim' },
-        React.createElement('span', null, 'INFORMATION & UI DETAILS'),
-        React.createElement('span', null, 'CASE 02 · PAGE 02 / 03')
+        React.createElement('span', null, 'UI DETAILS'),
+        React.createElement('span', null, 'PAGE 02 / 02')
       ),
-      React.createElement('header', { className: 'stu-case__section-head stu-anim stu-anim-2' },
-        React.createElement('span', { className: 'stu-case__section-index' }, '01 / INFORMATION ARCHITECTURE'),
-        React.createElement('h2', { id: 'game-ui-shuaitu-structure-title' }, '界面结构与信息层级'),
-        React.createElement('p', null, '通过角色视觉、核心属性、技能信息与操作入口之间的层级关系，将高密度武将信息划分为明确的阅读区域，在保证角色表现力的同时提升信息获取效率。')
+      React.createElement('header', { className: 'stu-case__compact-head stu-anim stu-anim-2' },
+        React.createElement('h2', { id: 'game-ui-shuaitu-structure-title' }, '信息层级与关键细节'),
+        React.createElement('p', null, '角色展示建立视觉主次；右侧集中属性与技能，外围保留页签及功能入口。')
       ),
-      React.createElement('figure', { className: 'stu-case__annotated stu-anim stu-anim-3' },
-        React.createElement(PortfolioImage, {
-          src: 'game-ui-shuaitu-character-detail.png',
-          alt: '率土之滨武将详情界面信息结构编号标注',
-          loading: 'lazy',
-          decoding: 'async',
-          width: 2340,
-          height: 1080
-        }),
-        structures.map(function(item, index) {
-          return React.createElement('span', {
-            key: item.num,
-            className: 'stu-case__marker stu-case__marker--' + (index + 1),
-            'aria-hidden': 'true'
-          }, item.num);
-        })
-      ),
-      React.createElement('ol', { className: 'stu-case__structure-list stu-anim stu-anim-3', 'aria-label': '界面信息结构索引' },
-        structures.map(function(item) {
-          return React.createElement('li', { key: item.num, className: 'stu-case__structure-item' },
-            React.createElement('span', { className: 'stu-case__structure-num' }, item.num),
-            React.createElement('div', { className: 'stu-case__structure-copy' },
+      React.createElement('div', { className: 'stu-case__compact-details stu-anim stu-anim-3', id: 'game-ui-shuaitu-details-title' },
+        details.map(function(item) {
+          var b = item.bounds;
+          return React.createElement('figure', { key: item.title },
+            React.createElement('div', { className: 'stu-case__detail-crop', style: { aspectRatio: b[2] + ' / ' + b[3] } },
+              React.createElement(PortfolioImage, {
+                src: 'game-ui-shuaitu-character-detail.png', width: 2340, height: 1080,
+                alt: '率土之滨原界面局部：' + item.title,
+                style: { width: (2340 / b[2] * 100) + '%', left: (-b[0] / b[2] * 100) + '%', top: (-b[1] / b[3] * 100) + '%' }
+              })
+            ),
+            React.createElement('figcaption', null,
               React.createElement('h3', null, item.title),
-              React.createElement('span', { className: 'stu-case__structure-meta' }, item.en),
               React.createElement('p', null, item.text)
             )
           );
         })
       ),
-      React.createElement('header', {
-        id: 'game-ui-shuaitu-details-title',
-        className: 'stu-case__module-head stu-anim'
-      },
-        React.createElement('span', { className: 'stu-case__section-index' }, '02 / UI DETAILS'),
-        React.createElement('h3', null, '关键 UI 细节')
-      ),
-      React.createElement('div', { className: 'stu-case__module-grid stu-anim stu-anim-2' },
-        details.map(function(item) {
-          return React.createElement('figure', { key: item.num, className: 'stu-case__module stu-case__module--' + item.cls },
-            React.createElement('div', { className: 'stu-case__module-visual' },
-              React.createElement(PortfolioImage, {
-                src: 'game-ui-shuaitu-character-detail.png',
-                alt: '率土之滨武将详情' + item.title + '界面局部',
-                loading: 'lazy',
-                decoding: 'async'
-              })
-            ),
-            React.createElement('figcaption', null,
-              React.createElement('span', { className: 'stu-case__module-num' }, item.num),
-              React.createElement('div', { className: 'stu-case__module-name' },
-                React.createElement('strong', null, item.title),
-                React.createElement('span', null, item.en)
-              ),
-              React.createElement('div', { className: 'stu-case__module-copy' },
-                React.createElement('p', null, item.text),
-                React.createElement('small', null, item.keywords)
-              )
-            )
+      React.createElement('div', { className: 'stu-case__compact-colors stu-anim', id: 'game-ui-shuaitu-visual' },
+        React.createElement('div', null,
+          React.createElement('h3', null, '视觉基调'),
+          React.createElement('p', null, '深色承载信息，金色建立重点，红色提示状态。')
+        ),
+        React.createElement('ul', { 'aria-label': '界面主要色彩' }, colors.map(function(color) {
+          return React.createElement('li', { key: color.hex },
+            React.createElement('span', { className: 'stu-case__compact-swatch', style: { backgroundColor: color.hex } }),
+            React.createElement('span', null, color.name),
+            React.createElement('small', null, color.hex)
           );
-        })
-      )
-    )
-  );
-}
-
-function ShuaituVisualSystem() {
-  var result = useInView({ threshold: 0.04 });
-  var ref = result[0]; var inView = result[1];
-  var viewClass = inView ? ' in-view' : '';
-  var colors = [
-    { name: '基础背景', hex: '#0B0D0E', use: 'BASE' },
-    { name: '信息表面', hex: '#111416', use: 'SURFACE' },
-    { name: '青铜边界', hex: '#98713B', use: 'BORDER' },
-    { name: '核心强调', hex: '#D6A84A', use: 'HIGHLIGHT' },
-    { name: '状态提示', hex: '#A52B22', use: 'STATE' },
-    { name: '稀有品质', hex: '#7D52AB', use: 'RARITY' },
-    { name: '成长反馈', hex: '#42CC9E', use: 'FEEDBACK' }
-  ];
-  var typeStyles = [
-    {
-      num: '01', role: '当前页签', sample: '详情',
-      meta: 'Inter · 30 PX · BOLD',
-      detail: 'LINE HEIGHT AUTO · LETTER SPACING 0% · #E8DFC9',
-      cls: 'tab'
-    },
-    {
-      num: '02', role: '模块标题', sample: '武将技能',
-      meta: 'Noto Sans SC · 28 PX · BOLD',
-      detail: 'LINE HEIGHT 40 PX · LETTER SPACING 0% · GOLD GRADIENT',
-      cls: 'module'
-    },
-    {
-      num: '03', role: '技能名称', sample: '狼顾之相',
-      meta: 'Noto Sans SC · 24 PX · BOLD',
-      detail: 'LINE HEIGHT 30 PX · LETTER SPACING 0% · #F2E9D6',
-      cls: 'skill'
-    },
-    {
-      num: '04', role: '属性数值', sample: '8086/13400',
-      meta: 'Inter · 18 PX · SEMI BOLD',
-      detail: 'LINE HEIGHT AUTO · LETTER SPACING 0% · #D2C6AA',
-      cls: 'value'
-    },
-    {
-      num: '05', role: '技能说明', sample: '谋略伤害提升',
-      meta: 'Noto Sans SC · 19 PX · REGULAR',
-      detail: 'LINE HEIGHT 24 PX · LETTER SPACING 0% · #C5BDAA',
-      cls: 'body'
-    }
-  ];
-  var states = [
-    {
-      cls: 'tabs', num: '01', title: '当前页签', en: 'ACTIVE TAB',
-      text: '暖白文字与朱砂红激活线共同确认当前页面。'
-    },
-    {
-      cls: 'core', num: '02', title: '核心品质', en: 'CORE RARITY',
-      text: '金色品质线、标签与等级信息强化核心技能权重。'
-    },
-    {
-      cls: 'rarity', num: '03', title: '品质与类型', en: 'RARITY / TYPE',
-      text: '紫色与青绿色区分技能品质，并同步标记被动与主动类型。'
-    }
-  ];
-
-  return React.createElement('section', {
-    ref: ref,
-    id: 'game-ui-shuaitu-visual',
-    className: 'stu-case stu-case--visual snap-slide' + viewClass,
-    'aria-labelledby': 'game-ui-shuaitu-visual-title'
-  },
-    React.createElement('div', { className: 'stu-case__inner' },
-      React.createElement('div', { className: 'stu-case__topline stu-anim' },
-        React.createElement('span', null, 'VISUAL SYSTEM'),
-        React.createElement('span', null, 'CASE 02 · PAGE 03 / 03')
-      ),
-      React.createElement('header', { className: 'stu-case__visual-head stu-anim stu-anim-2' },
-        React.createElement('span', { className: 'stu-case__section-index' }, 'VISUAL SYSTEM'),
-        React.createElement('h2', { id: 'game-ui-shuaitu-visual-title' }, '视觉系统'),
-        React.createElement('p', null, '通过色彩、字体与真实状态差异建立统一的界面语言，让高密度信息保持清晰、稳定且易于识别。')
-      ),
-      React.createElement('section', {
-        id: 'game-ui-shuaitu-color',
-        className: 'stu-case__visual-block stu-anim stu-anim-2',
-        'aria-labelledby': 'game-ui-shuaitu-color-title'
-      },
-        React.createElement('header', { className: 'stu-case__visual-block-head' },
-          React.createElement('div', null,
-            React.createElement('span', { className: 'stu-case__section-index' }, '01 / COLOR'),
-            React.createElement('h3', { id: 'game-ui-shuaitu-color-title' }, '色彩语言'),
-            React.createElement('span', { className: 'stu-case__block-meta' }, 'COLOR SYSTEM')
-          ),
-          React.createElement('p', null, '以深色界面建立稳定的信息承载底座，通过金色层级强化核心内容与品质感，并以状态色辅助玩家快速识别重要信息。')
-        ),
-        React.createElement('div', { className: 'stu-case__palette' },
-          colors.map(function(color) {
-            return React.createElement('div', { key: color.hex, className: 'stu-case__palette-item' },
-              React.createElement('span', { className: 'stu-case__palette-swatch', style: { backgroundColor: color.hex } }),
-              React.createElement('span', { className: 'stu-case__palette-copy' },
-                React.createElement('strong', null, color.name),
-                React.createElement('span', null, color.use),
-                React.createElement('small', null, color.hex)
-              )
-            );
-          })
-        )
-      ),
-      React.createElement('section', {
-        id: 'game-ui-shuaitu-type',
-        className: 'stu-case__visual-block stu-anim stu-anim-2',
-        'aria-labelledby': 'game-ui-shuaitu-type-title'
-      },
-        React.createElement('header', { className: 'stu-case__visual-block-head' },
-          React.createElement('div', null,
-            React.createElement('span', { className: 'stu-case__section-index' }, '02 / TYPE'),
-            React.createElement('h3', { id: 'game-ui-shuaitu-type-title' }, '字体与信息层级'),
-            React.createElement('span', { className: 'stu-case__block-meta' }, 'TYPOGRAPHY & HIERARCHY')
-          ),
-          React.createElement('p', null, '页签、模块标题、技能名称、属性数值与说明文字通过字号、字重和明度差异建立稳定的阅读次序。')
-        ),
-        React.createElement('ol', { className: 'stu-case__type-list', 'aria-label': 'Figma 真实字体层级' },
-          typeStyles.map(function(item) {
-            return React.createElement('li', { key: item.num, className: 'stu-case__type-row stu-case__type-row--' + item.cls },
-              React.createElement('div', { className: 'stu-case__type-sample' },
-                React.createElement('span', null, item.sample)
-              ),
-              React.createElement('div', { className: 'stu-case__type-info' },
-                React.createElement('span', { className: 'stu-case__type-num' }, item.num),
-                React.createElement('div', null,
-                  React.createElement('strong', null, item.role),
-                  React.createElement('p', null, item.meta),
-                  React.createElement('small', null, item.detail)
-                )
-              )
-            );
-          })
-        )
-      ),
-      React.createElement('section', {
-        id: 'game-ui-shuaitu-state',
-        className: 'stu-case__visual-block stu-case__visual-block--state stu-anim stu-anim-3',
-        'aria-labelledby': 'game-ui-shuaitu-state-title'
-      },
-        React.createElement('header', { className: 'stu-case__visual-block-head' },
-          React.createElement('div', null,
-            React.createElement('span', { className: 'stu-case__section-index' }, '03 / STATE'),
-            React.createElement('h3', { id: 'game-ui-shuaitu-state-title' }, '状态与品质识别'),
-            React.createElement('span', { className: 'stu-case__block-meta' }, 'STATE & RARITY')
-          ),
-          React.createElement('p', null, '仅展示原始界面中真实存在的当前页签、品质层级与技能类型差异。')
-        ),
-        React.createElement('div', { className: 'stu-case__state-grid' },
-          states.map(function(item) {
-            return React.createElement('figure', { key: item.num, className: 'stu-case__state stu-case__state--' + item.cls },
-              React.createElement('div', { className: 'stu-case__state-visual' },
-                React.createElement(PortfolioImage, {
-                  src: 'game-ui-shuaitu-character-detail.png',
-                  alt: '率土之滨武将详情' + item.title + '真实界面状态',
-                  loading: 'lazy',
-                  decoding: 'async'
-                })
-              ),
-              React.createElement('figcaption', null,
-                React.createElement('span', { className: 'stu-case__state-num' }, item.num),
-                React.createElement('div', null,
-                  React.createElement('strong', null, item.title),
-                  React.createElement('small', null, item.en),
-                  React.createElement('p', null, item.text)
-                )
-              )
-            );
-          })
-        )
+        }))
       )
     )
   );
@@ -13476,152 +13295,86 @@ function RainArchiveCase(props) {
   );
 }
 
-function SunlightLobbyCaseCover() {
-  var result = useInView({ threshold: 0.1 });
-  var ref = result[0]; var inView = result[1];
-  var viewClass = inView ? ' in-view' : '';
-  var keywords = [
-    { cn: '角色焦点', en: 'CHARACTER FOCUS' },
-    { cn: '操作层级', en: 'ACTION HIERARCHY' },
-    { cn: '基地氛围', en: 'SAFEHOUSE MOOD' }
-  ];
-
-  return React.createElement('section', {
-    ref: ref,
-    id: 'game-ui-sunlight-cover',
-    className: 'sun-case sun-case--cover snap-slide' + viewClass,
-    'aria-labelledby': 'game-ui-sunlight-title'
-  },
-    React.createElement('div', { className: 'sun-case__inner' },
-      React.createElement('div', { className: 'sun-case__topline sun-anim' },
-        React.createElement('span', null, 'GAME UI DESIGN'),
-        React.createElement('span', null, 'CASE 03 · PAGE 01 / 02')
+function WarehouseGUICase() {
+  return React.createElement('section', { id: 'game-ui-warehouse', className: 'warehouse-case snap-slide', 'aria-labelledby': 'game-ui-warehouse-title' },
+    React.createElement('div', { className: 'warehouse-case__inner' },
+      React.createElement(RainReveal, { className: 'warehouse-case__topline' },
+        React.createElement('span', null, 'GAME GUI DESIGN'),
+        React.createElement('span', null, 'LEVEL INTERFACE / ICON DESIGN')
       ),
-      React.createElement('div', { className: 'sun-case__cover-head sun-anim sun-anim-2' },
-        React.createElement('h2', { id: 'game-ui-sunlight-title', className: 'sun-case__title' },
-          '日光补给站',
-          React.createElement('span', { className: 'sun-case__subtitle' }, '安全基地大厅界面设计'),
-          React.createElement('span', { className: 'sun-case__en-label' }, 'GAME LOBBY UI')
+      React.createElement('div', { className: 'warehouse-case__layout' },
+        React.createElement(RainReveal, { as: 'figure', className: 'warehouse-case__hero', delay: 90 },
+          React.createElement(PortfolioImage, { src: 'assets/warehouse/level.webp', width: 720, height: 1560, alt: '仓库里的不速之客完整竖版关卡界面，含第8级标题、鸭子与宝箱怪、难度、奖励和挑战按钮' })
         ),
-        React.createElement('div', null,
-          React.createElement('p', { className: 'sun-case__intro' }, '围绕三人小队出发前的基地大厅场景，以中央角色、队伍关系与行前备战为主要阅读路径，统一玩家信息、功能导航和辅助入口，在轻末日氛围中保持清晰直观的操作层级。'),
-          React.createElement('ul', { className: 'sun-case__keywords', 'aria-label': '设计重点' },
-            keywords.map(function(item) {
-              return React.createElement('li', { key: item.en },
-                item.cn,
-                React.createElement('small', null, item.en)
-              );
-            })
+        React.createElement(RainReveal, { className: 'warehouse-case__details', delay: 180 },
+          React.createElement('div', { className: 'warehouse-case__copy' },
+            React.createElement('h2', { id: 'game-ui-warehouse-title' }, '仓库里的不速之客'),
+            React.createElement('p', { className: 'warehouse-case__subtitle' }, '关卡界面与图标设计'),
+            React.createElement('p', { className: 'warehouse-case__intro' }, '围绕菜鸟战士误闯仓库的故事，以漫画式角色冲突建立视觉焦点，串联关卡等级、难度、奖励与挑战操作，形成清晰的竖屏阅读顺序。'),
+            React.createElement('p', { className: 'warehouse-case__metadata' }, 'PERSONAL DESIGN TEST · 2026 / GUI & ICON')
+          ),
+          React.createElement('div', { className: 'warehouse-case__reward-row' },
+            React.createElement('figure', { className: 'warehouse-case__reward' },
+              React.createElement(PortfolioImage, { src: 'assets/warehouse/level.webp', width: 720, height: 1560, alt: '原设计局部：关卡难度、通关奖励、关卡掉落与挑战按钮' })
+            ),
+            React.createElement('div', null,
+              React.createElement('h3', null, '奖励与操作'),
+              React.createElement('p', null, '主奖励、掉落信息与挑战按钮分层组织，明黄强调主要操作。')
+            )
+          ),
+          React.createElement('div', { className: 'warehouse-case__icons' },
+            React.createElement('h3', null, '道具与职业图标'),
+            React.createElement('div', { className: 'warehouse-case__icon-row' },
+              [{ src: 'coin.jpg', name: '金币', size: 100 }, { src: 'gem.jpg', name: '宝石', size: 100 }, { src: 'warrior.jpg', name: '战士徽章', size: 256 }].map(function(item) {
+                return React.createElement('figure', { key: item.src },
+                  React.createElement(PortfolioImage, { src: 'assets/warehouse/' + item.src, width: item.size, height: item.size, alt: item.name + '最终图标设计' }),
+                  React.createElement('figcaption', null, item.name)
+                );
+              })
+            )
           )
-        )
-      ),
-      React.createElement('figure', { className: 'sun-case__hero sun-anim sun-anim-3 sun-reveal' },
-        React.createElement(PortfolioImage, {
-          src: 'game-ui-sunlight-lobby.jpg',
-          alt: '日光补给站安全基地大厅完整游戏界面',
-          loading: 'lazy',
-          decoding: 'async',
-          width: 2340,
-          height: 1080
-        }),
-        React.createElement('figcaption', null,
-          React.createElement('span', null, 'FINAL INTERFACE / SAFEHOUSE LOBBY'),
-          React.createElement('span', null, '2340 × 1080')
         )
       )
     )
   );
 }
 
-function SunlightLobbyBreakdown() {
-  var result = useInView({ threshold: 0.06 });
-  var ref = result[0]; var inView = result[1];
-  var viewClass = inView ? ' in-view' : '';
-  var structures = [
-    { num: '01', title: '玩家身份', en: 'PLAYER IDENTITY', text: '头像、等级、在线状态与经验信息集中于左上，快速确认当前身份与基础状态。' },
-    { num: '02', title: '角色与队伍', en: 'SQUAD FOCUS', text: '当前白兔角色居中前置，两名队友向后展开，建立明确的小队主次关系。' },
-    { num: '03', title: '行前备战', en: 'PRIMARY ACTION', text: '高对比暖黄色操作区集中任务入口与出发动作，形成界面最明确的功能焦点。' },
-    { num: '04', title: '功能导航', en: 'FUNCTION NAVIGATION', text: '底部常用功能与右上辅助入口分层布置，避免导航信息干扰中央角色展示。' }
-  ];
-  var iconNotes = [
-    { cn: '统一视角', en: '3/4 VIEW' },
-    { cn: '统一光向', en: 'TOP-LEFT LIGHT' },
-    { cn: '柔和材质', en: 'SOFT VOLUME' },
-    { cn: '小尺寸识别', en: '48PX VALIDATION' }
-  ];
-
+function SunlightLobbyCaseCover() {
+  var result = useInView({ threshold: 0.08 });
   return React.createElement('section', {
-    ref: ref,
-    id: 'game-ui-sunlight-breakdown',
-    className: 'sun-case sun-case--breakdown snap-slide' + viewClass,
-    'aria-labelledby': 'game-ui-sunlight-breakdown-title'
+    ref: result[0], id: 'game-ui-sunlight-cover',
+    className: 'sun-case sun-case--compact snap-slide' + (result[1] ? ' in-view' : ''),
+    'aria-labelledby': 'game-ui-sunlight-title'
   },
     React.createElement('div', { className: 'sun-case__inner' },
       React.createElement('div', { className: 'sun-case__topline sun-anim' },
-        React.createElement('span', null, 'LOBBY STRUCTURE & ICON SYSTEM'),
-        React.createElement('span', null, 'CASE 03 · PAGE 02 / 02')
+        React.createElement('span', null, 'GAME UI DESIGN'),
+        React.createElement('span', null, 'LOBBY UI / FUNCTION ICONS')
       ),
-      React.createElement('header', { className: 'sun-case__section-head sun-anim sun-anim-2' },
-        React.createElement('div', null,
-          React.createElement('span', { className: 'sun-case__section-index' }, '01 / INFORMATION HIERARCHY'),
-          React.createElement('h2', { id: 'game-ui-sunlight-breakdown-title' }, '大厅界面结构')
+      React.createElement('div', { className: 'sun-case__cover-head sun-anim sun-anim-2' },
+        React.createElement('h2', { id: 'game-ui-sunlight-title', className: 'sun-case__title' },
+          '日光补给站',
+          React.createElement('span', { className: 'sun-case__subtitle' }, '安全基地大厅界面设计')
         ),
-        React.createElement('p', null, '从玩家身份、角色队伍、主要行动与功能导航四个层级组织大厅信息，让玩家先识别当前角色与队伍，再完成出发前的准备操作。')
+        React.createElement('p', { className: 'sun-case__intro' }, '以中央角色与小队关系建立视觉焦点，用暖黄色突出行前备战入口，分层组织玩家信息和功能导航。')
       ),
-      React.createElement('figure', { className: 'sun-case__annotated sun-anim sun-anim-3 sun-reveal' },
-        React.createElement(PortfolioImage, {
-          src: 'game-ui-sunlight-lobby.jpg',
-          alt: '日光补给站大厅界面信息层级编号标注',
-          loading: 'lazy',
-          decoding: 'async',
-          width: 2340,
-          height: 1080
-        }),
-        structures.map(function(item, index) {
-          return React.createElement('span', {
-            key: item.num,
-            className: 'sun-case__marker sun-case__marker--' + (index + 1),
-            'aria-hidden': 'true'
-          }, item.num);
-        })
-      ),
-      React.createElement('ol', { className: 'sun-case__structure-list sun-anim sun-anim-3', 'aria-label': '大厅界面信息结构索引' },
-        structures.map(function(item) {
-          return React.createElement('li', { key: item.num, className: 'sun-case__structure-item' },
-            React.createElement('span', { className: 'sun-case__structure-num' }, item.num),
-            React.createElement('div', null,
-              React.createElement('h3', null, item.title),
-              React.createElement('small', null, item.en),
-              React.createElement('p', null, item.text)
-            )
-          );
-        })
-      ),
-      React.createElement('section', { className: 'sun-case__icons sun-anim', 'aria-labelledby': 'game-ui-sunlight-icons-title' },
-        React.createElement('header', { className: 'sun-case__icons-head' },
-          React.createElement('div', null,
-            React.createElement('span', { className: 'sun-case__section-index' }, '02 / FUNCTION ICONS'),
-            React.createElement('h3', { id: 'game-ui-sunlight-icons-title' }, '功能图标设计')
-          ),
-          React.createElement('p', null, '八枚功能图标采用统一的卡通微 3D 语言，通过圆润剪影、固定视角与一致光向，在接近实际 HUD 的小尺寸下保持清晰识别。')
-        ),
-        React.createElement('figure', { className: 'sun-case__icons-visual sun-anim sun-anim-2 sun-reveal' },
+      React.createElement('div', { className: 'sun-case__compact-layout sun-anim sun-anim-3' },
+        React.createElement('figure', { className: 'sun-case__hero sun-reveal' },
           React.createElement(PortfolioImage, {
-            src: 'game-ui-sunlight-icons.jpg',
-            alt: '日光补给站八枚卡通微三维功能图标设计',
-            loading: 'lazy',
-            decoding: 'async',
-            width: 2200,
-            height: 1400
-          })
+            src: 'game-ui-sunlight-lobby.jpg', width: 2340, height: 1080,
+            alt: '日光补给站安全基地大厅完整游戏界面'
+          }),
+          React.createElement('figcaption', null, '角色与队伍 / 行前备战 / 功能导航')
         ),
-        React.createElement('ul', { className: 'sun-case__icon-notes sun-anim sun-anim-3' },
-          iconNotes.map(function(item) {
-            return React.createElement('li', { key: item.en },
-              React.createElement('strong', null, item.cn),
-              React.createElement('span', null, item.en)
-            );
-          })
+        React.createElement('div', { className: 'sun-case__compact-icons', id: 'game-ui-sunlight-breakdown' },
+          React.createElement('figure', { className: 'sun-case__icons-visual sun-reveal' },
+            React.createElement(PortfolioImage, {
+              src: 'game-ui-sunlight-icons.jpg', width: 2200, height: 1400,
+              alt: '日光补给站八枚功能图标完整设计'
+            })
+          ),
+          React.createElement('h3', { id: 'game-ui-sunlight-icons-title' }, '功能图标设计'),
+          React.createElement('p', null, '统一视角与光向，以柔和体积和清晰剪影保证小尺寸识别。')
         )
       )
     )
@@ -16017,9 +15770,8 @@ function App() {
   slideElements.push(React.createElement(GameUIMotionPreview, { key: 'game-ui-motion-preview' }));
   slideElements.push(React.createElement(ShuaituCaseCover, { key: 'game-ui-shuaitu-cover' }));
   slideElements.push(React.createElement(ShuaituStructureComponents, { key: 'game-ui-shuaitu-structure' }));
-  slideElements.push(React.createElement(ShuaituVisualSystem, { key: 'game-ui-shuaitu-visual' }));
   slideElements.push(React.createElement(SunlightLobbyCaseCover, { key: 'game-ui-sunlight-cover' }));
-  slideElements.push(React.createElement(SunlightLobbyBreakdown, { key: 'game-ui-sunlight-breakdown' }));
+  slideElements.push(React.createElement(WarehouseGUICase, { key: 'game-ui-warehouse' }));
 
   /* 03: Digital Interface Design — existing Mini Program case study */
   slideElements.push(React.createElement(ChapterDivider, { key: 'cc-02', chapter: ccChapters.digital, sectionId: 'section-02' }));
