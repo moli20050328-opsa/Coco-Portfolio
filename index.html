@@ -4841,7 +4841,7 @@ body.ds-active header .text-white\/70 {
 }
 .dcp-section {
   background: #F3EBDD;
-  min-height: clamp(1320px,145vh,1600px);
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -5109,9 +5109,10 @@ body.ds-active header .text-white\/70 {
 }
 .dcp-visual-image {
   width: 100%;
+  height: auto;
   max-width: none;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 4px;
   box-shadow: 0 24px 60px rgba(82,55,36,0.16);
 }
@@ -5266,6 +5267,41 @@ body.ds-active header .text-white\/70 {
 }
 .dcp-anim-6 {
   transition-delay: 0.85s;
+}
+/* Desktop concept sheet: fit the reading sequence, never crop the artwork. */
+@media(min-width:901px) {
+  .dcp-section { padding: 108px 0 28px; }
+  .dcp-section .case-nav {
+    position: relative; top: auto; left: auto;
+    width: min(1460px,calc(100% - 120px)); margin: 0 auto;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .dcp-section .case-nav-num { font-size: 24px; }
+  .dcp-section .case-nav-en, .dcp-section .case-nav-cn { margin-top: 0; }
+  .dcp-hero { padding-top: 16px; row-gap: 8px; }
+  .dcp-hero-title { font-size: clamp(48px,4.5vw,72px); }
+  .dcp-logic { padding-top: 20px; }
+  .dcp-logic-flow { margin-top: 8px; padding: 10px 0; }
+  .dcp-logic-node { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; align-items: center; }
+  .dcp-logic-num { grid-row: 1 / 3; }
+  .dcp-logic-cn { grid-column: 2; }
+  .dcp-logic-keyword { grid-column: 2; }
+  .dcp-logic-dot { display: none; }
+  .dcp-core-label { margin-top: 18px; }
+  .dcp-visual {
+    --dcp-image-height: clamp(170px,calc(100svh - 600px),360px);
+    max-width: calc(var(--dcp-image-height) * 3.555556 + 128px);
+    grid-template-columns: minmax(0,1fr) 80px minmax(0,1fr);
+    gap: 24px; padding-top: 12px;
+  }
+  .dcp-visual-tag { flex-direction: row; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+  .dcp-visual-mid { width: 80px; gap: 6px; text-align: center; }
+  .dcp-mirror { width: 40px; height: 40px; }
+  .dcp-modules { margin: 24px auto 0; }
+  .dcp-module { padding: 12px 24px 16px; }
+  .dcp-module-en { margin-top: 4px; font-size: 9px; }
+  .dcp-module-cn { font-size: 16px; }
+  .dcp-module-keyword { font-size: 12px; line-height: 1.65; }
 }
 @media(max-width:900px) {
   .dcp-section {
@@ -13636,6 +13672,7 @@ function CaseStudyConcept() {
 
   return React.createElement('section', {
     ref: ref,
+    id: 'game-design-concept',
     className: 'dcp-section snap-slide' + viewClass
   },
     /* Background layers */
