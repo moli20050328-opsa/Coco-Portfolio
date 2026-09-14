@@ -11045,8 +11045,9 @@ function responsiveCandidateUrl(responsive) {
   };
 }
 
-function PortfolioImage(props) {
+var PortfolioImage = React.forwardRef(function PortfolioImage(props, ref) {
   var nextProps = Object.assign({}, props);
+  nextProps.ref = ref;
   var assetPath = normalizeAssetPath(nextProps.src);
   var dimensions = PORTFOLIO_IMAGE_DIMENSIONS[assetPath];
   var responsive = PORTFOLIO_RESPONSIVE_IMAGES[assetPath];
@@ -11061,7 +11062,7 @@ function PortfolioImage(props) {
     nextProps.sizes = responsive.sizes;
   }
   return React.createElement('img', nextProps);
-}
+});
 
 function DeferredPortfolioImage(props) {
   var ref = useRef(null);
