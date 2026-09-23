@@ -427,48 +427,6 @@ function WarehouseGUICase() {
   );
 }
 
-function SunlightLobbyCaseCover() {
-  var result = useInView({ threshold: 0.08 });
-  return React.createElement('section', {
-    ref: result[0], id: 'game-ui-sunlight-cover',
-    className: 'sun-case sun-case--compact snap-slide' + (result[1] ? ' in-view' : ''),
-    'aria-labelledby': 'game-ui-sunlight-title'
-  },
-    React.createElement('div', { className: 'sun-case__inner' },
-      React.createElement('div', { className: 'sun-case__topline sun-anim' },
-        React.createElement('span', null, 'GAME UI DESIGN'),
-        React.createElement('span', null, 'LOBBY UI / FUNCTION ICONS')
-      ),
-      React.createElement('div', { className: 'sun-case__cover-head sun-anim sun-anim-2' },
-        React.createElement('h2', { id: 'game-ui-sunlight-title', className: 'sun-case__title' },
-          '日光补给站',
-          React.createElement('span', { className: 'sun-case__subtitle' }, '安全基地大厅界面设计')
-        ),
-        React.createElement('p', { className: 'sun-case__intro' }, '以中央角色与小队关系建立视觉焦点，用暖黄色突出行前备战入口，分层组织玩家信息和功能导航。')
-      ),
-      React.createElement('div', { className: 'sun-case__compact-layout sun-anim sun-anim-3' },
-        React.createElement('figure', { className: 'sun-case__hero sun-reveal' },
-          React.createElement(PortfolioImage, {
-            src: 'game-ui-sunlight-lobby.jpg', width: 2340, height: 1080,
-            alt: '日光补给站安全基地大厅完整游戏界面'
-          }),
-          React.createElement('figcaption', null, '角色与队伍 / 行前备战 / 功能导航')
-        ),
-        React.createElement('div', { className: 'sun-case__compact-icons', id: 'game-ui-sunlight-breakdown' },
-          React.createElement('figure', { className: 'sun-case__icons-visual sun-reveal' },
-            React.createElement(PortfolioImage, {
-              src: 'game-ui-sunlight-icons.jpg', width: 2200, height: 1400,
-              alt: '日光补给站八枚功能图标完整设计'
-            })
-          ),
-          React.createElement('h3', { id: 'game-ui-sunlight-icons-title' }, '功能图标设计'),
-          React.createElement('p', null, '统一视角与光向，以柔和体积和清晰剪影保证小尺寸识别。')
-        )
-      )
-    )
-  );
-}
-
 window.PortfolioChapters.gameUI = function() {
   return [
     React.createElement(RainArchiveCase, { key: 'game-ui-rain-cover' }),
@@ -478,7 +436,6 @@ window.PortfolioChapters.gameUI = function() {
     React.createElement(GameUIMotionPreview, { key: 'game-ui-motion-preview' }),
     React.createElement(ShuaituCaseCover, { key: 'game-ui-shuaitu-cover' }),
     React.createElement(ShuaituStructureComponents, { key: 'game-ui-shuaitu-structure' }),
-    React.createElement(SunlightLobbyCaseCover, { key: 'game-ui-sunlight-cover' }),
     React.createElement(WarehouseGUICase, { key: 'game-ui-warehouse' })
   ];
 };

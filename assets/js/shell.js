@@ -134,8 +134,7 @@ function ProjectAssetWarmup() {
       { selector: '#section-01', assets: ['taishan-hero-poster.jpg', 'taishan-puppet.jpg'] },
       { selector: '#game-ui-rain-collection', assets: ['game-ui-erosion-hero.jpg', 'game-ui-shuaitu-character-detail.png'] },
       { selector: '#section-game-ui', assets: ['assets/rain/rain-main.webp', 'assets/rain/rain-collection.webp'] },
-      { selector: '#game-ui-shuaitu-visual', assets: ['game-ui-sunlight-lobby.jpg', 'game-ui-sunlight-icons.jpg'] },
-      { selector: '#game-ui-sunlight-breakdown', assets: ['assets/warehouse/level.webp'] },
+      { selector: '#game-ui-shuaitu-visual', assets: ['assets/warehouse/level.webp'] },
       { selector: '#section-02', assets: ['slides/mp-01.png', 'slides/mp-02.png'] },
       { selector: '#section-03', assets: [
         'packaging-assets/psd-extract/board-02-asset-01-pixel-1379-721-531x356.png',
@@ -1299,7 +1298,7 @@ function App() {
     React.createElement(AboutCapabilities),
     React.createElement(AboutHonorsExperience),
     React.createElement(LazyChapter, { key: 'chapter-game', name: 'gameDesign', chapter: ccChapters.game, sectionId: 'section-01', reserve: '900svh' }),
-    React.createElement(LazyChapter, { key: 'chapter-game-ui', name: 'gameUI', chapter: ccChapters.gameUI, sectionId: 'section-game-ui', reserve: '1370svh' }),
+    React.createElement(LazyChapter, { key: 'chapter-game-ui', name: 'gameUI', chapter: ccChapters.gameUI, sectionId: 'section-game-ui', reserve: '1220svh' }),
     React.createElement(LazyChapter, { key: 'chapter-digital', name: 'digital', chapter: ccChapters.digital, sectionId: 'section-02', reserve: '930svh' }),
     React.createElement(LazyChapter, { key: 'chapter-packaging', name: 'packaging', chapter: ccChapters.visualPackaging, sectionId: 'section-03', reserve: '620svh' }),
     React.createElement(LazyChapter, { key: 'chapter-poster', name: 'poster', chapter: ccChapters.visualPoster, sectionId: 'section-04', reserve: '350svh' }),
