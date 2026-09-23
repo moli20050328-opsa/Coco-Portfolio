@@ -679,6 +679,35 @@ section[id] {
   background: rgba(255,255,255,0.1);
   border-radius: 3px;
 }
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 14px;
+}
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: #dedede;
+}
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  min-height: 48px;
+  background: #8a8a8a;
+  border: 2px solid #dedede;
+  border-radius: 7px;
+}
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: #707070;
+}
+html::-webkit-scrollbar-thumb:active,
+body::-webkit-scrollbar-thumb:active {
+  background: #555555;
+}
+@supports (-moz-appearance: none) {
+  html {
+    scrollbar-color: #8a8a8a #dedede;
+    scrollbar-width: auto;
+  }
+}
 .toc-stage {
   position: relative;
   width: 100%;
