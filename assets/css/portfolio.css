@@ -8398,6 +8398,53 @@ body.ds-active header .text-white\/40 {
   .warehouse-case__icon-row figure:last-child img { width: 96px; }
 }
 
+/* Two compact landscape GUI exhibitions, with the original artwork leading. */
+.horizontal-gui-case {
+  --hgui-ink: #203b36;
+  --hgui-muted: #596862;
+  --hgui-line: rgba(32,59,54,.22);
+  background: #eee9de;
+  color: var(--hgui-ink);
+  font-family: 'Noto Sans SC','Inter',sans-serif;
+  padding: 112px clamp(28px,6vw,100px) clamp(96px,10vw,150px);
+  min-height: 136svh;
+  scroll-margin-top: 0;
+}
+.horizontal-gui-case--gala {
+  --hgui-ink: #ece5e7;
+  --hgui-muted: #b8aeb8;
+  --hgui-line: rgba(236,229,231,.21);
+  background: #211b24;
+}
+.horizontal-gui-case__inner { width: min(1380px,100%); margin: 0 auto; }
+.horizontal-gui-case__topline {
+  display: flex; justify-content: space-between; gap: 20px;
+  padding-bottom: 13px; border-bottom: 1px solid var(--hgui-line);
+  color: var(--hgui-muted); font: 10px/1.6 'Inter',sans-serif; letter-spacing: .13em;
+}
+.horizontal-gui-case__head { margin: 32px 0 30px; }
+.horizontal-gui-case__head h2 { margin: 0; font-size: clamp(36px,3.5vw,52px); font-weight: 400; line-height: 1.25; letter-spacing: -.02em; }
+.horizontal-gui-case__subtitle { margin: 7px 0 0; font-size: 17px; line-height: 1.6; }
+.horizontal-gui-case__intro { margin: 17px 0 0; max-width: 65ch; color: var(--hgui-muted); font-size: 13px; line-height: 1.85; }
+.horizontal-gui-case__visual { margin: 0; }
+.horizontal-gui-case__visual img { display: block; width: 100%; height: auto; aspect-ratio: 1334 / 750; object-fit: contain; }
+.horizontal-gui-case__notes {
+  display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(32px,8vw,120px);
+  margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--hgui-line);
+}
+.horizontal-gui-case__note h3 { margin: 0; font-size: 16px; font-weight: 400; line-height: 1.55; }
+.horizontal-gui-case__note p { margin: 8px 0 0; max-width: 48ch; color: var(--hgui-muted); font-size: 12px; line-height: 1.85; }
+@media(max-width:760px) {
+  .horizontal-gui-case { min-height: 0; padding: 104px 20px 72px; }
+  .horizontal-gui-case__topline { font-size: 8px; letter-spacing: .07em; }
+  .horizontal-gui-case__head { margin: 26px 0 24px; }
+  .horizontal-gui-case__head h2 { font-size: 34px; }
+  .horizontal-gui-case__subtitle { font-size: 15px; }
+  .horizontal-gui-case__intro { font-size: 13px; }
+  .horizontal-gui-case__notes { grid-template-columns: minmax(0,1fr); gap: 25px; margin-top: 24px; }
+  .horizontal-gui-case__note p { font-size: 13px; }
+}
+
 
 @media(min-width:901px) and (max-height:800px) {
   .stu-case--cover { padding-top: 64px; }

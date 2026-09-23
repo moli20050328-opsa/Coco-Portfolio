@@ -427,6 +427,76 @@ function WarehouseGUICase() {
   );
 }
 
+function HorizontalGUICase(data) {
+  return React.createElement('section', {
+    id: data.id,
+    className: 'horizontal-gui-case horizontal-gui-case--' + data.theme + ' snap-slide',
+    'aria-labelledby': data.id + '-title'
+  },
+    React.createElement('div', { className: 'horizontal-gui-case__inner' },
+      React.createElement(RainReveal, { className: 'horizontal-gui-case__topline' },
+        React.createElement('span', null, 'GAME GUI DESIGN'),
+        React.createElement('span', null, 'PERSONAL DESIGN TEST / 2026')
+      ),
+      React.createElement(RainReveal, { as: 'header', className: 'horizontal-gui-case__head', delay: 70 },
+        React.createElement('h2', { id: data.id + '-title' }, data.title),
+        React.createElement('p', { className: 'horizontal-gui-case__subtitle' }, data.subtitle),
+        React.createElement('p', { className: 'horizontal-gui-case__intro' }, data.intro)
+      ),
+      React.createElement(RainReveal, { as: 'figure', className: 'horizontal-gui-case__visual', delay: 130 },
+        React.createElement(PortfolioImage, {
+          src: data.image,
+          width: 1334,
+          height: 750,
+          alt: data.alt,
+          loading: 'lazy',
+          decoding: 'async'
+        })
+      ),
+      React.createElement('div', { className: 'horizontal-gui-case__notes' },
+        data.notes.map(function(note, index) {
+          return React.createElement(RainReveal, { as: 'div', className: 'horizontal-gui-case__note', delay: 160 + index * 90, key: note.title },
+            React.createElement('h3', null, note.title),
+            React.createElement('p', null, note.body)
+          );
+        })
+      )
+    )
+  );
+}
+
+function DuoyiGUICase() {
+  return HorizontalGUICase({
+    id: 'game-ui-duoyi',
+    theme: 'lotus',
+    title: '青莲照水',
+    subtitle: '国风角色信息界面',
+    intro: '以青绿山水、莲灯与青玉建立东方奇幻氛围，让角色表现与高密度养成信息保持清晰的阅读主次。',
+    image: 'assets/duoyi/character-detail.png',
+    alt: '青莲照水完整角色信息界面，左侧为角色立绘，右侧为战力、属性、技能与养成操作',
+    notes: [
+      { title: '角色与状态', body: '立绘与身份先建立角色印象，战力、等级和体力随后成为信息区的首层。' },
+      { title: '属性与操作', body: '六项属性和四个技能依序展开，进阶是主操作，重置与传承保持次级。' }
+    ]
+  });
+}
+
+function GiantGUICase() {
+  return HorizontalGUICase({
+    id: 'game-ui-giant',
+    theme: 'gala',
+    title: '月下玫瑰晚宴',
+    subtitle: '超自然通行证奖励界面',
+    intro: '以礼服、玫瑰和烛光构建晚宴氛围，将角色视觉与奖励获取路径组织在同一横向界面。',
+    image: 'assets/giant/gala-reward.jpg',
+    alt: '月下玫瑰晚宴完整奖励界面，左侧为角色与晚宴场景，右侧为奖励展示和心动开启按钮',
+    notes: [
+      { title: '晚宴氛围', body: '角色置于明亮区域，暗色场景与玫瑰、细金边框共同收束视觉重心。' },
+      { title: '奖励路径', body: '上方展示解锁奖励，下方区分购买奖励，信息最终落到“心动开启”。' }
+    ]
+  });
+}
+
 window.PortfolioChapters.gameUI = function() {
   return [
     React.createElement(RainArchiveCase, { key: 'game-ui-rain-cover' }),
@@ -436,6 +506,8 @@ window.PortfolioChapters.gameUI = function() {
     React.createElement(GameUIMotionPreview, { key: 'game-ui-motion-preview' }),
     React.createElement(ShuaituCaseCover, { key: 'game-ui-shuaitu-cover' }),
     React.createElement(ShuaituStructureComponents, { key: 'game-ui-shuaitu-structure' }),
-    React.createElement(WarehouseGUICase, { key: 'game-ui-warehouse' })
+    React.createElement(WarehouseGUICase, { key: 'game-ui-warehouse' }),
+    React.createElement(DuoyiGUICase, { key: 'game-ui-duoyi' }),
+    React.createElement(GiantGUICase, { key: 'game-ui-giant' })
   ];
 };
