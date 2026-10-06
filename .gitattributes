@@ -1,0 +1,2 @@
+# Preserve resume PDFs byte-for-byte and avoid text diffs / newline conversion.
+assets/resumes/*.pdf binary

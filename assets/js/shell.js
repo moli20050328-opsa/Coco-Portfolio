@@ -369,7 +369,10 @@ function Hero() {
         )
       ),
       React.createElement('div', { className: 'mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-5', style: animStyle(1.1) },
-        React.createElement('p', { className: 'text-sm text-white/60 max-w-md leading-relaxed' }, '探索传统文化与数字媒介的融合，通过视觉设计创造具有体验感的叙事作品。'),
+        React.createElement('p', { className: 'hero-direction' },
+          React.createElement('span', { className: 'hero-direction-primary' }, '游戏 GUI 与视觉设计'),
+          React.createElement('span', { className: 'hero-direction-detail' }, '界面、包装与动态视觉')
+        ),
         React.createElement('a', { href: '#toc', className: 'liquid-glass rounded-full px-6 py-3 text-sm text-white font-medium hover:bg-white/10 transition-colors whitespace-nowrap' }, '开始探索 →')
       )
     )
@@ -707,6 +710,73 @@ function AboutBackgroundGlow() {
   return React.createElement('div', { style:{ position:'absolute', inset:0, pointerEvents:'none', zIndex:1, background:'radial-gradient(ellipse 700px 550px at 50% 42%, rgba(59,130,246,0.2) 0%, rgba(99,102,241,0.1) 35%, transparent 65%)', animation:'about-glowPulse 6s ease-in-out infinite' } });
 }
 
+/* Resume files are requested only after a visitor chooses preview/download. */
+var portfolioResumes = [
+  { direction: 'gui', title: '游戏 GUI 简历', description: '游戏界面 / 视觉设计', href: 'assets/resumes/wang-yuxuan-game-gui.pdf', filename: '王玉璇-游戏GUI简历.pdf' },
+  { direction: 'visual', title: '视觉设计简历', description: '品牌 / 包装 / 视觉表达', href: 'assets/resumes/wang-yuxuan-visual-design.pdf', filename: '王玉璇-视觉设计简历.pdf' }
+];
+
+function ResumeDocumentLinks(props) {
+  var documents = portfolioResumes.filter(function(resume) { return !props.direction || resume.direction === props.direction; });
+  if (!documents.length) return null;
+  return React.createElement('div', { className: 'resume-documents' },
+    documents.map(function(resume) {
+      return React.createElement('div', { key: resume.direction, className: 'resume-document' },
+        React.createElement('div', { className: 'resume-document-copy' },
+          React.createElement('p', { className: 'resume-document-title' }, resume.title),
+          React.createElement('p', { className: 'resume-document-description' }, resume.description)
+        ),
+        React.createElement('div', { className: 'resume-document-actions' },
+          React.createElement('a', {
+            href: resume.href, target: '_blank', rel: 'noopener noreferrer',
+            'aria-label': '预览' + resume.title + '（新标签页）'
+          }, '预览 PDF'),
+          React.createElement('a', {
+            href: resume.href, download: resume.filename,
+            'aria-label': '下载' + resume.title + '（PDF）'
+          }, '下载 PDF')
+        )
+      );
+    })
+  );
+}
+
+function ResumeChooser() {
+  var chooser = useRef(null);
+  useEffect(function() {
+    function closeOutside(event) {
+      if (chooser.current && !chooser.current.contains(event.target)) chooser.current.open = false;
+    }
+    document.addEventListener('pointerdown', closeOutside);
+    return function() { document.removeEventListener('pointerdown', closeOutside); };
+  }, []);
+  return React.createElement('details', {
+    ref: chooser, className: 'resume-picker',
+    onKeyDown: function(event) {
+      if (event.key !== 'Escape' || !event.currentTarget.open) return;
+      event.preventDefault();
+      event.currentTarget.open = false;
+      event.currentTarget.querySelector('summary').focus();
+    }
+  },
+    React.createElement('summary', { className: 'about-btn-solid', 'aria-label': '简历：选择 GUI 或视觉设计版本' },
+      '简历',
+      React.createElement('svg', { width: 12, height: 12, viewBox: '0 0 16 16', fill: 'none', 'aria-hidden': true },
+        React.createElement('path', { d: 'M4 6l4 4 4-4', stroke: 'currentColor', strokeWidth: 1.4 })
+      )
+    ),
+    React.createElement('div', { className: 'resume-picker-panel' },
+      React.createElement(ResumeDocumentLinks, {})
+    )
+  );
+}
+
+function ResumeChapterLink(props) {
+  return React.createElement('aside', { className: 'resume-chapter-link', 'aria-label': '相关方向简历' },
+    React.createElement(ResumeDocumentLinks, { direction: props.direction })
+  );
+}
+
 function AboutLeftPanel() {
   var timeState = useState('--:--');
   var time = timeState[0]; var setTime = timeState[1];
@@ -726,8 +796,13 @@ function AboutLeftPanel() {
       React.createElement('p', { style:{ fontFamily:"'JetBrains Mono',monospace", fontSize:'13px', color:'rgba(255,255,255,0.3)', marginBottom:'20px' } }, '@yuxuan.design'),
       React.createElement('h1', { style:{ fontFamily:"'Noto Sans SC','Sora',sans-serif", fontWeight:700, fontSize:'32px', lineHeight:1.2, marginBottom:'16px' } }, '你好！我是王玉璇'),
       React.createElement('p', { style:{ fontSize:'14px', lineHeight:1.75, color:'rgba(255,255,255,0.55)', marginBottom:'24px', maxWidth:'320px' } }, '视觉传达设计师，浙江传媒学院在读。聚焦视觉设计、UI/UX界面设计、品牌视觉系统搭建与动态视觉创作，擅长以产品思维拆解需求，探索传统美学与现代视觉的融合表达。熟练运用设计软件与AI代码工具，主持省级大创项目，兼具设计创作与项目落地能力。'),
-      React.createElement('div', { style:{ display:'flex', flexWrap:'wrap', gap:'8px', marginBottom:'28px' } },
-        tags.map(function(t, i) { return React.createElement('span', { key:i, className:'about-tag about-anim-up', style:{ animationDelay:(0.4+i*0.08)+'s' } }, t); })
+      React.createElement('div', { className: 'about-directions' },
+        React.createElement('div', { className: 'about-direction-primary', 'aria-label': '主要设计方向' },
+          ['游戏 GUI', '视觉设计'].map(function(t, i) {
+            return React.createElement('span', { key: t, className: 'about-tag about-tag-primary about-anim-up', style: { animationDelay: (0.4+i*0.08)+'s' } }, t);
+          })
+        ),
+        React.createElement('p', { className: 'about-direction-support about-anim-up', style: { animationDelay: '0.56s' } }, tags.join(' · '))
       ),
       React.createElement('div', { style:{ display:'flex', alignItems:'center', gap:'8px', marginBottom:'4px' } },
         React.createElement('svg', { width:14, height:14, viewBox:'0 0 24 24', fill:'none', stroke:'#3b82f6', strokeWidth:2, strokeLinecap:'round', strokeLinejoin:'round' },
@@ -737,9 +812,9 @@ function AboutLeftPanel() {
         React.createElement('span', { style:{ fontSize:'13px', color:'rgba(255,255,255,0.55)' } }, '杭州, 中国')
       ),
       React.createElement('p', { style:{ fontSize:'12px', color:'rgba(255,255,255,0.3)', marginBottom:'28px', paddingLeft:'22px', fontFamily:"'JetBrains Mono',monospace" } }, time + ' GMT+8 \u00b7 本地时间'),
-      React.createElement('div', { style:{ display:'flex', gap:'12px' } },
+      React.createElement('div', { className: 'about-actions' },
         React.createElement('a', { href:'#contact', className:'about-btn-outline', style:{textDecoration:'none'} }, '联系我'),
-        React.createElement('button', { className:'about-btn-solid' }, '简历')
+        React.createElement(ResumeChooser)
       )
     )
   );
@@ -812,10 +887,10 @@ function AboutRightPanel() {
     { name:'Claude Code', icon:React.createElement('span',{style:{fontWeight:700,fontSize:'16px',color:'#D97757',fontFamily:"'Sora',sans-serif",letterSpacing:'-0.02em'}},'CC') }
   ];
   var projects = [
-    { name:'泰山皮影镇妖记', desc:'交互游戏视觉设计', color:'linear-gradient(135deg, rgba(234,88,12,0.4), rgba(124,45,18,0.3))' },
-    { name:'视传作品集小程序', desc:'UI界面设计', color:'linear-gradient(135deg, rgba(59,130,246,0.4), rgba(30,58,138,0.3))' },
-    { name:'西湖龙井×霸王茶姬', desc:'联名包装设计', color:'linear-gradient(135deg, rgba(34,197,94,0.4), rgba(20,83,45,0.3))' },
-    { name:'GUI页面设计', desc:'动态视觉设计', color:'linear-gradient(135deg, rgba(168,85,247,0.4), rgba(88,28,135,0.3))' }
+    { name:'泰山皮影镇妖记', desc:'交互游戏视觉设计', href:'#section-01', image:'assets/about-thumbnails/taishan.webp', width:288, height:162 },
+    { name:'视传作品集小程序', desc:'UI界面设计', href:'#section-02', image:'assets/about-thumbnails/mini-program.webp', width:87, height:176 },
+    { name:'西湖龙井×霸王茶姬', desc:'联名包装设计', href:'#packaging-project-visual', image:'assets/about-thumbnails/tea-packaging.webp', width:263, height:176 },
+    { name:'雨前归纳者', desc:'游戏关卡 GUI 设计', href:'#game-ui-rain-cover', image:'assets/about-thumbnails/rain-archive.webp', width:288, height:120 }
   ];
   return React.createElement('div', { className:'about-anim-right about-order-right', style:{ animationDelay:'0.25s' } },
     React.createElement('div', { style:{ display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:'12px', marginBottom:'32px', maxWidth:'200px' } },
@@ -826,8 +901,8 @@ function AboutRightPanel() {
     React.createElement('p', { style:{ fontSize:'13px', color:'rgba(255,255,255,0.3)', marginBottom:'16px', fontFamily:"'Sora',sans-serif", fontWeight:600, letterSpacing:'0.05em', textTransform:'uppercase' } }, '最新作品'),
     React.createElement('div', { style:{ display:'flex', flexDirection:'column', gap:'10px' } },
       projects.map(function(p, i) {
-        return React.createElement('div', { key:i, className:'about-proj-item about-anim-up', style:{ animationDelay:(0.5+i*0.1)+'s' } },
-          React.createElement('div', { style:{ width:'44px', height:'44px', borderRadius:'8px', background:p.color, flexShrink:0, border:'1px solid rgba(255,255,255,0.05)' } }),
+        return React.createElement('a', { key:p.href, href:p.href, className:'about-proj-item about-anim-up', style:{ animationDelay:(0.5+i*0.1)+'s' } },
+          React.createElement(PortfolioImage, { src:p.image, alt:'', width:p.width, height:p.height, loading:'lazy', className:'about-proj-thumb' }),
           React.createElement('div', { style:{ minWidth:0, flex:1 } },
             React.createElement('p', { style:{ fontSize:'13px', fontWeight:600, color:'white', fontFamily:"'Noto Sans SC',sans-serif", whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' } }, p.name),
             React.createElement('p', { style:{ fontSize:'11px', color:'rgba(255,255,255,0.3)', marginTop:'2px', fontFamily:"'Noto Sans SC',sans-serif", whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' } }, p.desc)
@@ -856,14 +931,13 @@ function AboutCapabilities() {
   var caps = [
     { title:'UI/UX界面设计', desc:'精通Figma完成全链路界面设计，独立搭建视觉规范与组件库，输出高保真可落地方案。' },
     { title:'品牌视觉与平面设计', desc:'主导联名包装、文旅海报、商业插画项目，输出完整统一的品牌视觉体系。' },
-    { title:'动态视觉与AI影像创作', desc:'AE制作交互动效，天工画境完成AI漫剧生成，独立完成剪辑调色与成片输出。' },
+    { title:'动态视觉与AI影像创作', desc:'AE制作交互动效；在天工画境实习期间参与AI漫剧画面生成与剪辑输出。' },
     { title:'AI代码辅助设计落地', desc:'熟练运用Code X、Claude Code、Vibe Coding，基于设计规范快速生成前端页面与交互组件。' },
     { title:'项目统筹与落地执行', desc:'主持国家级大创省级立项项目，全流程覆盖申报、审批、落地；产品部实习经验，兼顾创意与可行性。' }
   ];
   var toolCats = [
     { label:'视觉设计', tools:['Photoshop', 'Illustrator', 'Figma'] },
     { label:'动态影像', tools:['After Effects', 'Processing', '专业剪辑软件'] },
-    { label:'AI创作', tools:['天工画境'] },
     { label:'代码辅助', tools:['Code X', 'Claude Code', 'Vibe Coding'] },
     { label:'三维基础', tools:['Cinema 4D'] }
   ];
@@ -915,7 +989,6 @@ function AboutToolStack() {
   var categories = [
     { label:'视觉设计', tools:['Photoshop', 'Illustrator', 'Figma'] },
     { label:'动态影像', tools:['After Effects', 'Processing', '专业剪辑软件'] },
-    { label:'AI创作', tools:['天工画境（AI漫剧生成）'] },
     { label:'代码辅助', tools:['Code X', 'Claude Code', 'Vibe Coding'] },
     { label:'三维基础', tools:['Cinema 4D'] }
   ];
@@ -987,8 +1060,8 @@ function AboutHonorsExperience() {
     { name:'桐乡茅盾大讲堂 Logo 设计项目 中标', meta:'设计中标' }
   ];
   var experiences = [
-    { company:'天工画境', role:'AI漫剧生成与剪辑师', desc:'把控漫剧视觉风格，负责AI画面调试、分镜落地与后期剪辑成片，统一项目视觉调性。' },
-    { company:'赵汝飞练字总部', role:'产品部助理', desc:'负责产品动效制作、视觉物料输出，参与需求梳理与项目跟进。' }
+    { company:'天工画境', role:'AI视觉设计实习生', period:'2026.06–08', desc:'把控漫剧视觉风格，负责AI画面调试、分镜落地与后期剪辑成片，统一项目视觉调性。' },
+    { company:'赵汝飞练字总部', role:'产品部助理', period:'2026.03–04', desc:'负责产品动效制作、视觉物料输出，参与需求梳理与项目跟进。' }
   ];
   return React.createElement('section', { className:'about-sub' },
     React.createElement(AboutStarField),
@@ -1027,6 +1100,7 @@ function AboutHonorsExperience() {
                   React.createElement('span', { className:'about-exp-card2-co' }, exp.company),
                   React.createElement('span', { className:'about-exp-card2-role' }, exp.role)
                 ),
+                React.createElement('p', { className:'about-exp-card2-period' }, exp.period),
                 React.createElement('p', { className:'about-exp-card2-desc' }, exp.desc)
               );
             })
@@ -1038,11 +1112,41 @@ function AboutHonorsExperience() {
 }
 
 /* ---------- Contact Section ---------- */
+function ContactCopyAction(props) {
+  var statusState = useState('');
+  var status = statusState[0]; var setStatus = statusState[1];
+  var busyState = useState(false);
+  var busy = busyState[0]; var setBusy = busyState[1];
+  async function copyContact() {
+    if (busy) return;
+    setBusy(true);
+    setStatus('正在复制…');
+    try {
+      if (!navigator.clipboard || typeof navigator.clipboard.writeText !== 'function') {
+        throw new Error('Clipboard unavailable');
+      }
+      await navigator.clipboard.writeText(props.value);
+      setStatus(props.label + '已复制');
+    } catch (_) {
+      setStatus('复制失败，请选中上方内容手动复制');
+    } finally {
+      setBusy(false);
+    }
+  }
+  return React.createElement('div', { className: 'contact-copy' },
+    React.createElement('button', {
+      type: 'button', className: 'contact-copy-button', onClick: copyContact,
+      disabled: busy, 'aria-label': '复制' + props.label
+    }, busy ? '复制中…' : '复制' + props.label),
+    React.createElement('p', { className: 'contact-copy-status', role: 'status', 'aria-live': 'polite', 'aria-atomic': true }, status)
+  );
+}
+
 function Contact() {
   var contacts = [
-    { label:'邮箱', value:'1617721560@qq.com', href:'mailto:1617721560@qq.com' },
+    { label:'邮箱', value:'1617721560@qq.com', href:'mailto:1617721560@qq.com', copy: true },
     { label:'电话', value:'18768328359', href:'tel:18768328359' },
-    { label:'微信', value:'treasure0328x', href:null }
+    { label:'微信', value:'treasure0328x', href:null, copy: true }
   ];
   return React.createElement('section', { id: 'contact', className: 'snap-slide relative bg-black min-h-screen py-20 md:py-32 px-6 overflow-hidden flex items-center' },
     React.createElement('div', { className: 'max-w-4xl mx-auto text-center w-full' },
@@ -1055,13 +1159,18 @@ function Contact() {
       ),
       React.createElement('div', { className: 'grid grid-cols-1 sm:grid-cols-3 gap-4' },
         contacts.map(function(c, i) {
-          var inner = React.createElement('div', { className: 'liquid-glass rounded-2xl p-6 text-left transition-colors hover:bg-white/5 h-full' },
-            React.createElement('p', { className: 'text-white/40 text-xs uppercase tracking-widest mb-2' }, c.label),
-            React.createElement('p', { className: 'text-white text-sm font-medium break-all' }, c.value)
+          var inner = React.createElement('div', { className: 'liquid-glass rounded-2xl p-6 text-left transition-colors hover:bg-white/5 h-full contact-method' },
+            React.createElement('p', { className: 'contact-method-label' }, c.label),
+            c.href
+              ? React.createElement('a', { href: c.href, className: 'contact-method-value' }, c.value)
+              : React.createElement('p', { className: 'contact-method-value' }, c.value),
+            c.copy ? React.createElement(ContactCopyAction, { label: c.label, value: c.value }) : null
           );
-          return React.createElement(Reveal, { key: c.label, delay: i * 0.1, y: 30, duration: 0.5 },
-            c.href ? React.createElement('a', { href: c.href, className: 'block h-full' }, inner) : inner);
+          return React.createElement(Reveal, { key: c.label, delay: i * 0.1, y: 30, duration: 0.5 }, inner);
         })
+      ),
+      React.createElement('aside', { className: 'contact-resumes', 'aria-label': '按方向查看简历' },
+        React.createElement(ResumeDocumentLinks, {})
       )
     )
   );
@@ -1266,7 +1375,8 @@ function LazyChapter(props) {
         className: 'chapter-await',
         style: { minHeight: props.reserve },
         'aria-busy': !failed
-      }, failed ? React.createElement('button', { type: 'button', onClick: startLoading }, '重新加载本章') : null)
+      }, failed ? React.createElement('button', { type: 'button', onClick: startLoading }, '重新加载本章') : null),
+    loaded && props.resumeDirection ? React.createElement(ResumeChapterLink, { direction: props.resumeDirection }) : null
   );
 }
 
@@ -1300,10 +1410,10 @@ function App() {
     React.createElement(AboutCapabilities),
     React.createElement(AboutHonorsExperience),
     React.createElement(LazyChapter, { key: 'chapter-game', name: 'gameDesign', chapter: ccChapters.game, sectionId: 'section-01', reserve: '900svh' }),
-    React.createElement(LazyChapter, { key: 'chapter-game-ui', name: 'gameUI', chapter: ccChapters.gameUI, sectionId: 'section-game-ui', reserve: '1500svh' }),
+    React.createElement(LazyChapter, { key: 'chapter-game-ui', name: 'gameUI', chapter: ccChapters.gameUI, sectionId: 'section-game-ui', reserve: '1500svh', resumeDirection: 'gui' }),
     React.createElement(LazyChapter, { key: 'chapter-digital', name: 'digital', chapter: ccChapters.digital, sectionId: 'section-02', reserve: '930svh' }),
-    React.createElement(LazyChapter, { key: 'chapter-packaging', name: 'packaging', chapter: ccChapters.visualPackaging, sectionId: 'section-03', reserve: '620svh' }),
-    React.createElement(LazyChapter, { key: 'chapter-poster', name: 'poster', chapter: ccChapters.visualPoster, sectionId: 'section-04', reserve: '350svh' }),
+    React.createElement(LazyChapter, { key: 'chapter-packaging', name: 'packaging', chapter: ccChapters.visualPackaging, sectionId: 'section-03', reserve: '620svh', resumeDirection: 'visual' }),
+    React.createElement(LazyChapter, { key: 'chapter-poster', name: 'poster', chapter: ccChapters.visualPoster, sectionId: 'section-04', reserve: '350svh', resumeDirection: 'visual' }),
     React.createElement(Contact),
     React.createElement(Footer),
     React.createElement(BackToTop)
