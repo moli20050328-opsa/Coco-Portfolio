@@ -944,8 +944,8 @@ function PackagingFinalVisualsV2() {
 
 /* ---------- App ---------- */
 /* ---------- Visual Design · Packaging · 《作品集4》定稿构图 ---------- */
-var pkg4ProjectCn = '本包装串联霸王茶姬的东方美学基因与西湖龙井的千年底蕴，兼顾品牌辨识度与文化质感，手提袋包装提取霸王茶姬标志性“C”形花纹和龙井茶叶纹纹结合，龙井九曲红梅口味的主色取红梅的淡粉色，呼应春茶鲜润与东方雅致。';
-var pkg4ProjectEn = "This packaging combines the Eastern aesthetic genes of Bawang Tea Princess with the millennia-old heritage of West Lake Dragon Well tea, balancing brand recognition and cultural texture. The tote bag packaging incorporates the iconic 'C'-shaped pattern of Bawang Tea Princess with the texture of Dragon Well tea leaves. The main color of the Longjing Nine-Turn Red Plum flavor is the light pink of red plums, echoing the freshness of spring tea and Eastern elegance.";
+var pkg4ProjectCn = '以霸王茶姬的 C 形花纹结合龙井茶叶意象，延展至手提袋、茶盒与杯装。绿色龙井与粉色红梅共用一套包装视觉，以色彩和植物图形区分双口味。';
+var pkg4ProjectEn = 'PACKAGING DESIGN / DIGITAL VISUALIZATION';
 var pkg4Extract = 'packaging-assets/psd-extract/';
 
 function PackagingWork4Overview(props) {
@@ -978,8 +978,8 @@ function PackagingWork4Overview(props) {
   },
     React.createElement('div', { className: 'pkg4-overview-copy' },
       React.createElement('h2', { id: titleId, className: 'pkg2-reveal' }, '西湖龙井 × 霸王茶姬'),
-      React.createElement('p', { className: 'pkg4-overview-cn pkg2-reveal', style: { '--pkg2-delay': '80ms' } }, pkg4ProjectCn),
-      React.createElement('p', { className: 'pkg4-overview-en pkg2-reveal', lang: 'en', style: { '--pkg2-delay': '160ms' } }, pkg4ProjectEn)
+      React.createElement('p', { className: 'pkg4-overview-cn pkg2-reveal', style: { '--pkg2-delay': '80ms' } }, isPink ? '九曲红梅以淡粉色与梅花意象回应龙井的清绿。保留 C 形主视觉和包装结构，让两种口味各有辨识、并置成套。' : pkg4ProjectCn),
+      React.createElement('p', { className: 'pkg4-overview-en pkg2-reveal', lang: 'en', style: { '--pkg2-delay': '160ms' } }, isPink ? 'RED PLUM / DUAL FLAVOUR' : pkg4ProjectEn)
     ),
     assets.map(function(asset, index) {
       var order = collageOrder.indexOf(index);
@@ -1058,8 +1058,8 @@ function PackagingWork4Pattern() {
   var result = useInView({ threshold: 0.02 });
   var ref = result[0];
   usePackagingV2Motion(ref);
-  var cn = '乌龙龙井口味包装的纹样设计，我借鉴了纹样库的龙井茶叶纹，整体为流畅的线条，呼应霸王茶姬包装一贯的线条繁复风格。纹样周围提取了茶叶纹弯曲的叶子形状作为四周的一个点缀。中间是对第二个花纹的一个自主变形，在一个花状的花瓣里面增加茶叶的纹样抽象提取';
-  var en = 'For the design of the Oolong Longjing flavor packaging pattern, I drew inspiration from the Longjing tea leaf patterns in the pattern library. The overall design consists of smooth lines, echoing the intricate line style consistently used in Bawang Chaji packaging. Around the pattern, I extracted the curved leaf shapes from the tea leaf patterns as a surrounding embellishment. In the center, there is an independently transformed version of the second floral pattern, with the tea leaf patterns abstractly integrated inside a petal-shaped floral design.';
+  var cn = '参考纹样库中的茶叶纹，提取弯曲叶形作为边缘装饰；将花瓣结构重新组合，并融入茶叶线条，形成包装中央纹样与边框。';
+  var en = 'BOTANICAL SOURCE / SHAPE EXTRACTION / PATTERN';
   var assets = [
     { cls: 'source-a', src: 'board-05-asset-02-pixel-159-1744-152x152.png', w: 152, h: 152, alt: '龙井茶叶纹样来源一' },
     { cls: 'source-b', src: 'board-05-asset-03-pixel-158-1943-154x156.png', w: 154, h: 156, alt: '龙井茶叶纹样来源二' },

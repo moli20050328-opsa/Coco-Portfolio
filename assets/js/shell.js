@@ -80,6 +80,81 @@ function DeferredPortfolioImage(props) {
   return React.createElement(PortfolioImage, imageProps);
 }
 
+/* Opt-in lifecycle for game demos; native controls remain the manual fallback. */
+function observeReturnPlayback(video, autoPlay) {
+  var disposed = false;
+  var pending = false;
+  var returnQueued = false;
+  var wasAvailable = !document.hidden && inViewport();
+  var lifecyclePauses = 0;
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canResume = autoPlay !== false && !reducedMotion;
+  var wantsPlayback = canResume;
+  function inViewport() {
+    var rect = video.getBoundingClientRect();
+    return rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth;
+  }
+  function available() { return !disposed && !document.hidden && inViewport(); }
+  function pauseForLifecycle() {
+    if (video.paused) return;
+    lifecyclePauses++;
+    video.pause();
+  }
+  function sync() {
+    if (disposed) return;
+    var visible = available();
+    if (visible && !wasAvailable && pending) returnQueued = true;
+    wasAvailable = visible;
+    if (!visible) { pauseForLifecycle(); return; }
+    if (!canResume || !wantsPlayback || pending || !video.paused || video.ended || !video.getAttribute('src')) return;
+    pending = true;
+    function finished() {
+      if (disposed) return;
+      pending = false;
+      if (!available()) pauseForLifecycle();
+      // Retry only for a new return, never continuously on autoplay rejection.
+      if (returnQueued) { returnQueued = false; sync(); }
+    }
+    try {
+      var playback = video.play();
+      if (playback && typeof playback.then === 'function') playback.then(finished, finished);
+      else finished();
+    } catch (error) { finished(); }
+  }
+  function onPause() {
+    // pause() dispatches asynchronously, sometimes after a fast tab return.
+    if (lifecyclePauses) { lifecyclePauses--; return; }
+    if (video.paused) wantsPlayback = false;
+  }
+  function onPlay() {
+    if (canResume) wantsPlayback = true;
+    if (!available()) pauseForLifecycle();
+  }
+  video.addEventListener('pause', onPause);
+  video.addEventListener('play', onPlay);
+  document.addEventListener('visibilitychange', sync);
+  window.addEventListener('pageshow', sync);
+  window.addEventListener('focus', sync);
+  var observer;
+  if ('IntersectionObserver' in window) {
+    observer = new IntersectionObserver(sync, { rootMargin: '0px', threshold: 0 });
+    observer.observe(video);
+  }
+  return {
+    sync: sync,
+    dispose: function() {
+      disposed = true;
+      if (observer) observer.disconnect();
+      video.removeEventListener('pause', onPause);
+      video.removeEventListener('play', onPlay);
+      document.removeEventListener('visibilitychange', sync);
+      window.removeEventListener('pageshow', sync);
+      window.removeEventListener('focus', sync);
+      pauseForLifecycle();
+    }
+  };
+}
+
 function DeferredVideo(props) {
   var ref = useRef(null);
   var source = props.src;
@@ -88,6 +163,12 @@ function DeferredVideo(props) {
     var video = ref.current;
     if (!video || !source) return;
     var loaded = false;
+    var returnPlayback = props.resumeOnReturn ? observeReturnPlayback(video, props.autoPlay) : null;
+    var observer;
+    function cleanup() {
+      if (observer) observer.disconnect();
+      if (returnPlayback) returnPlayback.dispose();
+    }
     function hydrateVideo() {
       if (loaded) return;
       loaded = true;
@@ -95,24 +176,25 @@ function DeferredVideo(props) {
       video.src = source;
       video.preload = 'auto';
       video.load();
-      if (props.autoPlay !== false) {
+      if (returnPlayback) returnPlayback.sync();
+      else if (props.autoPlay !== false) {
         var playback = video.play();
         if (playback && typeof playback.catch === 'function') playback.catch(function() {});
       }
     }
     if (!('IntersectionObserver' in window)) {
       hydrateVideo();
-      return;
+      return cleanup;
     }
-    var observer = new IntersectionObserver(function(entries) {
+    observer = new IntersectionObserver(function(entries) {
       if (entries[0].isIntersecting) {
         hydrateVideo();
         observer.disconnect();
       }
     }, { rootMargin: '600px 0px', threshold: 0 });
     observer.observe(video);
-    return function() { observer.disconnect(); };
-  }, [source, poster]);
+    return cleanup;
+  }, [source, poster, props.autoPlay, props.resumeOnReturn]);
 
   var videoProps = Object.assign({}, props, {
     ref: ref,
@@ -124,6 +206,7 @@ function DeferredVideo(props) {
     'data-deferred-poster': poster || undefined
   });
   delete videoProps.children;
+  delete videoProps.resumeOnReturn;
   return React.createElement('video', videoProps);
 }
 
@@ -678,18 +761,18 @@ var projectSections = [
 /* ---------- Mini Program Data ---------- */
 var miniProgramPages = [
   { id: '01', title: '启动页', image: 'slides/mp-01.png', description: '森系绿渐变背景，几何马形图形，引导进入作品集世界。' },
-  { id: '02', title: '首页', image: 'slides/mp-02.png', description: '推荐作品、优秀校友、热门活动三大模块，卡片式布局。' },
-  { id: '03', title: '分类', image: 'slides/mp-03.png', description: '8类设计分类采用玻璃拟态图标，强化品牌识别性。' },
-  { id: '04', title: '作品详情', image: 'slides/mp-04.png', description: '大图预览配箭头切换，信息区与评论区清晰划分。' },
+  { id: '02', title: '访问方式', image: 'slides/mp-02.png', description: '提供游客访问与学生登录两个入口。' },
+  { id: '03', title: '账号登录', image: 'slides/mp-03.png', description: '账号与密码输入、登录操作及第三方入口。' },
+  { id: '04', title: '兴趣与方向选择', image: 'slides/mp-04.png', description: '通过标签选择年级与设计方向，深浅色区分选中项。' },
   { id: '05', title: '推荐首页', image: 'slides/mp-05.png', description: 'Banner轮播 + 推荐作品 + 优秀校友 + 热门活动。' },
-  { id: '06', title: '动态广场', image: 'slides/mp-06.png', description: '动态内容与用户推荐模块化布局，强化社区属性。' },
-  { id: '07', title: '搜索页', image: 'slides/mp-07.png', description: '智能推荐与历史记录，简洁输入交互。' },
-  { id: '08', title: '个人中心', image: 'slides/mp-08.png', description: '个人主页，作品展示与数据统计，身份认证标识。' },
-  { id: '09', title: '页面 09', image: 'slides/mp-09.png', description: 'UI 页面设计 09' },
-  { id: '10', title: '页面 10', image: 'slides/mp-10.png', description: 'UI 页面设计 10' },
-  { id: '11', title: '页面 11', image: 'slides/mp-11.png', description: 'UI 页面设计 11' },
-  { id: '12', title: '搜索结果', image: 'slides/mp-12.png', description: '搜索结果页，筛选与排序，卡片式展示。' },
-  { id: '13', title: '消息中心', image: 'slides/mp-13.png', description: '消息通知与互动，分类标签管理。' }
+  { id: '06', title: '分类入口与获奖作品', image: 'slides/mp-06.png', description: '首页中的八类设计入口与获奖作品展示。' },
+  { id: '07', title: '作品详情', image: 'slides/mp-07.png', description: '作品大图、作者资料、点评及评论点赞收藏入口。' },
+  { id: '08', title: '动态广场', image: 'slides/mp-08.png', description: '动态内容、评论点赞与关注推荐。' },
+  { id: '09', title: '个人中心', image: 'slides/mp-09.png', description: '个人资料、作品与获奖记录展示。' },
+  { id: '10', title: '分类筛选', image: 'slides/mp-10.png', description: '按设计类别及最热、最新、获奖查看作品。' },
+  { id: '11', title: '编辑资料', image: 'slides/mp-11.png', description: '个人信息编辑界面。' },
+  { id: '12', title: '搜索', image: 'slides/mp-12.png', description: '搜索输入、搜索历史与热门搜索。' },
+  { id: '13', title: '最近留言', image: 'slides/mp-13.png', description: '留言摘要、头像与已读未读状态。' }
 ];
 
 
@@ -795,7 +878,7 @@ function AboutLeftPanel() {
     React.createElement('div', { style:{ background:'rgba(255,255,255,0.025)', border:'1px solid rgba(59,130,246,0.15)', borderRadius:'20px', padding:'32px', backdropFilter:'blur(10px)', WebkitBackdropFilter:'blur(10px)', boxShadow:'0 8px 40px rgba(0,0,0,0.3), 0 0 30px rgba(59,130,246,0.05)' } },
       React.createElement('p', { style:{ fontFamily:"'JetBrains Mono',monospace", fontSize:'13px', color:'rgba(255,255,255,0.3)', marginBottom:'20px' } }, '@yuxuan.design'),
       React.createElement('h1', { style:{ fontFamily:"'Noto Sans SC','Sora',sans-serif", fontWeight:700, fontSize:'32px', lineHeight:1.2, marginBottom:'16px' } }, '你好！我是王玉璇'),
-      React.createElement('p', { style:{ fontSize:'14px', lineHeight:1.75, color:'rgba(255,255,255,0.55)', marginBottom:'24px', maxWidth:'320px' } }, '视觉传达设计师，浙江传媒学院在读。聚焦视觉设计、UI/UX界面设计、品牌视觉系统搭建与动态视觉创作，擅长以产品思维拆解需求，探索传统美学与现代视觉的融合表达。熟练运用设计软件与AI代码工具，主持省级大创项目，兼具设计创作与项目落地能力。'),
+      React.createElement('p', { style:{ fontSize:'14px', lineHeight:1.75, color:'rgba(255,255,255,0.65)', marginBottom:'24px', maxWidth:'320px' } }, '浙江传媒学院视觉传达设计专业在读，主要创作游戏 GUI、包装与动态视觉。通过界面、图形和交互表达设计，使用 AI 与代码工具辅助制作和验证。'),
       React.createElement('div', { className: 'about-directions' },
         React.createElement('div', { className: 'about-direction-primary', 'aria-label': '主要设计方向' },
           ['游戏 GUI', '视觉设计'].map(function(t, i) {
@@ -893,12 +976,13 @@ function AboutRightPanel() {
     { name:'雨前归纳者', desc:'游戏关卡 GUI 设计', href:'#game-ui-rain-cover', image:'assets/about-thumbnails/rain-archive.webp', width:288, height:120 }
   ];
   return React.createElement('div', { className:'about-anim-right about-order-right', style:{ animationDelay:'0.25s' } },
-    React.createElement('div', { style:{ display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:'12px', marginBottom:'32px', maxWidth:'200px' } },
+    React.createElement('div', { style:{ display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:'12px', marginBottom:'16px', maxWidth:'200px' } },
       socials.map(function(s, i) {
         return React.createElement('a', { key:i, href:'#', 'aria-label':s.name, className:'about-hex about-hex-bg', style:{ width:'52px', height:'52px', display:'flex', alignItems:'center', justifyContent:'center', textDecoration:'none' } }, s.icon);
       })
     ),
-    React.createElement('p', { style:{ fontSize:'13px', color:'rgba(255,255,255,0.3)', marginBottom:'16px', fontFamily:"'Sora',sans-serif", fontWeight:600, letterSpacing:'0.05em', textTransform:'uppercase' } }, '最新作品'),
+    React.createElement('p', { className:'about-tools-summary' }, '辅助工具：Processing · Codex · Claude Code'),
+    React.createElement('p', { style:{ fontSize:'13px', color:'rgba(255,255,255,0.5)', marginBottom:'16px', fontFamily:"'Sora',sans-serif", fontWeight:600, letterSpacing:'0.05em', textTransform:'uppercase' } }, '精选作品'),
     React.createElement('div', { style:{ display:'flex', flexDirection:'column', gap:'10px' } },
       projects.map(function(p, i) {
         return React.createElement('a', { key:p.href, href:p.href, className:'about-proj-item about-anim-up', style:{ animationDelay:(0.5+i*0.1)+'s' } },
@@ -938,7 +1022,7 @@ function AboutCapabilities() {
   var toolCats = [
     { label:'视觉设计', tools:['Photoshop', 'Illustrator', 'Figma'] },
     { label:'动态影像', tools:['After Effects', 'Processing', '专业剪辑软件'] },
-    { label:'代码辅助', tools:['Code X', 'Claude Code', 'Vibe Coding'] },
+    { label:'代码辅助', tools:['Codex', 'Claude Code', 'Vibe Coding'] },
     { label:'三维基础', tools:['Cinema 4D'] }
   ];
   return React.createElement('section', { className:'about-sub' },
@@ -989,7 +1073,7 @@ function AboutToolStack() {
   var categories = [
     { label:'视觉设计', tools:['Photoshop', 'Illustrator', 'Figma'] },
     { label:'动态影像', tools:['After Effects', 'Processing', '专业剪辑软件'] },
-    { label:'代码辅助', tools:['Code X', 'Claude Code', 'Vibe Coding'] },
+    { label:'代码辅助', tools:['Codex', 'Claude Code', 'Vibe Coding'] },
     { label:'三维基础', tools:['Cinema 4D'] }
   ];
   return React.createElement('section', { className:'about-sub' },
@@ -1060,19 +1144,18 @@ function AboutHonorsExperience() {
     { name:'桐乡茅盾大讲堂 Logo 设计项目 中标', meta:'设计中标' }
   ];
   var experiences = [
-    { company:'天工画境', role:'AI视觉设计实习生', period:'2026.06–08', desc:'把控漫剧视觉风格，负责AI画面调试、分镜落地与后期剪辑成片，统一项目视觉调性。' },
-    { company:'赵汝飞练字总部', role:'产品部助理', period:'2026.03–04', desc:'负责产品动效制作、视觉物料输出，参与需求梳理与项目跟进。' }
+    { company:'天工画境', role:'AI视觉设计实习生', period:'2026.06–08', desc:'参与 AI 漫剧分镜、画面生成与后期剪辑。' },
+    { company:'赵汝飞练字总部', role:'产品部助理', period:'2026.03–04', desc:'参与产品动效、视觉物料制作与需求梳理。' }
   ];
-  return React.createElement('section', { className:'about-sub' },
+  return React.createElement('section', { className:'about-sub about-evidence-summary', 'aria-label':'荣誉与实习经历摘要' },
     React.createElement(AboutStarField),
     React.createElement(AboutBackgroundGlow),
     React.createElement('div', { className:'about-sub-inner about-sub-reveal', style:{animationDelay:'0.1s'} },
       React.createElement('div', { className:'about-sub-head' },
         React.createElement('div', null,
-          React.createElement('p', { className:'about-sub-eyebrow' }, '// 02 — Honors & Experience'),
-          React.createElement('h2', { className:'about-sub-title', style:{marginBottom:'0'} }, '荣誉与履历')
+          React.createElement('h2', { className:'about-sub-title', style:{marginBottom:'0'} }, '荣誉与经历')
         ),
-        React.createElement('span', { className:'about-sub-bignum' }, '02')
+        React.createElement('span', { className:'about-evidence-note' }, '完整履历见简历')
       ),
       React.createElement('div', { className:'about-hon-split' },
         /* Left: Awards as numbered list */
@@ -1407,7 +1490,6 @@ function App() {
     React.createElement(Hero),
     React.createElement(TableOfContents),
     React.createElement(About),
-    React.createElement(AboutCapabilities),
     React.createElement(AboutHonorsExperience),
     React.createElement(LazyChapter, { key: 'chapter-game', name: 'gameDesign', chapter: ccChapters.game, sectionId: 'section-01', reserve: '900svh' }),
     React.createElement(LazyChapter, { key: 'chapter-game-ui', name: 'gameUI', chapter: ccChapters.gameUI, sectionId: 'section-game-ui', reserve: '1500svh', resumeDirection: 'gui' }),

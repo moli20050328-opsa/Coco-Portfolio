@@ -70,6 +70,9 @@ function CaseStudyOverview() {
         React.createElement(DeferredVideo, {
           className: 'cs-hero-video cs-anim cs-anim-4',
           src: 'taishan-hero.mp4',
+          resumeOnReturn: true,
+          controls: true,
+          'aria-label': '泰山皮影镇妖记开场预览',
           poster: 'taishan-hero-poster.jpg',
           autoPlay: true,
           muted: true,
@@ -112,158 +115,26 @@ function CaseStudyOverview() {
 }
 
 
-/* ---------- Case Study Design Background (dbg- prefix) ---------- */
-function CaseStudyBackground() {
-  var result = useInView({ threshold: 0.1 });
-  var ref = result[0]; var inView = result[1];
-  var viewClass = inView ? ' in-view' : '';
-
-  var flowSteps = ['\u4f20\u7edf\u5c55\u793a\u65b9\u5f0f', '\u53c2\u4e0e\u5ea6\u964d\u4f4e', '\u9700\u8981\u65b0\u7684\u4f20\u64ad\u65b9\u5f0f'];
-
-  var flowElements = [];
-  flowSteps.forEach(function(step, i) {
-    if (i > 0) {
-      flowElements.push(React.createElement('span', { key: 'arrow-' + i, className: 'dbg-flow-arrow' }, '\u2193'));
-    }
-    flowElements.push(React.createElement('span', { key: 'step-' + i, className: 'dbg-flow-step' }, step));
-  });
-
-  return React.createElement('section', {
-    ref: ref,
-    className: 'dbg-section snap-slide' + viewClass
-  },
-    /* Background decoration */
-    React.createElement('div', { className: 'dbg-bg-deco' }),
-
-    /* Top title */
-    React.createElement('div', { className: 'case-nav dbg-anim dbg-anim-1' },
-      React.createElement('div', { className: 'case-nav-num' }, '02'),
-      React.createElement('div', { className: 'case-nav-en' }, 'PROJECT BACKGROUND'),
-      React.createElement('div', { className: 'case-nav-cn' }, '项目背景')
-    ),
-    /* Main content */
-    React.createElement('div', { className: 'dbg-main' },
-      /* Left side — cultural visual */
-      React.createElement('div', { className: 'dbg-left dbg-anim dbg-anim-2' },
-        React.createElement(PortfolioImage, {
-          className: 'dbg-image',
-          src: 'taishan-puppet.jpg',
-          alt: 'Taishan Shadow Puppet'
-        }),
-        React.createElement(PortfolioImage, {
-          className: 'dbg-image',
-          src: 'taishan-puppet2.jpg',
-          alt: 'Taishan Shadow Puppet Detail'
-        }),
-        React.createElement('div', { className: 'dbg-image-label' },
-          React.createElement('div', { className: 'dbg-image-label-en' }, 'TAISHAN SHADOW PUPPET'),
-          React.createElement('div', { className: 'dbg-image-label-sub' }, 'Chinese Intangible Cultural Heritage')
-        )
-      ),
-
-      /* Right side — three modules */
-      React.createElement('div', { className: 'dbg-right' },
-        /* Module 01 */
-        React.createElement('div', { className: 'dbg-module dbg-anim dbg-anim-3' },
-          React.createElement('div', { className: 'dbg-module-num' }, '01'),
-          React.createElement('div', { className: 'dbg-module-title' },
-            React.createElement('span', { className: 'dbg-module-title-en' }, 'CULTURAL VALUE'),
-            React.createElement('span', { className: 'dbg-module-title-cn' }, '\u6587\u5316\u4ef7\u503c')
-          ),
-          React.createElement('p', { className: 'dbg-module-text' },
-            '\u6cf0\u5c71\u76ae\u5f71\u62e5\u6709\u5343\u5e74\u5386\u53f2\uff0c\u662f\u4e2d\u56fd\u4f20\u7edf\u76ae\u5f71\u827a\u672f\u7684\u91cd\u8981\u7ec4\u6210\u90e8\u5206\u3002'
-          )
-        ),
-
-        React.createElement('div', { className: 'dbg-divider' }),
-
-        /* Module 02 */
-        React.createElement('div', { className: 'dbg-module dbg-anim dbg-anim-4' },
-          React.createElement('div', { className: 'dbg-module-num' }, '02'),
-          React.createElement('div', { className: 'dbg-module-title' },
-            React.createElement('span', { className: 'dbg-module-title-en' }, 'CURRENT CHALLENGE'),
-            React.createElement('span', { className: 'dbg-module-title-cn' }, '\u4f20\u64ad\u56f0\u5883')
-          ),
-          React.createElement('p', { className: 'dbg-module-text' },
-            '\u73b0\u4ee3\u5a31\u4e50\u65b9\u5f0f\u53d8\u5316\u5bfc\u81f4\u4f20\u7edf\u6587\u5316\u4f20\u64ad\u65b9\u5f0f\u5355\u4e00\uff0c\u5e74\u8f7b\u7528\u6237\u53c2\u4e0e\u4e0d\u8db3\u3002'
-          ),
-          React.createElement('div', { className: 'dbg-flow' }, flowElements)
-        ),
-
-        React.createElement('div', { className: 'dbg-divider' }),
-
-        /* Module 03 */
-        React.createElement('div', { className: 'dbg-module dbg-anim dbg-anim-5' },
-          React.createElement('div', { className: 'dbg-module-num' }, '03'),
-          React.createElement('div', { className: 'dbg-module-title' },
-            React.createElement('span', { className: 'dbg-module-title-en' }, 'DESIGN OPPORTUNITY'),
-            React.createElement('span', { className: 'dbg-module-title-cn' }, '\u8bbe\u8ba1\u673a\u4f1a')
-          ),
-          React.createElement('p', { className: 'dbg-module-text' },
-            '\u901a\u8fc7\u4e92\u52a8\u6e38\u620f\uff0c\u5c06\u4f20\u7edf\u76ae\u5f71\u6587\u5316\u8f6c\u5316\u4e3a\u53ef\u53c2\u4e0e\u7684\u6570\u5b57\u4f53\u9a8c\u3002'
-          ),
-          React.createElement('div', { className: 'dbg-keywords' },
-            React.createElement('span', { className: 'dbg-keyword' }, 'TRADITION'),
-            React.createElement('span', { className: 'dbg-keyword' }, 'INTERACTION'),
-            React.createElement('span', { className: 'dbg-keyword' }, 'DIGITAL EXPERIENCE')
-          )
-        )
-      )
-    ),
-
-    /* Bottom summary */
-    React.createElement('div', { className: 'dbg-summary dbg-anim dbg-anim-5' },
-      React.createElement('div', { className: 'dbg-summary-line' }),
-      React.createElement('div', { className: 'dbg-summary-text' },
-        '\u8ba9\u4f20\u7edf\u6280\u827a\u6210\u4e3a\u53ef\u4f53\u9a8c\u3001\u53ef\u63a2\u7d22\u7684\u6570\u5b57\u6587\u5316\u3002'
-      )
-    )
-  );
-}
-
 /* ---------- Case Study Design Concept (dcp- prefix) ---------- */
 function CaseStudyConcept() {
   var result = useInView({ threshold: 0.1 });
   var ref = result[0]; var inView = result[1];
   var viewClass = inView ? ' in-view' : '';
 
-  /* DESIGN LOGIC flow nodes */
-  var logicNodes = [
-    { num: '01', en: 'CULTURAL ORIGIN', cn: '泰山皮影', kw: '光影辨形' },
-    { num: '02', en: 'GAME MECHANISM', cn: '镜面探索', kw: '妖形揭示' },
-    { num: '03', en: 'PLAYER EXPERIENCE', cn: '观察推理', kw: '发现真相' }
-  ];
-
-  var logicElements = [];
-  logicNodes.forEach(function(node, i) {
-    if (i > 0) {
-      logicElements.push(React.createElement('div', { key: 'conn-' + i, className: 'dcp-logic-connector' },
-        React.createElement('div', { className: 'dcp-logic-line' }),
-        React.createElement('span', { className: 'dcp-logic-arrow' }, '\u2192'),
-        React.createElement('div', { className: 'dcp-logic-line' })
-      ));
-    }
-    logicElements.push(React.createElement('div', { key: 'node-' + i, className: 'dcp-logic-node' },
-      React.createElement('div', { className: 'dcp-logic-num' }, node.num),
-      React.createElement('div', { className: 'dcp-logic-en' }, node.en),
-      React.createElement('div', { className: 'dcp-logic-cn' }, node.cn),
-      React.createElement('div', { className: 'dcp-logic-keyword' }, node.kw),
-      React.createElement('div', { className: 'dcp-logic-dot' })
-    ));
-  });
-
   return React.createElement('section', {
     ref: ref,
     id: 'game-design-concept',
     className: 'dcp-section snap-slide' + viewClass
   },
+    React.createElement('span', { id: 'game-design-background', className: 'chapter-anchor-alias', 'aria-hidden': true }),
+    React.createElement('span', { id: 'cs-background', className: 'chapter-anchor-alias', 'aria-hidden': true }),
     /* Background layers */
     React.createElement('div', { className: 'dcp-bg-deco' }),
     React.createElement('div', { className: 'dcp-grid' }),
 
     /* Top title */
     React.createElement('div', { className: 'case-nav dcp-anim dcp-anim-1' },
-      React.createElement('div', { className: 'case-nav-num' }, '03'),
+      React.createElement('div', { className: 'case-nav-num' }, '02'),
       React.createElement('div', { className: 'case-nav-en' }, 'DESIGN CONCEPT'),
       React.createElement('div', { className: 'case-nav-cn' }, '设计概念')
     ),
@@ -272,14 +143,26 @@ function CaseStudyConcept() {
       React.createElement('h2', { className: 'dcp-hero-title dcp-anim dcp-anim-2' }, '光影破虚妄'),
       React.createElement('div', { className: 'dcp-hero-subtitle dcp-anim dcp-anim-2' }, 'LIGHT REVEALS TRUTH'),
       React.createElement('p', { className: 'dcp-hero-desc dcp-anim dcp-anim-3' },
-        '以泰山皮影光影技艺为核心，将\u201C辨伪\u201D转化为玩家可操作的镜面探索机制。'
+        '以《画皮》的“辨伪存真”为故事内核，借泰山皮影的光影特性表现伪装与真实。'
       )
     ),
 
-    /* DESIGN LOGIC — compact flow chart */
-    React.createElement('div', { className: 'dcp-logic dcp-anim dcp-anim-3' },
-      React.createElement('div', { className: 'dcp-logic-label' }, 'DESIGN LOGIC'),
-      React.createElement('div', { className: 'dcp-logic-flow' }, logicElements)
+    /* Cultural sources retained from the former background screen. */
+    React.createElement('div', { className: 'dcp-cultural dcp-anim dcp-anim-3' },
+      React.createElement('div', { className: 'dcp-cultural-copy' },
+        React.createElement('h3', { className: 'dcp-cultural-title' }, '从皮影到游戏'),
+        React.createElement('p', { className: 'dcp-cultural-text' },
+          '取泰山皮影的造型与驱邪寓意，将观看表演转为亲手探索。'
+        )
+      ),
+      React.createElement('div', { className: 'dcp-cultural-images' },
+        React.createElement('figure', { className: 'dcp-cultural-figure' },
+          React.createElement(PortfolioImage, { className: 'dcp-cultural-image', src: 'taishan-puppet.jpg', alt: '泰山皮影造型参考' })
+        ),
+        React.createElement('figure', { className: 'dcp-cultural-figure' },
+          React.createElement(PortfolioImage, { className: 'dcp-cultural-image', src: 'taishan-puppet2.jpg', alt: '泰山皮影细节参考' })
+        )
+      )
     ),
 
     /* CORE INTERACTION annotation */
@@ -330,30 +213,6 @@ function CaseStudyConcept() {
           alt: 'Mirror scene - after reveal'
         })
       )
-    ),
-
-    /* Bottom design summary cards */
-    React.createElement('div', { className: 'dcp-modules' },
-      React.createElement('div', { className: 'dcp-module dcp-anim dcp-anim-5' },
-        React.createElement('div', { className: 'dcp-module-num' }, '01'),
-        React.createElement('div', { className: 'dcp-module-en' }, 'CULTURAL TRANSLATION'),
-        React.createElement('div', { className: 'dcp-module-cn' }, '文化转译'),
-        React.createElement('div', { className: 'dcp-module-keyword' }, '以泰山皮影的光影辨形与驱邪寓意，建立玩法的文化来源。')
-      ),
-
-      React.createElement('div', { className: 'dcp-module dcp-anim dcp-anim-6' },
-        React.createElement('div', { className: 'dcp-module-num' }, '02'),
-        React.createElement('div', { className: 'dcp-module-en' }, 'INTERACTION RESULT'),
-        React.createElement('div', { className: 'dcp-module-cn' }, '机制转换'),
-        React.createElement('div', { className: 'dcp-module-keyword' }, '将镜面反射转化为揭示妖形的核心操作，连接观察与探索。')
-      ),
-
-      React.createElement('div', { className: 'dcp-module dcp-anim dcp-anim-6' },
-        React.createElement('div', { className: 'dcp-module-num' }, '03'),
-        React.createElement('div', { className: 'dcp-module-en' }, 'EXPERIENCE VALUE'),
-        React.createElement('div', { className: 'dcp-module-cn' }, '认知闭环'),
-        React.createElement('div', { className: 'dcp-module-keyword' }, '让玩家通过观察线索完成从怀疑、验证到发现真相的体验闭环。')
-      )
     )
   );
 }
@@ -389,31 +248,6 @@ function CaseStudyStory() {
     ));
   });
 
-  /* Experience flow nodes with emotion hints */
-  var expNodes = [
-    { en: 'BEGINNING', cn: '平静', emotion: '' },
-    { en: 'EXPLORATION', cn: '探索', emotion: '好奇' },
-    { en: 'DISCOVERY', cn: '发现真相', emotion: '紧张' },
-    { en: 'CLIMAX', cn: '最终高潮', emotion: '爆发' }
-  ];
-
-  var expElements = [];
-  expNodes.forEach(function(node, i) {
-    if (i > 0) {
-      expElements.push(React.createElement('div', { key: 'ec-' + i, className: 'dss-experience-connector' },
-        React.createElement('div', { className: 'dss-experience-line' }),
-        React.createElement('span', { className: 'dss-experience-arrow' }, '\u2192'),
-        React.createElement('div', { className: 'dss-experience-line' })
-      ));
-    }
-    expElements.push(React.createElement('div', { key: 'en-' + i, className: 'dss-experience-node' },
-      React.createElement('div', { className: 'dss-experience-en' }, node.en),
-      React.createElement('div', { className: 'dss-experience-cn' }, node.cn),
-      node.emotion ? React.createElement('div', { className: 'dss-experience-emotion' }, node.emotion) : null,
-      React.createElement('div', { className: 'dss-experience-dot' })
-    ));
-  });
-
   return React.createElement('section', {
     ref: ref,
     className: 'dss-section snap-slide' + viewClass
@@ -424,7 +258,7 @@ function CaseStudyStory() {
 
     /* Top title */
     React.createElement('div', { className: 'case-nav dss-anim dss-anim-1' },
-      React.createElement('div', { className: 'case-nav-num' }, '04'),
+      React.createElement('div', { className: 'case-nav-num' }, '03'),
       React.createElement('div', { className: 'case-nav-en' }, 'STORY & SCENE DESIGN'),
       React.createElement('div', { className: 'case-nav-cn' }, '故事与场景设计')
     ),
@@ -433,7 +267,7 @@ function CaseStudyStory() {
       React.createElement('h2', { className: 'dss-hero-title dss-anim dss-anim-2' }, '故事旅程'),
       React.createElement('div', { className: 'dss-hero-subtitle dss-anim dss-anim-2' }, 'NARRATIVE JOURNEY'),
       React.createElement('p', { className: 'dss-hero-desc dss-anim dss-anim-3' },
-        '通过四个核心场景推进剧情，将泰山皮影文化转化为探索、解谜与战斗体验。'
+        '林间、古街、镜前与东岳庙，四组场景承接故事的起点、探索、转折与高潮。'
       )
     ),
 
@@ -495,7 +329,7 @@ function CaseStudyStory() {
             React.createElement(PortfolioImage, { className: 'dss-scene-img', src: 'story-puzzle.jpg', alt: 'Puzzle interaction' })
           ),
           React.createElement('p', { className: 'dss-scene-text' },
-            '玩家进入泰山古街，通过寻找皮影线索完成探索与解谜。'
+            '古街与赠偶老者将故事引向泰山，也引出后续的皮影线索。'
           )
         )
       ),
@@ -547,7 +381,7 @@ function CaseStudyStory() {
               )
             ),
             React.createElement('p', { className: 'dss-mirror-text' },
-              '利用泰山皮影光影特性，通过镜面反射揭示隐藏真相。'
+              '镜前的女子由人形转为妖形，是故事由怀疑走向揭示的转折。'
             )
           )
         )
@@ -573,213 +407,9 @@ function CaseStudyStory() {
             React.createElement(PortfolioImage, { className: 'dss-scene-img', src: 'story-combat-2.jpg', alt: 'Monster form reveal' })
           ),
           React.createElement('p', { className: 'dss-scene-text' },
-            '玩家操控皮影完成最终战斗，实现传统技艺与游戏机制融合。'
+            '东岳庙的镇妖场景收束冲突，以妖形与庙宇的对照形成最终高潮。'
           )
         )
-      )
-    ),
-
-    /* Player experience flow — emotion curve */
-    React.createElement('div', { className: 'dss-experience dss-anim dss-anim-7' },
-      React.createElement('div', { className: 'dss-experience-label' }, 'PLAYER EXPERIENCE FLOW'),
-      React.createElement('div', { className: 'dss-experience-flow' }, expElements)
-    )
-  );
-}
-
-
-function CaseStudyGameplay() {
-  var result = useInView({ threshold: 0.1 });
-  var ref = result[0]; var inView = result[1];
-  var viewClass = inView ? ' in-view' : '';
-
-  var modules = [
-    {
-      num: '01',
-      title: 'DRAG PUZZLE',
-      subtitle: '\u62fc\u5f71\u89e3\u8c1c',
-      img: 'gameplay-drag.jpg',
-      imgAlt: '\u62fc\u5f71\u89e3\u8c1c\u4ea4\u4e92',
-      imgCompact: true,
-      action: '\u62d6\u52a8 / \u62fc\u63a5',
-      experience: '\u7406\u89e3\u76ae\u5f71\u7ed3\u6784',
-      tags: [
-        { text: 'DRAG', accent: false },
-        { text: 'ASSEMBLE', accent: true },
-        { text: 'PUZZLE', accent: false }
-      ],
-      isMirror: false
-    },
-    {
-      num: '02',
-      title: 'MIRROR REVEAL',
-      subtitle: '\u955c\u9762\u8fa8\u5996',
-      beforeImg: 'gameplay-mirror-before.jpg',
-      afterImg: 'gameplay-mirror-after.jpg',
-      action: '\u89c2\u5bdf\u955c\u9762\u53d8\u5316',
-      experience: '\u4ece\u89c6\u89c9\u9519\u89c9\u4e2d\u53d1\u73b0\u771f\u5b9e\u8eab\u4efd',
-      tags: [
-        { text: 'LIGHT', accent: false },
-        { text: 'REFLECTION', accent: true },
-        { text: 'DISCOVERY', accent: false }
-      ],
-      isMirror: true,
-      isCore: true,
-      flow: [
-        { en: 'OBSERVE', cn: '\u89c2\u5bdf\u955c\u9762' },
-        { en: 'REFLECT', cn: '\u5149\u5f71\u53d8\u5316' },
-        { en: 'REVEAL', cn: '\u53d1\u73b0\u5996\u5f62' }
-      ]
-    },
-    {
-      num: '03',
-      title: 'RHYTHM COMBAT',
-      subtitle: '\u8282\u594f\u6218\u6597',
-      img: 'gameplay-combat.jpg',
-      imgAlt: '\u4e1c\u5cb3\u5e99\u9547\u5996\u6218\u6597',
-      action: '\u8282\u594f\u63a7\u5236',
-      experience: '\u4f20\u7edf\u6280\u827a\u4e0e\u6218\u6597\u7ed3\u5408',
-      tags: [
-        { text: 'RHYTHM', accent: false },
-        { text: 'CONTROL', accent: true },
-        { text: 'COMBAT', accent: false }
-      ],
-      isMirror: false
-    }
-  ];
-
-  var loopNodes = [
-    { en: 'OBSERVE', cn: '\u89c2\u5bdf\u5f02\u5e38' },
-    { en: 'EXPLORE', cn: '\u5bfb\u627e\u7ebf\u7d22' },
-    { en: 'SOLVE', cn: '\u76ae\u5f71\u89e3\u8c1c' },
-    { en: 'REVEAL', cn: '\u955c\u9762\u63ed\u793a' },
-    { en: 'COMBAT', cn: '\u6700\u7ec8\u6218\u6597' }
-  ];
-
-  var moduleElements = modules.map(function(m, i) {
-    var imgElement;
-    if (m.isMirror) {
-      var flowSteps = [];
-      m.flow.forEach(function(f, j) {
-        flowSteps.push(
-          React.createElement('div', { key: 'fr-' + j, className: 'dpi-mirror-flow-row' },
-            React.createElement('span', { className: 'dpi-mirror-flow-step' }, f.en),
-            React.createElement('span', { className: 'dpi-mirror-flow-cn' }, f.cn)
-          )
-        );
-        if (j < m.flow.length - 1) {
-          flowSteps.push(React.createElement('div', { key: 'fa-' + j, className: 'dpi-mirror-flow-arrow' }, '\u2193'));
-        }
-      });
-
-      imgElement = React.createElement('div', { className: 'dpi-mirror-stack' },
-        React.createElement('div', { className: 'dpi-mirror-item' },
-          React.createElement('div', { className: 'dpi-mirror-label' }, 'BEFORE'),
-          React.createElement('div', { className: 'dpi-mirror-img' },
-            React.createElement(PortfolioImage, { src: m.beforeImg, alt: '\u955c\u9762\u672a\u89e6\u53d1' })
-          )
-        ),
-        React.createElement('div', { className: 'dpi-mirror-flow' }, flowSteps),
-        React.createElement('div', { className: 'dpi-mirror-item' },
-          React.createElement('div', { className: 'dpi-mirror-label' }, 'AFTER'),
-          React.createElement('div', { className: 'dpi-mirror-img' },
-            React.createElement(PortfolioImage, { src: m.afterImg, alt: '\u5996\u602a\u663e\u5f62' })
-          )
-        )
-      );
-    } else {
-      var imgClass = 'dpi-mod-img' + (m.imgCompact ? ' dpi-mod-img-compact' : '');
-      imgElement = React.createElement('div', { className: imgClass },
-        React.createElement(PortfolioImage, { src: m.img, alt: m.imgAlt })
-      );
-    }
-
-    var coreLabel = m.isCore
-      ? React.createElement('div', { className: 'dpi-mod-core' }, 'CORE MECHANIC')
-      : null;
-
-    return React.createElement('div', {
-      key: 'mod-' + i,
-      className: 'dpi-mod dpi-anim dpi-anim-' + (i + 3)
-    },
-      coreLabel,
-      React.createElement('div', { className: 'dpi-mod-num' }, m.num),
-      React.createElement('div', { className: 'dpi-mod-title' }, m.title),
-      React.createElement('div', { className: 'dpi-mod-subtitle' }, m.subtitle),
-      imgElement,
-      React.createElement('div', { className: 'dpi-mod-info' },
-        React.createElement('div', { className: 'dpi-mod-info-row' },
-          React.createElement('span', { className: 'dpi-mod-info-label' }, 'PLAYER ACTION'),
-          React.createElement('span', { className: 'dpi-mod-info-value' }, m.action)
-        ),
-        React.createElement('div', { className: 'dpi-mod-info-row' },
-          React.createElement('span', { className: 'dpi-mod-info-label' }, 'CORE EXPERIENCE'),
-          React.createElement('span', { className: 'dpi-mod-info-value' }, m.experience)
-        )
-      ),
-      React.createElement('div', { className: 'dpi-mod-tags' },
-        m.tags.map(function(t, j) {
-          return React.createElement('span', {
-            key: 'tag-' + j,
-            className: 'dpi-mod-tag' + (t.accent ? ' dpi-mod-tag-accent' : '')
-          }, t.text);
-        })
-      )
-    );
-  });
-
-  var loopElements = [];
-  loopNodes.forEach(function(n, i) {
-    loopElements.push(React.createElement('div', {
-      key: 'loop-' + i,
-      className: 'dpi-loop-node dpi-anim dpi-anim-' + (i + 6)
-    },
-      React.createElement('div', { className: 'dpi-loop-dot' }),
-      React.createElement('div', { className: 'dpi-loop-label' }, n.en),
-      React.createElement('div', { className: 'dpi-loop-cn' }, n.cn)
-    ));
-    if (i < loopNodes.length - 1) {
-      loopElements.push(React.createElement('div', {
-        key: 'loop-line-' + i,
-        className: 'dpi-loop-line'
-      }));
-    }
-  });
-
-  return React.createElement('section', {
-    ref: ref,
-    className: 'dpi-section snap-slide' + viewClass
-  },
-    React.createElement('div', { className: 'dpi-bg-deco' }),
-
-    /* Header */
-    React.createElement('div', { className: 'case-nav dpi-anim dpi-anim-1' },
-      React.createElement('div', { className: 'case-nav-num' }, '05'),
-      React.createElement('div', { className: 'case-nav-en' }, 'GAME MECHANISM DESIGN'),
-      React.createElement('div', { className: 'case-nav-cn' }, '游戏机制设计')
-    ),
-
-    /* Header */
-    React.createElement('div', { className: 'dpi-header dpi-anim dpi-anim-2' },
-      React.createElement('div', { className: 'dpi-header-title' }, '光影探秘'),
-      React.createElement('div', { className: 'dpi-header-subtitle' }, 'LIGHT & SHADOW DETECTION'),
-      React.createElement('div', { className: 'dpi-header-desc' }, '通过传统皮影技艺转化为玩家可操作的探索、解谜与战斗机制。')
-    ),
-
-    /* Divider */
-    React.createElement('div', { className: 'dpi-divider dpi-anim dpi-anim-2' }),
-
-    /* Three modules */
-    React.createElement('div', { className: 'dpi-modules' },
-      moduleElements
-    ),
-
-    /* PLAYER EXPERIENCE LOOP */
-    React.createElement('div', { className: 'dpi-loop dpi-anim dpi-anim-5' },
-      React.createElement('div', { className: 'dpi-loop-title' }, 'PLAYER EXPERIENCE LOOP'),
-      React.createElement('div', { className: 'dpi-loop-summary' }, '\u73a9\u5bb6\u901a\u8fc7\u89c2\u5bdf\u3001\u63a2\u7d22\u4e0e\u4e92\u52a8\u9010\u6b65\u53d1\u73b0\u9690\u85cf\u771f\u76f8\u3002'),
-      React.createElement('div', { className: 'dpi-loop-nodes' },
-        loopElements
       )
     )
   );
@@ -797,14 +427,14 @@ function CaseStudyInteraction() {
     {
       num: '01',
       titleEn: 'DRAG PUZZLE',
-      titleCn: '\u62fc\u5f71\u89e3\u8c2c',
+      titleCn: '\u62fc\u5f71\u89e3\u8c1c',
       video: 'interaction-drag.mp4',
       poster: 'gameplay-drag.jpg',
+      stills: [{ src: 'gameplay-drag.jpg', alt: '拼影解谜完整操作画面', caption: '拼接皮影组件' }],
       isCore: false,
       info: [
         { label: 'INPUT', text: '\u62d6\u62fd\u62fc\u63a5\u76ae\u5f71\u7ec4\u4ef6' },
-        { label: 'RESPONSE', text: '\u8fd8\u539f\u76ae\u5f71\u7ed3\u6784' },
-        { label: 'EXPERIENCE', text: '\u901a\u8fc7\u64cd\u4f5c\u611f\u53d7\u4f20\u7edf\u5de5\u827a' }
+        { label: 'FEEDBACK', text: '还原皮影结构，理解组件关系' }
       ]
     },
     {
@@ -813,11 +443,14 @@ function CaseStudyInteraction() {
       titleCn: '\u955c\u9762\u8fa8\u5996',
       video: 'interaction-mirror.mp4',
       poster: 'gameplay-mirror-after.jpg',
+      stills: [
+        { src: 'gameplay-mirror-before.jpg', alt: '镜面辨妖触发前的完整画面', caption: '触发前 · 伪装状态' },
+        { src: 'gameplay-mirror-after.jpg', alt: '镜面辨妖触发后的完整画面', caption: '触发后 · 妖形显现' }
+      ],
       isCore: true,
       info: [
         { label: 'INPUT', text: '\u79fb\u52a8\u955c\u9762\u89c2\u5bdf' },
-        { label: 'RESPONSE', text: '\u5149\u5f71\u63ed\u793a\u9690\u85cf\u8eab\u4efd' },
-        { label: 'EXPERIENCE', text: '\u4f53\u9a8c\u771f\u5047\u8f6c\u6362\u7684\u89c6\u89c9\u51b2\u51fb' }
+        { label: 'FEEDBACK', text: '光影变化揭示隐藏妖形' }
       ]
     },
     {
@@ -826,11 +459,11 @@ function CaseStudyInteraction() {
       titleCn: '\u8282\u594f\u6218\u6597',
       video: 'interaction-combat.mp4',
       poster: 'gameplay-combat.jpg',
+      stills: [{ src: 'gameplay-combat.jpg', alt: '东岳庙节奏战斗完整画面', caption: '节奏点击与战斗反馈' }],
       isCore: false,
       info: [
         { label: 'INPUT', text: '\u8282\u594f\u70b9\u51fb\u63a7\u5236' },
-        { label: 'RESPONSE', text: '\u6218\u6597\u52a8\u4f5c\u53cd\u9988' },
-        { label: 'EXPERIENCE', text: '\u5c06\u4f20\u7edf\u9523\u9f13\u8282\u594f\u8f6c\u5316\u4e3a\u6e38\u620f\u73a9\u6cd5' }
+        { label: 'FEEDBACK', text: '锣鼓节奏对应战斗动作' }
       ]
     }
   ];
@@ -865,6 +498,8 @@ function CaseStudyInteraction() {
       React.createElement('div', { className: 'iev-video-wrap' },
         React.createElement(DeferredVideo, {
           src: mod.video,
+          resumeOnReturn: true,
+          'aria-label': mod.titleCn + '操作演示',
           autoPlay: !reduceMotion,
           muted: true,
           loop: !reduceMotion,
@@ -875,7 +510,16 @@ function CaseStudyInteraction() {
           'webkit-playsinline': 'true'
         })
       ),
-      React.createElement('div', { className: 'iev-mod-info' }, infoElements)
+      React.createElement('div', { className: 'iev-mod-info' }, infoElements),
+      React.createElement('details', { className: 'iev-stills' },
+        React.createElement('summary', null, '查看静态关键帧'),
+        mod.stills.map(function(still) {
+          return React.createElement('figure', { key: still.src, className: 'iev-still-figure' },
+            React.createElement(PortfolioImage, { className: 'iev-still-image', src: still.src, alt: still.alt }),
+            React.createElement('figcaption', { className: 'iev-still-caption' }, still.caption)
+          );
+        })
+      )
     );
   }
 
@@ -883,12 +527,14 @@ function CaseStudyInteraction() {
     ref: ref,
     className: 'iev-section snap-slide' + viewClass
   },
+    React.createElement('span', { id: 'game-design-gameplay', className: 'chapter-anchor-alias', 'aria-hidden': true }),
+    React.createElement('span', { id: 'cs-gameplay', className: 'chapter-anchor-alias', 'aria-hidden': true }),
     /* Background grid */
     React.createElement('div', { className: 'iev-bg-grid' }),
 
     /* Chapter navigation */
     React.createElement('div', { className: 'case-nav iev-anim iev-anim-1' },
-      React.createElement('div', { className: 'case-nav-num' }, '06'),
+      React.createElement('div', { className: 'case-nav-num' }, '04'),
       React.createElement('div', { className: 'case-nav-en' }, 'INTERACTION EXPERIENCE DESIGN'),
       React.createElement('div', { className: 'case-nav-cn' }, '\u4ea4\u4e92\u4f53\u9a8c\u8bbe\u8ba1')
     ),
@@ -898,7 +544,7 @@ function CaseStudyInteraction() {
       React.createElement('div', { className: 'iev-main-title iev-anim iev-anim-2' }, 'LIGHT & SHADOW INTERACTION'),
       React.createElement('div', { className: 'iev-main-cn iev-anim iev-anim-2' }, '\u5149\u5f71\u4ea4\u4e92\u4f53\u9a8c'),
       React.createElement('p', { className: 'iev-desc iev-anim iev-anim-3' },
-        '\u5c06\u6cf0\u5c71\u76ae\u5f71\u7684\u5149\u5f71\u6280\u827a\u8f6c\u5316\u4e3a\u53ef\u64cd\u4f5c\u7684\u6e38\u620f\u4f53\u9a8c\u3002'
+        '拖拽、镜面与节奏点击的实际操作记录；每段视频下方可展开查看静态关键帧。'
       )
     ),
 
@@ -906,20 +552,6 @@ function CaseStudyInteraction() {
     React.createElement('div', { className: 'iev-modules' },
       React.createElement('div', { className: 'iev-top-row' },
         modules.map(function(mod, i) { return renderModule(mod, i); })
-      )
-    ),
-
-    /* Bottom summary */
-    React.createElement('div', { className: 'iev-summary iev-anim iev-anim-6' },
-      React.createElement('div', { className: 'iev-flow' },
-        React.createElement('span', { className: 'iev-flow-step' }, 'TRADITIONAL CRAFT'),
-        React.createElement('span', { className: 'iev-flow-arrow' }, '\u2193'),
-        React.createElement('span', { className: 'iev-flow-step accent' }, 'INTERACTIVE MECHANISM'),
-        React.createElement('span', { className: 'iev-flow-arrow' }, '\u2193'),
-        React.createElement('span', { className: 'iev-flow-step' }, 'PLAYER EXPERIENCE')
-      ),
-      React.createElement('p', { className: 'iev-flow-cn' },
-        '\u4f20\u7edf\u76ae\u5f71\u6280\u827a\u901a\u8fc7\u6570\u5b57\u4ea4\u4e92\u8f6c\u5316\u4e3a\u73b0\u4ee3\u6e38\u620f\u4f53\u9a8c\u3002'
       )
     )
   );
@@ -932,27 +564,6 @@ function CaseStudyPlayable() {
   var viewClass = inView ? ' in-view' : '';
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var highlights = [
-    {
-      num: '01',
-      titleEn: 'CULTURAL TRANSLATION',
-      titleCn: '\u975e\u9057\u6587\u5316\u6570\u5b57\u5316\u8f6c\u8bd1',
-      desc: '\u5c06\u6cf0\u5c71\u76ae\u5f71\u4f20\u7edf\u6280\u827a\u8f6c\u5316\u4e3a\u73b0\u4ee3\u4e92\u52a8\u4f53\u9a8c\u3002'
-    },
-    {
-      num: '02',
-      titleEn: 'INTERACTIVE MECHANISM',
-      titleCn: '\u5149\u5f71\u4ea4\u4e92\u673a\u5236\u8bbe\u8ba1',
-      desc: '\u901a\u8fc7\u76ae\u5f71\u3001\u955c\u9762\u3001\u8282\u594f\u73a9\u6cd5\u5efa\u7acb\u6e38\u620f\u4f53\u9a8c\u3002'
-    },
-    {
-      num: '03',
-      titleEn: 'PLAYABLE PROTOTYPE',
-      titleCn: '\u5b8c\u6574\u53ef\u8fd0\u884c Demo',
-      desc: '\u5b9e\u73b0\u4ece\u6982\u5ff5\u8bbe\u8ba1\u5230\u5b9e\u9645\u6e38\u620f\u4f53\u9a8c\u7684\u5b8c\u6574\u843d\u5730\u3002'
-    }
-  ];
-
   return React.createElement('section', {
     ref: ref,
     className: 'pe-section snap-slide' + viewClass
@@ -962,7 +573,7 @@ function CaseStudyPlayable() {
 
     /* Chapter navigation */
     React.createElement('div', { className: 'case-nav pe-anim pe-anim-1' },
-      React.createElement('div', { className: 'case-nav-num' }, '07'),
+      React.createElement('div', { className: 'case-nav-num' }, '05'),
       React.createElement('div', { className: 'case-nav-en' }, 'PLAYABLE EXPERIENCE'),
       React.createElement('div', { className: 'case-nav-cn' }, '\u8bd5\u73a9\u4f53\u9a8c')
     ),
@@ -971,12 +582,6 @@ function CaseStudyPlayable() {
     React.createElement('div', { className: 'pe-header' },
       React.createElement('div', { className: 'pe-main-title pe-anim pe-anim-2' }, 'INTERACTIVE DEMO'),
       React.createElement('div', { className: 'pe-main-cn pe-anim pe-anim-2' }, '\u5b8c\u6574\u6e38\u620f\u4f53\u9a8c'),
-      React.createElement('p', { className: 'pe-subtitle pe-anim pe-anim-3' },
-        'Experience the complete journey of'
-      ),
-      React.createElement('p', { className: 'pe-subtitle pe-anim pe-anim-3' },
-        'Shadow Puppet Demon Hunting'
-      ),
       React.createElement('p', { className: 'pe-subtitle-cn pe-anim pe-anim-3' },
         '\u4f53\u9a8c\u5b8c\u6574\u4e92\u52a8\u6e38\u620f\u6d41\u7a0b\u3002'
       )
@@ -993,6 +598,8 @@ function CaseStudyPlayable() {
         React.createElement('div', { className: 'pe-video-wrap' },
           React.createElement(DeferredVideo, {
             src: 'gameplay-demo.mp4',
+            resumeOnReturn: true,
+            'aria-label': '泰山皮影镇妖记完整游戏演示',
             autoPlay: !reduceMotion,
             muted: true,
             loop: !reduceMotion,
@@ -1034,21 +641,6 @@ function CaseStudyPlayable() {
           )
         )
       )
-    ),
-
-    /* Bottom highlights */
-    React.createElement('div', { className: 'pe-highlights pe-anim pe-anim-6' },
-      React.createElement('div', { className: 'pe-highlights-title' }, 'DESIGN HIGHLIGHTS'),
-      React.createElement('div', { className: 'pe-highlights-grid' },
-        highlights.map(function(h, i) {
-          return React.createElement('div', { key: h.num, className: 'pe-highlight-card' },
-            React.createElement('div', { className: 'pe-hl-num' }, h.num),
-            React.createElement('div', { className: 'pe-hl-title' }, h.titleEn),
-            React.createElement('div', { className: 'pe-hl-cn' }, h.titleCn),
-            React.createElement('p', { className: 'pe-hl-desc' }, h.desc)
-          );
-        })
-      )
     )
   );
 }
@@ -1056,10 +648,8 @@ function CaseStudyPlayable() {
 window.PortfolioChapters.gameDesign = function() {
   return [
     React.createElement(CaseStudyOverview, { key: 'cs-overview' }),
-    React.createElement(CaseStudyBackground, { key: 'cs-background' }),
     React.createElement(CaseStudyConcept, { key: 'cs-concept' }),
     React.createElement(CaseStudyStory, { key: 'cs-story' }),
-    React.createElement(CaseStudyGameplay, { key: 'cs-gameplay' }),
     React.createElement(CaseStudyInteraction, { key: 'cs-interaction' }),
     React.createElement(CaseStudyPlayable, { key: 'cs-playable' })
   ];
