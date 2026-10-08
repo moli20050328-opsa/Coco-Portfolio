@@ -1,6 +1,10 @@
 
 const { useRef, useEffect, useLayoutEffect, useState } = React;
 window.PortfolioChapters = window.PortfolioChapters || {};
+/* Capture the executing shell's release before lazy requests run; page queries
+   are visitor-controlled and must not decide the application's cache identity. */
+var portfolioReleaseVersion = document.currentScript && document.currentScript.src
+  ? new URL(document.currentScript.src).searchParams.get('v') || '' : '';
 
 /* ---------- Media loading primitives ---------- */
 const PORTFOLIO_IMAGE_DIMENSIONS = {"about-portrait.jpg":[600,600],"game-ui-erosion-hero.jpg":[1334,750],"game-ui-erosion-reset-confirm.png":[1280,720],"game-ui-shuaitu-character-detail.png":[2340,1080],"gameplay-combat.jpg":[1920,1080],"gameplay-drag.jpg":[1920,1080],"gameplay-mirror-after.jpg":[1920,1080],"gameplay-mirror-before.jpg":[1920,1080],"portfolio-hero-poster.jpg":[1756,1176],"qr-demo.png":[200,200],"story-combat-2.jpg":[1920,1080],"story-elder.jpg":[1920,1080],"story-forest.jpg":[1920,1080],"story-mirror-after.jpg":[1920,1080],"story-mirror-before.jpg":[1920,1080],"story-puzzle.jpg":[1920,1080],"story-scholar.png":[1920,1080],"story-temple.jpg":[1920,1080],"taishan-concept1.jpg":[1920,1080],"taishan-concept2.jpg":[1920,1080],"taishan-hero-poster.jpg":[1920,1080],"taishan-puppet.jpg":[735,412],"taishan-puppet2.jpg":[1200,754],"packaging-assets/psd-extract/board-02-asset-01-pixel-1379-721-531x356.png":[531,356],"packaging-assets/psd-extract/board-02-asset-02-pixel-1000-721-356x356.png":[356,356],"packaging-assets/psd-extract/board-02-asset-03-pixel-1236-309-289x405.png":[289,405],"packaging-assets/psd-extract/board-02-asset-04-pixel-1525-230-390x320.png":[390,320],"packaging-assets/psd-extract/board-02-asset-05-pixel-1532-550-383x164.png":[383,164],"packaging-assets/psd-extract/board-02-asset-06-pixel-862-478-367x226.png":[367,226],"packaging-assets/psd-extract/board-03-asset-01-pixel-3546-691-382x382.png":[382,382],"packaging-assets/psd-extract/board-03-asset-02-pixel-3123-678-402x402.png":[402,402],"packaging-assets/psd-extract/board-03-asset-03-pixel-3251-263-284x411.png":[284,411],"packaging-assets/psd-extract/board-03-asset-04-pixel-2980-259-261x417.png":[261,417],"packaging-assets/psd-extract/board-03-asset-05-pixel-3544-497-384x179.png":[384,179],"packaging-assets/psd-extract/board-03-asset-06-pixel-3537-183-399x333.png":[399,333],"packaging-assets/psd-extract/board-04-asset-01-smartobject-3492-1303-353x363.png":[353,363],"packaging-assets/psd-extract/board-04-asset-02-smartobject-3070-1747-353x347.png":[353,347],"packaging-assets/psd-extract/board-04-asset-03-smartobject-3048-1319-391x337.png":[391,337],"packaging-assets/psd-extract/board-04-asset-04-smartobject-3511-1737-349x359.png":[349,359],"packaging-assets/psd-extract/board-04-asset-05-pixel-2021-1264-747x552.png":[747,552],"packaging-assets/psd-extract/board-05-asset-01-pixel-786-1817-110x47.png":[110,47],"packaging-assets/psd-extract/board-05-asset-02-pixel-159-1744-152x152.png":[152,152],"packaging-assets/psd-extract/board-05-asset-03-pixel-158-1943-154x156.png":[154,156],"packaging-assets/psd-extract/board-05-asset-04-pixel-596-1745-176x176.png":[176,176],"packaging-assets/psd-extract/board-05-asset-05-pixel-355-1745-180x300.png":[180,300],"packaging-assets/psd-extract/board-05-asset-06-pixel-607-1945-154x150.png":[154,150],"packaging-assets/psd-extract/board-05-asset-07-smartobject-1281-1746-527x333.png":[527,333],"packaging-assets/psd-extract/board-05-asset-08-smartobject-913-1756-330x322.png":[330,322],"packaging-assets/psd-extract/board-06-asset-01-pixel--9-2360-928x1239.png":[928,1239],"packaging-assets/psd-extract/board-06-asset-02-pixel-922-2324-1004x1226.png":[1004,1226],"packaging-assets/psd-extract/board-07-asset-01-pixel-2020-2341-940x1253.png":[940,1253],"packaging-assets/psd-extract/board-07-asset-02-pixel-2960-2343-980x1306.png":[980,1306],"poster-assets/�ּ���ɽ_���� 1 ���� 2_���� 1 ���� 2.png":[2481,3508],"poster-assets/�ּ���ɽ_���� 1 ����.png":[2482,3508],"poster-assets/�ּ���ɽ_���� 1.png":[2481,3508],"slides/mp-01.png":[1500,3000],"slides/mp-02.png":[1500,3000],"slides/mp-03.png":[1500,3000],"slides/mp-04.png":[1501,2906],"slides/mp-05.png":[1620,3000],"slides/mp-06.png":[1500,3000],"slides/mp-07.png":[1500,3000],"slides/mp-08.png":[1500,3000],"slides/mp-09.png":[1500,3000],"slides/mp-10.png":[1500,3000],"slides/mp-11.png":[1500,3000],"slides/mp-12.png":[1500,3000],"slides/mp-13.png":[1500,3000],"slides/slide-game-cover.png":[929,521],"slides/slide-mp-landing.png":[382,776],"slides/slide-pkg-scene1.png":[928,1239]};
@@ -1298,8 +1302,22 @@ var ccChapters = {
   }
 };
 
+var guiProjectGroups = [
+  { label: '代表作品', projects: [
+    { title: '雨前归纳者', detail: '关卡与状态', href: '#game-ui-rain-cover' },
+    { title: '侵蚀序章', detail: '天赋与交互', href: '#game-ui-case-cover' },
+    { title: '率土之滨', detail: '角色信息', href: '#game-ui-shuaitu-cover' }
+  ] },
+  { label: '更多界面', projects: [
+    { title: '仓库里的不速之客', detail: '关卡与图标', href: '#game-ui-warehouse' },
+    { title: '青莲照水', detail: '国风角色', href: '#game-ui-duoyi' },
+    { title: '月下玫瑰晚宴', detail: '通行证奖励', href: '#game-ui-giant' }
+  ] }
+];
+
 function ChapterDivider(props) {
   var chapter = props.chapter;
+  var hasProjectIndex = chapter.categoryId === 'game-ui';
   var result = useInView({ threshold: 0.15 });
   var ref = result[0]; var inView = result[1];
   var viewClass = inView ? ' in-view' : '';
@@ -1325,7 +1343,7 @@ function ChapterDivider(props) {
   return React.createElement('section', {
     ref: ref,
     id: props.sectionId,
-    className: 'cc-section snap-slide' + viewClass,
+    className: 'cc-section snap-slide' + (hasProjectIndex ? ' cc-section--indexed' : '') + viewClass,
     'data-chapter': chapter.num
   },
     /* Top labels */
@@ -1352,7 +1370,25 @@ function ChapterDivider(props) {
         }),
         React.createElement('span', { className: 'cc-title-cn cc-anim cc-anim-4' }, chapter.cn),
         React.createElement('div', { className: 'cc-divider-line cc-anim cc-anim-4' }),
-        React.createElement('span', { className: 'cc-desc cc-anim cc-anim-5' }, chapter.desc)
+        React.createElement('span', { className: 'cc-desc cc-anim cc-anim-5' }, chapter.desc),
+        React.createElement('p', { className: 'cc-authorship cc-anim cc-anim-5' }, '个人独立完成 · AI 辅助制作')
+      ),
+      hasProjectIndex && React.createElement('nav', { className: 'cc-project-index', 'aria-label': '游戏 GUI 项目索引' },
+        guiProjectGroups.map(function(group) {
+          return React.createElement('div', { className: 'cc-project-group', key: group.label },
+            React.createElement('p', { className: 'cc-project-group-label' }, group.label),
+            React.createElement('ul', { className: 'cc-project-list' },
+              group.projects.map(function(project) {
+                return React.createElement('li', { key: project.href },
+                  React.createElement('a', { href: project.href, className: 'cc-project-link' },
+                    React.createElement('span', { className: 'cc-project-name' }, project.title),
+                    React.createElement('span', { className: 'cc-project-detail' }, project.detail)
+                  )
+                );
+              })
+            )
+          );
+        })
       )
     ),
     /* Bottom navigation bar */
@@ -1374,7 +1410,8 @@ function loadPortfolioChapter(name) {
   if (chapterLoads[name]) return chapterLoads[name];
   chapterLoads[name] = new Promise(function(resolve, reject) {
     var script = document.createElement('script');
-    script.src = 'assets/chapters/' + chapterFiles[name];
+    script.src = 'assets/chapters/' + chapterFiles[name] +
+      (portfolioReleaseVersion ? '?v=' + encodeURIComponent(portfolioReleaseVersion) : '');
     script.async = true;
     script.onload = function() {
       if (window.PortfolioChapters[name]) resolve();

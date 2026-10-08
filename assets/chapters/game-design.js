@@ -86,7 +86,7 @@ function CaseStudyOverview() {
         React.createElement('div', { className: 'cs-demo-card cs-anim cs-anim-6' },
           /* QR code */
           React.createElement('div', { className: 'cs-demo-qr' },
-            React.createElement(PortfolioImage, { src: 'qr-demo.png', alt: 'Playable Demo QR Code' })
+            React.createElement(PortfolioImage, { src: 'assets/game-demo/qr-yf8s.png', width: 410, height: 410, alt: '泰山皮影镇妖记 H5 小游戏二维码' })
           ),
           /* Divider */
           React.createElement('div', { className: 'cs-demo-divider' }),
@@ -96,7 +96,9 @@ function CaseStudyOverview() {
             React.createElement('div', { className: 'cs-demo-en-sub' }, 'SCAN TO EXPERIENCE'),
             React.createElement('div', { className: 'cs-demo-en-type' }, 'H5 Interactive Game'),
             React.createElement('div', { className: 'cs-demo-cn' }, '\u626b\u7801\u4f53\u9a8c\u6e38\u620f'),
-            React.createElement('div', { className: 'cs-demo-cn-sub' }, '\u8bd5\u73a9\u5b8c\u6574\u4e92\u52a8\u6d41\u7a0b')
+            React.createElement('div', { className: 'cs-demo-cn-sub' }, '\u8bd5\u73a9\u5b8c\u6574\u4e92\u52a8\u6d41\u7a0b'),
+            React.createElement('a', { className: 'game-demo-launch', href: 'https://c.u.h5mc.com/c/bxqd/yf8s/index.html', target: '_blank', rel: 'noopener noreferrer', 'aria-label': '直接试玩泰山皮影镇妖记（新窗口）' }, '直接试玩'),
+            React.createElement('small', { className: 'game-demo-hint' }, '新窗口打开 · 也可手机扫码')
           )
         ),
 
@@ -619,10 +621,12 @@ function CaseStudyPlayable() {
           React.createElement('div', { className: 'pe-demo-en-label' }, 'PLAYABLE DEMO'),
           React.createElement('div', { className: 'pe-demo-en-sub' }, 'SCAN TO PLAY'),
           React.createElement('div', { className: 'pe-demo-qr' },
-            React.createElement(PortfolioImage, { src: 'qr-demo.png', alt: 'QR Code' })
+            React.createElement(PortfolioImage, { src: 'assets/game-demo/qr-yf8s.png', width: 410, height: 410, alt: '泰山皮影镇妖记 H5 小游戏二维码' })
           ),
           React.createElement('div', { className: 'pe-demo-type' }, 'H5 Interactive Game'),
-          React.createElement('div', { className: 'pe-demo-cn' }, '\u626b\u7801\u4f53\u9a8c\u5b8c\u6574\u6e38\u620f')
+          React.createElement('div', { className: 'pe-demo-cn' }, '\u626b\u7801\u4f53\u9a8c\u5b8c\u6574\u6e38\u620f'),
+          React.createElement('a', { className: 'game-demo-launch', href: 'https://c.u.h5mc.com/c/bxqd/yf8s/index.html', target: '_blank', rel: 'noopener noreferrer', 'aria-label': '直接试玩泰山皮影镇妖记（新窗口）' }, '直接试玩'),
+          React.createElement('small', { className: 'game-demo-hint' }, '新窗口打开 · 也可手机扫码')
         ),
 
         /* Info list */

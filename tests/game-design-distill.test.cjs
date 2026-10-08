@@ -52,11 +52,11 @@ test('merged sections retain concept and background/mechanics hash destinations'
   }
 });
 
-test('all original unique chapter media stay in the rendered reading path', () => {
+test('all chapter artwork and videos stay accessible alongside the current game QR', () => {
   const nodes = renderChapter().flatMap(nodesIn);
   const assets = new Set(nodes.flatMap(node => [node.props.src, node.props.poster]).filter(Boolean));
   const required = [
-    'taishan-hero.mp4', 'taishan-hero-poster.jpg', 'qr-demo.png',
+    'taishan-hero.mp4', 'taishan-hero-poster.jpg', 'assets/game-demo/qr-yf8s.png',
     'taishan-puppet.jpg', 'taishan-puppet2.jpg', 'taishan-concept1.jpg', 'taishan-concept2.jpg',
     'story-scholar.png', 'story-forest.jpg', 'story-elder.jpg', 'story-puzzle.jpg',
     'story-mirror-before.jpg', 'story-mirror-after.jpg', 'story-temple.jpg', 'story-combat-2.jpg',

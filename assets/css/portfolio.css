@@ -4392,6 +4392,74 @@ body.ds-active header .text-white\/70 {
     height: 8px;
   }
 }
+/* Project discovery stays in the existing divider; no extra case-study page. */
+.cc-authorship {
+  margin: 2px 0 0;
+  color: #a7a49e;
+  font-family: 'Noto Sans SC',sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: .04em;
+  text-align: center;
+}
+.cc-section--indexed .cc-top { padding-top: 112px; }
+.cc-section--indexed .cc-center { padding-block: 28px 36px; }
+.cc-project-index {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 960px);
+  margin-top: clamp(28px, 5vh, 52px);
+  font-family: 'Noto Sans SC',sans-serif;
+}
+.cc-project-group {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 24px;
+  border-top: 1px solid #353432;
+  padding-block: 18px;
+}
+.cc-project-group-label { margin: 0; font-size: 14px; color: #aaa7a1; }
+.cc-project-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; list-style: none; margin: 0; padding: 0; }
+.cc-project-link { display: flex; flex-direction: column; gap: 5px; min-height: 48px; color: #ddd9d1; text-decoration: none; transition: color .2s ease; }
+.cc-project-name { font-size: 16px; line-height: 1.6; }
+.cc-project-detail { color: #9f9c96; font-size: 14px; line-height: 1.5; }
+.cc-project-group:first-child .cc-project-name { color: #f2eee5; }
+.cc-project-link:hover .cc-project-name { text-decoration: underline; text-underline-offset: 5px; }
+.cc-project-link:focus-visible { outline: 1px solid #ddd9d1; outline-offset: 6px; }
+.game-demo-launch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 10px;
+  padding-inline: 18px;
+  border: 1px solid #8a4a30;
+  color: #713a26;
+  font-family: 'Noto Sans SC',sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color .2s ease;
+}
+.game-demo-launch:hover { background: rgba(138,74,48,.07); }
+.game-demo-launch:focus-visible { outline: 2px solid #713a26; outline-offset: 4px; }
+.game-demo-hint { display: block; margin-top: 6px; font-family: 'Noto Sans SC',sans-serif; font-size: 12px; line-height: 1.6; color: #786b5d; }
+@media (max-width: 760px) {
+  .cc-section--indexed .cc-top { padding-top: 96px; }
+  .cc-project-group { grid-template-columns: 1fr; gap: 12px; padding-block: 16px; }
+  .cc-project-list { gap: 16px; }
+  .cc-project-name { font-size: 14px; }
+}
+@media (max-width: 520px) {
+  .cc-section--indexed .cc-center { padding-inline: 7%; }
+  .cc-project-list { grid-template-columns: 1fr; gap: 4px; }
+  .cc-project-link { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
+  .cc-project-name { font-size: 16px; }
+  .cc-project-detail { flex-shrink: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cc-project-link, .game-demo-launch { transition: none; }
+}
 .cs-overview {
   background: #F3EBDD;
   min-height: 100vh;
