@@ -321,11 +321,6 @@ function RainArchiveCase(props) {
     { title: '03 战斗关卡', state: '当前关卡', bounds: [1164,799,605,206] },
     { title: '04 战斗关卡', state: '尚未解锁', bounds: [1813,803,397,202] }
   ];
-  var details = [
-    { title: '收集入口', en: '01 COLLECTION ENTRY', image: 'rain-main', bounds: [2000,38,240,110], text: '册页与观测环组成入口图标，连接主界面与情报档案。' },
-    { title: '资料索引', en: '02 ARCHIVE INDEX', image: 'rain-collection', bounds: [560,174,645,720], text: '编号组织资料顺序，照片、勾选与待收集占位区分收集进度和当前查看。' },
-    { title: '情报详情', en: '03 INFORMATION DETAIL', image: 'rain-collection', bounds: [1338,190,670,704], text: '标题、正文与 Completed 归档签记共同构成内容阅读层级。' }
-  ];
   return React.createElement('section', { id: id, className: 'rain-case snap-slide' + (collection ? ' rain-case--collection' : ''), 'aria-labelledby': id + '-title' },
     React.createElement('div', { className: 'rain-case__inner' },
       React.createElement(RainReveal, { className: 'rain-case__topline' },
@@ -354,27 +349,26 @@ function RainArchiveCase(props) {
           })
         )
       ),
-      React.createElement('div', { className: 'rain-case__module' },
+      !collection && React.createElement('div', { className: 'rain-case__module' },
         React.createElement(RainReveal, { className: 'rain-case__module-head' },
           React.createElement('div', null,
-            React.createElement('h3', null, collection ? '从入口到档案' : '关卡类型与进度状态'),
-            React.createElement('span', { className: 'rain-case__label' }, collection ? 'COLLECTION / INDEX / DETAIL' : 'LEVEL TYPE & LEVEL STATE')
+            React.createElement('h3', null, '关卡类型与进度状态'),
+            React.createElement('span', { className: 'rain-case__label' }, 'LEVEL TYPE & LEVEL STATE')
           ),
-          !collection && React.createElement('p', null, '类型通过基础轮廓与图形结构区分，状态通过明度、符号与局部暖金色反馈建立差异，在保持统一视觉语言的同时提升关卡识别效率。')
+          React.createElement('p', null, '类型通过基础轮廓与图形结构区分，状态通过明度、符号与局部暖金色反馈建立差异，在保持统一视觉语言的同时提升关卡识别效率。')
         ),
-        React.createElement('div', { className: collection ? 'rain-case__details' : 'rain-case__levels' },
-          (collection ? details : levels).map(function(item, i) {
+        React.createElement('div', { className: 'rain-case__levels' },
+          levels.map(function(item, i) {
             return React.createElement(RainReveal, { as: 'figure', className: 'rain-case__detail', delay: i * 90, key: item.title },
-              React.createElement(RainCrop, { image: item.image || 'rain-main', bounds: item.bounds, alt: item.title + '：' + (item.state || item.text) }),
+              React.createElement(RainCrop, { image: 'rain-main', bounds: item.bounds, alt: item.title + '：' + item.state }),
               React.createElement('figcaption', null,
                 React.createElement('strong', null, item.title),
-                collection ? React.createElement('small', null, item.en) : React.createElement('p', null, item.state),
-                collection && React.createElement('p', null, item.text)
+                React.createElement('p', null, item.state)
               )
             );
           })
         ),
-        !collection && React.createElement('div', { className: 'rain-case__types' },
+        React.createElement('div', { className: 'rain-case__types' },
           React.createElement('span', null, React.createElement('b', null, 'LEVEL TYPE'), '剧情关卡 / 战斗关卡'),
           React.createElement('span', null, React.createElement('b', null, 'LEVEL STATE'), '已通关 / 新解锁 / 当前关卡 / 尚未解锁')
         )
@@ -383,43 +377,61 @@ function RainArchiveCase(props) {
   );
 }
 
-function WarehouseGUICase() {
-  return React.createElement('section', { id: 'game-ui-warehouse', className: 'warehouse-case snap-slide', 'aria-labelledby': 'game-ui-warehouse-title' },
-    React.createElement('div', { className: 'warehouse-case__inner' },
-      React.createElement(RainReveal, { className: 'warehouse-case__topline' },
+/* A single editorial spread: the full artwork leads; crops explain only state.
+   Original exports stay untouched. All three crops use the same 164 × 200
+   window of the 640 × 1136 final design, not reconstructed GUI components. */
+function SignInRewardsCase() {
+  var image = 'assets/signin/signin-rewards.jpg';
+  var states = [
+    { title: '已签到', x: 70, alt: '原设计第一天：勾选符号与已签到状态' },
+    { title: '可签到', x: 242, alt: '原设计第二天：暖金高亮与立即签到按钮' },
+    { title: '未解锁', x: 414, alt: '原设计第三天：锁形标记与未解锁状态' }
+  ];
+  return React.createElement('section', { id: 'game-ui-signin', className: 'signin-case snap-slide', 'aria-labelledby': 'game-ui-signin-title' },
+    React.createElement('span', { id: 'game-ui-warehouse', className: 'signin-case__legacy-anchor', 'aria-hidden': 'true' }),
+    React.createElement('div', { className: 'signin-case__inner' },
+      React.createElement(RainReveal, { className: 'signin-case__topline' },
         React.createElement('span', null, 'GAME GUI DESIGN'),
-        React.createElement('span', null, 'LEVEL INTERFACE / ICON DESIGN')
+        React.createElement('span', null, 'EVENT GUI / SIGN-IN REWARDS')
       ),
-      React.createElement('div', { className: 'warehouse-case__layout' },
-        React.createElement(RainReveal, { as: 'figure', className: 'warehouse-case__hero', delay: 90 },
-          React.createElement(PortfolioImage, { src: 'assets/warehouse/level.webp', width: 720, height: 1560, alt: '仓库里的不速之客完整竖版关卡界面，含第8级标题、鸭子与宝箱怪、难度、奖励和挑战按钮' })
+      React.createElement('div', { className: 'signin-case__layout' },
+        React.createElement(RainReveal, { as: 'figure', className: 'signin-case__hero', delay: 90 },
+          React.createElement('a', { href: image, target: '_blank', rel: 'noopener', 'aria-label': '查看签到豪礼完整原图（新标签页）' },
+            React.createElement(PortfolioImage, { src: image, width: 640, height: 1136, alt: '签到豪礼完整活动弹窗，含中秋月兔、七日奖励、签到状态及活动剩余时间' })
+          ),
+          React.createElement('figcaption', null, '完整活动弹窗 · 点击查看原图')
         ),
-        React.createElement(RainReveal, { className: 'warehouse-case__details', delay: 180 },
-          React.createElement('div', { className: 'warehouse-case__copy' },
-            React.createElement('h2', { id: 'game-ui-warehouse-title' }, '仓库里的不速之客'),
-            React.createElement('p', { className: 'warehouse-case__subtitle' }, '关卡界面与图标设计'),
-            React.createElement('p', { className: 'warehouse-case__intro' }, '围绕菜鸟战士误闯仓库的故事，以漫画式角色冲突建立视觉焦点，串联关卡等级、难度、奖励与挑战操作，形成清晰的竖屏阅读顺序。'),
-            React.createElement('p', { className: 'warehouse-case__metadata' }, 'PERSONAL DESIGN TEST · 2026 / GUI & ICON')
+        React.createElement(RainReveal, { as: 'header', className: 'signin-case__copy', delay: 120 },
+          React.createElement('h2', { id: 'game-ui-signin-title' }, '签到豪礼'),
+          React.createElement('p', { className: 'signin-case__subtitle' }, '《道友来挖宝》活动弹窗与入口图标设计'),
+          React.createElement('p', { className: 'signin-case__intro' }, '以中秋月兔营造节日氛围，通过明度、符号与按钮反馈，区分已签到、可签到与未解锁状态。'),
+          React.createElement('p', { className: 'signin-case__metadata' }, 'PERSONAL DESIGN TEST · 2026')
+        ),
+        React.createElement(RainReveal, { as: 'section', className: 'signin-case__states', delay: 190 },
+          React.createElement('div', { className: 'signin-case__module-head' },
+            React.createElement('h3', null, '状态设计'),
+            React.createElement('span', null, 'SIGN-IN STATES')
           ),
-          React.createElement('div', { className: 'warehouse-case__reward-row' },
-            React.createElement('figure', { className: 'warehouse-case__reward' },
-              React.createElement(PortfolioImage, { src: 'assets/warehouse/level.webp', width: 720, height: 1560, alt: '原设计局部：关卡难度、通关奖励、关卡掉落与挑战按钮' })
-            ),
-            React.createElement('div', null,
-              React.createElement('h3', null, '奖励与操作'),
-              React.createElement('p', null, '主奖励、掉落信息与挑战按钮分层组织，明黄强调主要操作。')
-            )
-          ),
-          React.createElement('div', { className: 'warehouse-case__icons' },
-            React.createElement('h3', null, '道具与职业图标'),
-            React.createElement('div', { className: 'warehouse-case__icon-row' },
-              [{ src: 'coin.jpg', name: '金币', size: 100 }, { src: 'gem.jpg', name: '宝石', size: 100 }, { src: 'warrior.jpg', name: '战士徽章', size: 256 }].map(function(item) {
-                return React.createElement('figure', { key: item.src },
-                  React.createElement(PortfolioImage, { src: 'assets/warehouse/' + item.src, width: item.size, height: item.size, alt: item.name + '最终图标设计' }),
-                  React.createElement('figcaption', null, item.name)
-                );
-              })
-            )
+          React.createElement('div', { className: 'signin-case__state-row' },
+            states.map(function(state) {
+              return React.createElement('figure', { key: state.title },
+                React.createElement('div', { className: 'signin-case__state-crop' },
+                  React.createElement(PortfolioImage, {
+                    src: image, width: 640, height: 1136, alt: state.alt,
+                    style: { width: (640 / 164 * 100) + '%', left: (-state.x / 164 * 100) + '%', top: (-386 / 200 * 100) + '%' }
+                  })
+                ),
+                React.createElement('figcaption', null, state.title)
+              );
+            })
+          )
+        ),
+        React.createElement(RainReveal, { as: 'figure', className: 'signin-case__entry', delay: 250 },
+          React.createElement(PortfolioImage, { src: 'assets/signin/entry.png', width: 256, height: 256, alt: '签到豪礼活动入口图标：红金签到册与木牌' }),
+          React.createElement('figcaption', null,
+            React.createElement('h3', null, '活动入口'),
+            React.createElement('span', { className: 'signin-case__entry-label' }, 'EVENT ENTRY'),
+            React.createElement('p', null, '签到册与红金配色呼应弹窗，建立统一的活动识别。')
           )
         )
       )
@@ -504,10 +516,10 @@ window.PortfolioChapters.gameUI = function() {
     React.createElement(GameUICaseCover, { key: 'game-ui-case-cover' }),
     React.createElement(GameUISystemAnalysis, { key: 'game-ui-system-analysis' }),
     React.createElement(GameUIMotionPreview, { key: 'game-ui-motion-preview' }),
+    React.createElement(GiantGUICase, { key: 'game-ui-giant' }),
     React.createElement(ShuaituCaseCover, { key: 'game-ui-shuaitu-cover' }),
     React.createElement(ShuaituStructureComponents, { key: 'game-ui-shuaitu-structure' }),
-    React.createElement(WarehouseGUICase, { key: 'game-ui-warehouse' }),
-    React.createElement(DuoyiGUICase, { key: 'game-ui-duoyi' }),
-    React.createElement(GiantGUICase, { key: 'game-ui-giant' })
+    React.createElement(SignInRewardsCase, { key: 'game-ui-signin' }),
+    React.createElement(DuoyiGUICase, { key: 'game-ui-duoyi' })
   ];
 };

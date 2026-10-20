@@ -219,11 +219,12 @@ function ProjectAssetWarmup() {
     if (!('IntersectionObserver' in window)) return;
     var groups = [
       { selector: '#section-01', assets: ['taishan-hero-poster.jpg', 'taishan-puppet.jpg'] },
-      { selector: '#game-ui-rain-collection', assets: ['game-ui-erosion-hero.jpg', 'game-ui-shuaitu-character-detail.png'] },
       { selector: '#section-game-ui', assets: ['assets/rain/rain-main.webp', 'assets/rain/rain-collection.webp'] },
-      { selector: '#game-ui-shuaitu-visual', assets: ['assets/warehouse/level.webp'] },
-      { selector: '#game-ui-warehouse', assets: ['assets/duoyi/character-detail.png'] },
-      { selector: '#game-ui-duoyi', assets: ['assets/giant/gala-reward.jpg'] },
+      { selector: '#game-ui-rain-collection', assets: ['game-ui-erosion-hero.jpg'] },
+      { selector: '#game-ui-motion-preview', assets: ['assets/giant/gala-reward.jpg'] },
+      { selector: '#game-ui-giant', assets: ['game-ui-shuaitu-character-detail.png'] },
+      { selector: '#game-ui-shuaitu-visual', assets: ['assets/signin/signin-rewards.jpg', 'assets/signin/entry.png'] },
+      { selector: '#game-ui-signin', assets: ['assets/duoyi/character-detail.png'] },
       { selector: '#section-02', assets: ['slides/mp-01.png', 'slides/mp-02.png'] },
       { selector: '#section-03', assets: [
         'packaging-assets/psd-extract/board-02-asset-01-pixel-1379-721-531x356.png',
@@ -1303,15 +1304,15 @@ var ccChapters = {
 };
 
 var guiProjectGroups = [
-  { label: '代表作品', projects: [
+  { label: '深色案例', projects: [
     { title: '雨前归纳者', detail: '关卡与状态', href: '#game-ui-rain-cover' },
     { title: '侵蚀序章', detail: '天赋与交互', href: '#game-ui-case-cover' },
-    { title: '率土之滨', detail: '角色信息', href: '#game-ui-shuaitu-cover' }
-  ] },
-  { label: '更多界面', projects: [
-    { title: '仓库里的不速之客', detail: '关卡与图标', href: '#game-ui-warehouse' },
-    { title: '青莲照水', detail: '国风角色', href: '#game-ui-duoyi' },
     { title: '月下玫瑰晚宴', detail: '通行证奖励', href: '#game-ui-giant' }
+  ] },
+  { label: '浅色案例', projects: [
+    { title: '率土之滨', detail: '角色信息', href: '#game-ui-shuaitu-cover' },
+    { title: '签到豪礼', detail: '活动与状态', href: '#game-ui-signin' },
+    { title: '青莲照水', detail: '国风角色', href: '#game-ui-duoyi' }
   ] }
 ];
 

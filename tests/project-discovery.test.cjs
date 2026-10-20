@@ -24,19 +24,49 @@ function collect(node, predicate, result = []) {
   React.Children.forEach(node.props.children, child => collect(child, predicate, result));
   return result;
 }
+function textContent(node) {
+  if (typeof node === 'string') return node;
+  return React.isValidElement(node) ? React.Children.toArray(node.props.children).map(textContent).join('') : '';
+}
 
 test('GUI divider provides direct, native links to every existing case without waiting for chapter content', () => {
   const context = siteContext();
   const divider = context.ChapterDivider({ chapter: context.ccChapters.gameUI, sectionId: 'section-game-ui' });
   const hrefs = collect(divider, node => node.type === 'a').map(node => node.props.href);
-  for (const target of ['game-ui-rain-cover', 'game-ui-case-cover', 'game-ui-shuaitu-cover', 'game-ui-warehouse', 'game-ui-duoyi', 'game-ui-giant']) {
+  for (const target of ['game-ui-rain-cover', 'game-ui-case-cover', 'game-ui-giant', 'game-ui-shuaitu-cover', 'game-ui-signin', 'game-ui-duoyi']) {
     assert.equal(hrefs.filter(href => href === '#' + target).length, 1, target + ' is directly reachable once');
     assert.equal(context.hashTargetsChapter('gameUI', target), true, 'native hash also wakes the lazy chapter');
   }
   assert.equal(collect(divider, node => node.type === context.PortfolioImage || node.type === 'img').length, 0, 'index does not eagerly fetch case artwork');
 });
 
-test('project index links resolve to rendered case IDs and do not alter other chapter dividers', () => {
+test('the six-project index groups dark cases before light cases and retains legacy hash compatibility', () => {
+  const context = siteContext();
+  const divider = context.ChapterDivider({ chapter: context.ccChapters.gameUI, sectionId: 'section-game-ui' });
+  const links = collect(divider, node => node.type === 'a' && (node.props.href || '').startsWith('#game-ui-'));
+  assert.deepEqual(links.map(link => link.props.href), [
+    '#game-ui-rain-cover', '#game-ui-case-cover', '#game-ui-giant',
+    '#game-ui-shuaitu-cover', '#game-ui-signin', '#game-ui-duoyi'
+  ]);
+  const groups = collect(divider, node => node.props.className === 'cc-project-group');
+  assert.deepEqual(groups.map(group => ({
+    label: textContent(collect(group, node => node.props.className === 'cc-project-group-label')[0]),
+    hrefs: collect(group, node => node.type === 'a').map(node => node.props.href)
+  })), [
+    { label: '深色案例', hrefs: ['#game-ui-rain-cover', '#game-ui-case-cover', '#game-ui-giant'] },
+    { label: '浅色案例', hrefs: ['#game-ui-shuaitu-cover', '#game-ui-signin', '#game-ui-duoyi'] }
+  ]);
+  assert.equal(textContent(links[4]), '签到豪礼活动与状态');
+  assert.ok(!textContent(divider).includes('仓库里的不速之客'));
+  assert.equal(context.hashTargetsChapter('gameUI', 'game-ui-warehouse'), true, 'the previous URL still wakes the lazy GUI chapter');
+  const pages = context.window.PortfolioChapters.gameUI().map(page => page.type(page.props));
+  const ids = pages.flatMap(page => collect(page, node => !!node.props.id).map(node => node.props.id));
+  for (const id of ['game-ui-signin', 'game-ui-warehouse']) {
+    assert.equal(ids.filter(value => value === id).length, 1, id + ' has exactly one rendered target');
+  }
+});
+
+test('project index links follow the actual rendered case order and do not alter other chapter dividers', () => {
   const context = siteContext();
   const pages = context.window.PortfolioChapters.gameUI().map(page => page.type(page.props));
   const ids = pages.flatMap(page => collect(page, node => !!node.props.id).map(node => node.props.id));
@@ -44,6 +74,9 @@ test('project index links resolve to rendered case IDs and do not alter other ch
   const links = collect(divider, node => node.type === 'a' && (node.props.href || '').startsWith('#game-ui-'));
   assert.equal(links.length, 6);
   links.forEach(link => assert.ok(ids.includes(link.props.href.slice(1)), link.props.href + ' resolves'));
+  const indexedIds = links.map(link => link.props.href.slice(1));
+  const renderedProjectIds = Array.from(ids.filter(id => indexedIds.includes(id)));
+  assert.deepEqual(renderedProjectIds, indexedIds, 'the native index follows the actual DOM reading order, not just the same set of anchors');
   for (const key of ['game', 'digital', 'visualPackaging', 'visualPoster']) {
     const other = context.ChapterDivider({ chapter: context.ccChapters[key], sectionId: 'other' });
     assert.equal(collect(other, node => node.type === 'a' && (node.props.href || '').startsWith('#game-ui-')).length, 0);

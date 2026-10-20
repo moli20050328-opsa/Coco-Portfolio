@@ -7,10 +7,10 @@ const React = require('../assets/vendor/react.production.min.js');
 const root = path.resolve(__dirname, '..');
 const origin = 'https://portfolio.example/';
 
-function loaderContext(version) {
+function loaderContext(version, hooks = {}) {
   const scripts = [];
   const context = {
-    React: { ...React, useEffect() {}, useState: value => [value, () => {}], useRef: value => ({ current: value }) },
+    React: { ...React, useEffect() {}, useState: value => [value, () => {}], useRef: value => ({ current: value }), ...hooks },
     ReactDOM: { createRoot: () => ({ render() {} }) }, URL, console,
     document: {
       currentScript: version === null ? null : { src: origin + 'assets/js/shell.js?v=' + encodeURIComponent(version) },
@@ -74,4 +74,62 @@ test('an unversioned legacy shell still loads chapters without adding an invalid
   context.window.PortfolioChapters.gameUI = () => [];
   scripts[0].onload();
   await loading;
+});
+
+test('cold sign-in and legacy warehouse deep links load the GUI chapter and scroll to their actual rendered target', async () => {
+  for (const hash of ['game-ui-signin', 'game-ui-warehouse']) {
+    const effects = [];
+    const state = [];
+    const scrolls = [];
+    const targets = new Map();
+    let cursor = 0;
+    const { context, scripts } = loaderContext('signin-release', {
+      useEffect: effect => effects.push(effect),
+      useState(initial) {
+        const index = cursor++;
+        if (!(index in state)) state[index] = initial;
+        return [state[index], value => { state[index] = value; }];
+      }
+    });
+    const events = new EventTarget();
+    for (const method of ['addEventListener', 'removeEventListener', 'dispatchEvent']) {
+      context.window[method] = events[method].bind(events);
+    }
+    context.Event = Event;
+    context.window.location.hash = '#' + hash;
+    context.document.getElementById = id => targets.get(id) || null;
+    const props = { name: 'gameUI', chapter: context.ccChapters.gameUI, sectionId: 'section-game-ui', reserve: '1500svh' };
+    context.LazyChapter(props);
+    const cleanup = effects[0]();
+    effects[1]();
+    assert.equal(scripts.length, 1, hash + ' loads only one deferred chapter script');
+    assert.equal(new URL(scripts[0].src, origin).pathname, '/assets/chapters/game-ui.js');
+    assert.equal(new URL(scripts[0].src, origin).searchParams.get('v'), 'signin-release');
+    assert.equal(scrolls.length, 0, 'scrolling waits until the chapter target exists');
+    const loading = context.loadPortfolioChapter('gameUI');
+    vm.runInContext(fs.readFileSync(path.join(root, 'assets/chapters/game-ui.js'), 'utf8'), context);
+    const page = context.window.PortfolioChapters.gameUI().find(item => item.type.name === 'SignInRewardsCase');
+    assert.ok(page, 'the replacement case exists after the chapter script runs');
+    function registerTargets(node) {
+      if (!React.isValidElement(node)) return;
+      if (node.props.id) {
+        const id = node.props.id;
+        targets.set(id, { scrollIntoView: options => scrolls.push({ id, options }) });
+      }
+      React.Children.forEach(node.props.children, registerTargets);
+    }
+    registerTargets(page.type(page.props));
+    scripts[0].onload();
+    await loading;
+    effects.length = 0;
+    cursor = 0;
+    context.LazyChapter(props);
+    effects[1]();
+    assert.equal(scripts.length, 1, 'ready content reuses the already loaded script');
+    assert.equal(scrolls.length, 1, hash + ' scrolls only after mount');
+    assert.equal(scrolls[0].id, hash);
+    assert.equal(scrolls[0].options.block, 'start');
+    assert.equal(scrolls[0].options.behavior, 'instant');
+    cleanup();
+  }
 });
