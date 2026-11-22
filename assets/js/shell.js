@@ -222,7 +222,7 @@ function ProjectAssetWarmup() {
       { selector: '#section-game-ui', assets: ['assets/rain/rain-main.webp', 'assets/rain/rain-collection.webp'] },
       { selector: '#game-ui-rain-collection', assets: ['game-ui-erosion-hero.jpg'] },
       { selector: '#game-ui-motion-preview', assets: ['assets/giant/gala-reward.jpg'] },
-      { selector: '#game-ui-giant', assets: ['game-ui-shuaitu-character-detail.png'] },
+      { selector: '#game-ui-giant', assets: ['assets/shuaitu/character-detail.jpg'] },
       { selector: '#game-ui-shuaitu-visual', assets: ['assets/signin/signin-rewards.jpg', 'assets/signin/entry.png'] },
       { selector: '#game-ui-signin', assets: ['assets/duoyi/character-detail.png'] },
       { selector: '#section-02', assets: ['slides/mp-01.png', 'slides/mp-02.png'] },

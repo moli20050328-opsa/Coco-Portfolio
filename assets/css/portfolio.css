@@ -7981,6 +7981,19 @@ body.ds-active header .text-white\/40 {
   background: #0b0d0e;
   overflow: hidden;
 }
+.stu-case__demo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2070 / 1280;
+  object-fit: contain;
+}
+.stu-case__demo-caption {
+  padding: 10px 14px;
+  color: #ebe5d8;
+  font-size: 12px;
+  line-height: 1.5;
+}
 .stu-case__hero img,
 .stu-case__annotated img {
   display: block;

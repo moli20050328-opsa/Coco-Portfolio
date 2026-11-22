@@ -100,7 +100,7 @@ test('GUI warmup follows each new dark-to-light adjacency without duplicate or p
     ['#section-game-ui', ['assets/rain/rain-main.webp', 'assets/rain/rain-collection.webp']],
     ['#game-ui-rain-collection', ['game-ui-erosion-hero.jpg']],
     ['#game-ui-motion-preview', ['assets/giant/gala-reward.jpg']],
-    ['#game-ui-giant', ['game-ui-shuaitu-character-detail.png']],
+    ['#game-ui-giant', ['assets/shuaitu/character-detail.jpg']],
     ['#game-ui-shuaitu-visual', ['assets/signin/signin-rewards.jpg', 'assets/signin/entry.png']],
     ['#game-ui-signin', ['assets/duoyi/character-detail.png']]
   ];

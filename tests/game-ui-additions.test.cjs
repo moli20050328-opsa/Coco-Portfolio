@@ -15,6 +15,7 @@ const React = {
 const context = {
   React,
   PortfolioImage,
+  useInView: () => [null, true],
   window: { PortfolioChapters: {} }
 };
 vm.runInNewContext(source, context, { filename: 'game-ui.js' });
@@ -37,6 +38,26 @@ function textContent(node) {
   if (typeof node === 'string') return node;
   return (node && node.children || []).map(textContent).join('');
 }
+
+test('Shuaitu plays the updated demo in the original hero and uses the updated poster for details', () => {
+  const cover = context.ShuaituCaseCover();
+  assert.equal(cover.props.id, 'game-ui-shuaitu-cover');
+  const hero = findAll(cover, node => node.props.className?.includes('stu-case__hero'))[0];
+  const [video] = findAll(hero, node => node.type === 'video');
+  assert.equal(video.props.src, 'assets/shuaitu/motion-demo.mp4');
+  assert.equal(video.props.poster, 'assets/shuaitu/character-detail.jpg');
+  assert.equal(video.props.preload, 'none');
+  assert.equal(video.props.controls, true);
+  assert.equal(video.props.playsInline, true);
+  assert.ok(!video.props.autoPlay);
+  for (const asset of [video.props.src, video.props.poster]) {
+    assert.ok(fs.existsSync(path.join(root, asset)));
+  }
+  const details = context.ShuaituStructureComponents();
+  assert.equal(details.props.id, 'game-ui-shuaitu-structure');
+  assert.deepEqual(findAll(details, node => node.type === PortfolioImage).map(node => node.props.src),
+    [video.props.poster, video.props.poster]);
+});
 
 test('the rain project keeps both pages and their original deep-link anchors', () => {
   const pages = Array.from(context.window.PortfolioChapters.gameUI())

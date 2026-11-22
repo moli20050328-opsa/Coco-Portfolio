@@ -220,14 +220,20 @@ function ShuaituCaseCover() {
         )
       ),
       React.createElement('figure', { className: 'stu-case__hero stu-anim stu-anim-3' },
-        React.createElement(PortfolioImage, {
-          src: 'game-ui-shuaitu-character-detail.png',
-          alt: '率土之滨司马懿武将详情完整界面',
-          loading: 'lazy',
-          decoding: 'async',
-          width: 2340,
-          height: 1080
-        })
+        React.createElement('video', {
+          className: 'stu-case__demo',
+          src: 'assets/shuaitu/motion-demo.mp4',
+          poster: 'assets/shuaitu/character-detail.jpg',
+          controls: true,
+          playsInline: true,
+          preload: 'none',
+          width: 2070,
+          height: 1280,
+          'aria-label': '率土之滨司马懿武将详情与战法交互动效演示'
+        }),
+        React.createElement('figcaption', { className: 'stu-case__demo-caption' },
+          '点击播放 · 人物局部循环、战法卡反馈与详情浮层'
+        )
       )
     )
   );
@@ -236,8 +242,8 @@ function ShuaituCaseCover() {
 function ShuaituStructureComponents() {
   var result = useInView({ threshold: 0.08 });
   var details = [
-    { title: '属性信息', text: '属性名称、数值与成长反馈形成稳定的横向阅读关系。', bounds: [1350,135,800,400] },
-    { title: '技能与品质', text: '三张技能卡统一信息顺序，以品质色、类型和等级建立差异。', bounds: [1350,555,800,405] }
+    { title: '基础属性', text: '等级、兵力与体力的状态条对齐；五项战斗属性分为两列，成长值以绿色区分。', bounds: [1308,210,980,409] },
+    { title: '战法与宝物', text: '三张等宽战法卡统一名称、品质与等级的位置；承影移至独立横栏。', bounds: [1308,617,980,342] }
   ];
   var colors = [
     { name: '墨黑', hex: '#0B0D0E' }, { name: '深灰', hex: '#111416' },
@@ -264,7 +270,7 @@ function ShuaituStructureComponents() {
           return React.createElement('figure', { key: item.title },
             React.createElement('div', { className: 'stu-case__detail-crop', style: { aspectRatio: b[2] + ' / ' + b[3] } },
               React.createElement(PortfolioImage, {
-                src: 'game-ui-shuaitu-character-detail.png', width: 2340, height: 1080,
+                src: 'assets/shuaitu/character-detail.jpg', width: 2340, height: 1080,
                 alt: '率土之滨原界面局部：' + item.title,
                 style: { width: (2340 / b[2] * 100) + '%', left: (-b[0] / b[2] * 100) + '%', top: (-b[1] / b[3] * 100) + '%' }
               })
