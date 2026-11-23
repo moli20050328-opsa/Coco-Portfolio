@@ -29,6 +29,18 @@ function textContent(node) {
   return React.isValidElement(node) ? React.Children.toArray(node.props.children).map(textContent).join('') : '';
 }
 
+test('the homepage skips the carousel and honors summary but keeps About and chapter entry points', () => {
+  const context = siteContext();
+  const children = React.Children.toArray(context.App().props.children);
+  assert.ok(!children.some(child => child.type === context.TableOfContents || child.type === context.AboutHonorsExperience));
+  const heroIndex = children.findIndex(child => child.type === context.Hero);
+  assert.ok(heroIndex >= 0);
+  assert.equal(children[heroIndex + 1].type, context.About);
+  assert.equal(children[heroIndex + 2].props.sectionId, 'section-01');
+  assert.ok(collect(context.Hero(), node => node.type === 'a' && node.props.href === '#about')
+    .some(link => textContent(link).includes('开始探索')));
+});
+
 test('GUI divider provides direct, native links to every existing case without waiting for chapter content', () => {
   const context = siteContext();
   const divider = context.ChapterDivider({ chapter: context.ccChapters.gameUI, sectionId: 'section-game-ui' });

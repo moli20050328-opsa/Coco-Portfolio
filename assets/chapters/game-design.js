@@ -45,12 +45,12 @@ function CaseStudyOverview() {
           React.createElement('span', null, 'TAISHAN'),
           React.createElement('span', null, 'SHADOW PUPPET')
         ),
-        React.createElement('div', { className: 'cs-project-cn cs-anim cs-anim-2' }, '\u6cf0\u5c71\u76ae\u5f71\u9547\u5996\u8bb0'),
+        React.createElement('div', { className: 'cs-project-cn cs-anim cs-anim-2' }, '\u6cf0\u5c71\u76ae\u5f71\u6349\u5996\u8bb0'),
 
         React.createElement('div', { className: 'cs-intro cs-anim cs-anim-3' },
           React.createElement('div', { className: 'cs-intro-label' }, 'PROJECT INTRODUCTION'),
           React.createElement('p', { className: 'cs-intro-text' },
-            '\u300a\u6cf0\u5c71\u76ae\u5f71\u9547\u5996\u8bb0\u300b\u662f\u4e00\u6b3e\u878d\u5408',
+            '\u300a\u6cf0\u5c71\u76ae\u5f71\u6349\u5996\u8bb0\u300b\u662f\u4e00\u6b3e\u878d\u5408',
             React.createElement('span', { className: 'cs-accent' }, '\u975e\u9057\u6587\u5316'),
             '\u4e0e',
             React.createElement('span', { className: 'cs-accent' }, '\u4e92\u52a8\u6e38\u620f\u4f53\u9a8c'),
@@ -72,7 +72,7 @@ function CaseStudyOverview() {
           src: 'taishan-hero.mp4',
           resumeOnReturn: true,
           controls: true,
-          'aria-label': '泰山皮影镇妖记开场预览',
+          'aria-label': '泰山皮影捉妖记开场预览',
           poster: 'taishan-hero-poster.jpg',
           autoPlay: true,
           muted: true,
@@ -86,7 +86,7 @@ function CaseStudyOverview() {
         React.createElement('div', { className: 'cs-demo-card cs-anim cs-anim-6' },
           /* QR code */
           React.createElement('div', { className: 'cs-demo-qr' },
-            React.createElement(PortfolioImage, { src: 'assets/game-demo/qr-yf8s.png', width: 410, height: 410, alt: '泰山皮影镇妖记 H5 小游戏二维码' })
+            React.createElement(PortfolioImage, { src: 'assets/game-demo/qr-yf8s.png', width: 410, height: 410, alt: '泰山皮影捉妖记 H5 小游戏二维码' })
           ),
           /* Divider */
           React.createElement('div', { className: 'cs-demo-divider' }),
@@ -97,8 +97,8 @@ function CaseStudyOverview() {
             React.createElement('div', { className: 'cs-demo-en-type' }, 'H5 Interactive Game'),
             React.createElement('div', { className: 'cs-demo-cn' }, '\u626b\u7801\u4f53\u9a8c\u6e38\u620f'),
             React.createElement('div', { className: 'cs-demo-cn-sub' }, '\u8bd5\u73a9\u5b8c\u6574\u4e92\u52a8\u6d41\u7a0b'),
-            React.createElement('a', { className: 'game-demo-launch', href: 'https://c.u.h5mc.com/c/bxqd/yf8s/index.html', target: '_blank', rel: 'noopener noreferrer', 'aria-label': '直接试玩泰山皮影镇妖记（新窗口）' }, '直接试玩'),
-            React.createElement('small', { className: 'game-demo-hint' }, '新窗口打开 · 也可手机扫码')
+            React.createElement('a', { className: 'game-demo-launch', href: 'https://c.u.h5mc.com/c/bxqd/yf8s/index.html', target: '_blank', rel: 'noopener noreferrer', 'aria-label': '直接试玩泰山皮影捉妖记（新窗口）' }, '直接试玩'),
+            React.createElement('a', { className: 'game-demo-hint', href: 'gameplay-demo.mp4', target: '_blank', rel: 'noopener noreferrer' }, '观看完整演示 ↗')
           )
         ),
 
@@ -145,7 +145,7 @@ function CaseStudyConcept() {
       React.createElement('h2', { className: 'dcp-hero-title dcp-anim dcp-anim-2' }, '光影破虚妄'),
       React.createElement('div', { className: 'dcp-hero-subtitle dcp-anim dcp-anim-2' }, 'LIGHT REVEALS TRUTH'),
       React.createElement('p', { className: 'dcp-hero-desc dcp-anim dcp-anim-3' },
-        '以《画皮》的“辨伪存真”为故事内核，借泰山皮影的光影特性表现伪装与真实。'
+        '玩家点击镜面，女子的倒影显出妖形。皮影的光影变化在这里成为辨认真身的线索。'
       )
     ),
 
@@ -160,9 +160,6 @@ function CaseStudyConcept() {
       React.createElement('div', { className: 'dcp-cultural-images' },
         React.createElement('figure', { className: 'dcp-cultural-figure' },
           React.createElement(PortfolioImage, { className: 'dcp-cultural-image', src: 'taishan-puppet.jpg', alt: '泰山皮影造型参考' })
-        ),
-        React.createElement('figure', { className: 'dcp-cultural-figure' },
-          React.createElement(PortfolioImage, { className: 'dcp-cultural-image', src: 'taishan-puppet2.jpg', alt: '泰山皮影细节参考' })
         )
       )
     ),
@@ -441,22 +438,6 @@ function CaseStudyInteraction() {
     },
     {
       num: '02',
-      titleEn: 'MIRROR REVEAL',
-      titleCn: '\u955c\u9762\u8fa8\u5996',
-      video: 'interaction-mirror.mp4',
-      poster: 'gameplay-mirror-after.jpg',
-      stills: [
-        { src: 'gameplay-mirror-before.jpg', alt: '镜面辨妖触发前的完整画面', caption: '触发前 · 伪装状态' },
-        { src: 'gameplay-mirror-after.jpg', alt: '镜面辨妖触发后的完整画面', caption: '触发后 · 妖形显现' }
-      ],
-      isCore: true,
-      info: [
-        { label: 'INPUT', text: '\u79fb\u52a8\u955c\u9762\u89c2\u5bdf' },
-        { label: 'FEEDBACK', text: '光影变化揭示隐藏妖形' }
-      ]
-    },
-    {
-      num: '03',
       titleEn: 'RHYTHM COMBAT',
       titleCn: '\u8282\u594f\u6218\u6597',
       video: 'interaction-combat.mp4',
@@ -545,8 +526,13 @@ function CaseStudyInteraction() {
     React.createElement('div', { className: 'iev-header' },
       React.createElement('div', { className: 'iev-main-title iev-anim iev-anim-2' }, 'LIGHT & SHADOW INTERACTION'),
       React.createElement('div', { className: 'iev-main-cn iev-anim iev-anim-2' }, '\u5149\u5f71\u4ea4\u4e92\u4f53\u9a8c'),
-      React.createElement('p', { className: 'iev-desc iev-anim iev-anim-3' },
-        '拖拽、镜面与节奏点击的实际操作记录；每段视频下方可展开查看静态关键帧。'
+      React.createElement('div', { className: 'iev-scenes', role: 'group', 'aria-label': '游戏场景' },
+        [['林间偶遇','story-forest.jpg'], ['泰山古街','story-elder.jpg'], ['东岳庙','story-temple.jpg']].map(function(scene) {
+          return React.createElement('figure', { key: scene[1] },
+            React.createElement(PortfolioImage, { src: scene[1], alt: scene[0] + '游戏场景', width: 1920, height: 1080, loading: 'lazy' }),
+            React.createElement('figcaption', null, scene[0])
+          );
+        })
       )
     ),
 
@@ -601,7 +587,7 @@ function CaseStudyPlayable() {
           React.createElement(DeferredVideo, {
             src: 'gameplay-demo.mp4',
             resumeOnReturn: true,
-            'aria-label': '泰山皮影镇妖记完整游戏演示',
+            'aria-label': '泰山皮影捉妖记完整游戏演示',
             autoPlay: !reduceMotion,
             muted: true,
             loop: !reduceMotion,
@@ -621,11 +607,11 @@ function CaseStudyPlayable() {
           React.createElement('div', { className: 'pe-demo-en-label' }, 'PLAYABLE DEMO'),
           React.createElement('div', { className: 'pe-demo-en-sub' }, 'SCAN TO PLAY'),
           React.createElement('div', { className: 'pe-demo-qr' },
-            React.createElement(PortfolioImage, { src: 'assets/game-demo/qr-yf8s.png', width: 410, height: 410, alt: '泰山皮影镇妖记 H5 小游戏二维码' })
+            React.createElement(PortfolioImage, { src: 'assets/game-demo/qr-yf8s.png', width: 410, height: 410, alt: '泰山皮影捉妖记 H5 小游戏二维码' })
           ),
           React.createElement('div', { className: 'pe-demo-type' }, 'H5 Interactive Game'),
           React.createElement('div', { className: 'pe-demo-cn' }, '\u626b\u7801\u4f53\u9a8c\u5b8c\u6574\u6e38\u620f'),
-          React.createElement('a', { className: 'game-demo-launch', href: 'https://c.u.h5mc.com/c/bxqd/yf8s/index.html', target: '_blank', rel: 'noopener noreferrer', 'aria-label': '直接试玩泰山皮影镇妖记（新窗口）' }, '直接试玩'),
+          React.createElement('a', { className: 'game-demo-launch', href: 'https://c.u.h5mc.com/c/bxqd/yf8s/index.html', target: '_blank', rel: 'noopener noreferrer', 'aria-label': '直接试玩泰山皮影捉妖记（新窗口）' }, '直接试玩'),
           React.createElement('small', { className: 'game-demo-hint' }, '新窗口打开 · 也可手机扫码')
         ),
 
@@ -653,8 +639,6 @@ window.PortfolioChapters.gameDesign = function() {
   return [
     React.createElement(CaseStudyOverview, { key: 'cs-overview' }),
     React.createElement(CaseStudyConcept, { key: 'cs-concept' }),
-    React.createElement(CaseStudyStory, { key: 'cs-story' }),
-    React.createElement(CaseStudyInteraction, { key: 'cs-interaction' }),
-    React.createElement(CaseStudyPlayable, { key: 'cs-playable' })
+    React.createElement(CaseStudyInteraction, { key: 'cs-interaction' })
   ];
 };

@@ -39,24 +39,19 @@ function textContent(node) {
   return (node && node.children || []).map(textContent).join('');
 }
 
-test('Shuaitu plays the updated demo in the original hero and uses the updated poster for details', () => {
+test('Shuaitu presents the full final artwork in its hero and uses the same image for details', () => {
   const cover = context.ShuaituCaseCover();
   assert.equal(cover.props.id, 'game-ui-shuaitu-cover');
   const hero = findAll(cover, node => node.props.className?.includes('stu-case__hero'))[0];
-  const [video] = findAll(hero, node => node.type === 'video');
-  assert.equal(video.props.src, 'assets/shuaitu/motion-demo.mp4');
-  assert.equal(video.props.poster, 'assets/shuaitu/character-detail.jpg');
-  assert.equal(video.props.preload, 'none');
-  assert.equal(video.props.controls, true);
-  assert.equal(video.props.playsInline, true);
-  assert.ok(!video.props.autoPlay);
-  for (const asset of [video.props.src, video.props.poster]) {
-    assert.ok(fs.existsSync(path.join(root, asset)));
-  }
+  assert.equal(findAll(cover, node => node.type === 'video').length, 0);
+  const [artwork] = findAll(hero, node => node.type === PortfolioImage);
+  assert.equal(artwork.props.src, 'assets/shuaitu/character-detail.jpg');
+  assert.deepEqual([artwork.props.width, artwork.props.height], [2340, 1080]);
+  assert.ok(fs.existsSync(path.join(root, artwork.props.src)));
   const details = context.ShuaituStructureComponents();
   assert.equal(details.props.id, 'game-ui-shuaitu-structure');
   assert.deepEqual(findAll(details, node => node.type === PortfolioImage).map(node => node.props.src),
-    [video.props.poster, video.props.poster]);
+    [artwork.props.src, artwork.props.src]);
 });
 
 test('the rain project keeps both pages and their original deep-link anchors', () => {
@@ -219,7 +214,7 @@ test('replacing the warehouse display leaves all of its original bundled assets 
 
 test('each new case presents its complete original GUI image from a deployable local asset', () => {
   const cases = [
-    ['DuoyiGUICase', 'assets/duoyi/character-detail.png'],
+    ['DuoyiGUICase', 'assets/silver-crown/overview.png'],
     ['GiantGUICase', 'assets/giant/gala-reward.jpg']
   ];
   const pages = context.window.PortfolioChapters.gameUI();
@@ -230,7 +225,7 @@ test('each new case presents its complete original GUI image from a deployable l
     walk(page.type(), node => {
       if (node.type === PortfolioImage) images.push(node.props);
     });
-    assert.ok(images.some(image => image.src === asset && image.width === 1334 && image.height === 750), `${name} preserves the main image ratio`);
+    assert.ok(images.some(image => image.src === asset && image.width === (name === 'DuoyiGUICase' ? 1920 : 1334) && image.height === (name === 'DuoyiGUICase' ? 1080 : 750)), `${name} preserves the main image ratio`);
     assert.ok(fs.existsSync(path.join(root, asset)), `${asset} is bundled with the site`);
   });
 });

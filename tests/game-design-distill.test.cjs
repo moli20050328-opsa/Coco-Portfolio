@@ -32,11 +32,11 @@ function pageWithClass(pages, className) {
   return pages.find(page => page.props.className.split(' ').includes(className));
 }
 
-test('the chapter presents five reading stages without standalone background or mechanics screens', () => {
+test('the chapter presents three reading stages without standalone background or mechanics screens', () => {
   const pages = renderChapter();
-  assert.equal(pages.length, 5);
+  assert.equal(pages.length, 3);
   assert.deepEqual(pages.map(page => page.props.className.split(' ')[0]), [
-    'cs-overview', 'dcp-section', 'dss-section', 'iev-section', 'pe-section'
+    'cs-overview', 'dcp-section', 'iev-section'
   ]);
 });
 
@@ -54,14 +54,12 @@ test('merged sections retain concept and background/mechanics hash destinations'
 
 test('all chapter artwork and videos stay accessible alongside the current game QR', () => {
   const nodes = renderChapter().flatMap(nodesIn);
-  const assets = new Set(nodes.flatMap(node => [node.props.src, node.props.poster]).filter(Boolean));
+  const assets = new Set(nodes.flatMap(node => [node.props.src, node.props.poster, node.props.href]).filter(Boolean));
   const required = [
     'taishan-hero.mp4', 'taishan-hero-poster.jpg', 'assets/game-demo/qr-yf8s.png',
-    'taishan-puppet.jpg', 'taishan-puppet2.jpg', 'taishan-concept1.jpg', 'taishan-concept2.jpg',
-    'story-scholar.png', 'story-forest.jpg', 'story-elder.jpg', 'story-puzzle.jpg',
-    'story-mirror-before.jpg', 'story-mirror-after.jpg', 'story-temple.jpg', 'story-combat-2.jpg',
-    'gameplay-drag.jpg', 'gameplay-mirror-before.jpg', 'gameplay-mirror-after.jpg', 'gameplay-combat.jpg',
-    'interaction-drag.mp4', 'interaction-mirror.mp4', 'interaction-combat.mp4', 'gameplay-demo.mp4'
+    'taishan-puppet.jpg', 'taishan-concept1.jpg', 'taishan-concept2.jpg',
+    'gameplay-drag.jpg', 'gameplay-combat.jpg',
+    'interaction-drag.mp4', 'interaction-combat.mp4', 'gameplay-demo.mp4'
   ];
   for (const asset of required) {
     assert.ok(assets.has(asset), `${asset} remains accessible`);
@@ -75,7 +73,6 @@ test('each interaction video retains its matching full static evidence in an acc
     (node.props.className || '').split(' ').includes('iev-video-module'));
   const pairs = [
     ['interaction-drag.mp4', ['gameplay-drag.jpg']],
-    ['interaction-mirror.mp4', ['gameplay-mirror-before.jpg', 'gameplay-mirror-after.jpg']],
     ['interaction-combat.mp4', ['gameplay-combat.jpg']]
   ];
   for (const [video, images] of pairs) {
@@ -89,10 +86,10 @@ test('each interaction video retains its matching full static evidence in an acc
   }
 });
 
-test('the three interaction videos keep controls and respect reduced motion', () => {
+test('the two interaction videos keep controls and respect reduced motion', () => {
   const interaction = pageWithClass(renderChapter(true), 'iev-section');
   const videos = nodesIn(interaction).filter(node => node.type === DeferredVideo);
-  assert.equal(videos.length, 3);
+  assert.equal(videos.length, 2);
   videos.forEach(video => {
     assert.equal(video.props.controls, true);
     assert.equal(video.props.autoPlay, false);
@@ -101,9 +98,9 @@ test('the three interaction videos keep controls and respect reduced motion', ()
   });
 });
 
-test('all five GAME DESIGN videos offer manual controls and opt into return playback', () => {
+test('all three embedded GAME DESIGN videos offer manual controls and opt into return playback', () => {
   const videos = renderChapter().flatMap(nodesIn).filter(node => node.type === DeferredVideo);
-  assert.equal(videos.length, 5);
+  assert.equal(videos.length, 3);
   videos.forEach(video => {
     assert.equal(video.props.controls, true, `${video.props.src} has a manual play fallback`);
     assert.equal(video.props.resumeOnReturn, true);

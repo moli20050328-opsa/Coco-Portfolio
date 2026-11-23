@@ -199,7 +199,7 @@ function ShuaituCaseCover() {
     React.createElement('div', { className: 'stu-case__inner' },
       React.createElement('div', { className: 'stu-case__topline stu-anim' },
         React.createElement('span', null, 'GAME UI DESIGN'),
-        React.createElement('span', null, 'PAGE 01 / 02')
+        React.createElement('span', null, 'CHARACTER INTERFACE')
       ),
       React.createElement('div', { className: 'stu-case__cover-head stu-anim stu-anim-2' },
         React.createElement('h2', { id: 'game-ui-shuaitu-title', className: 'stu-case__title' },
@@ -220,20 +220,12 @@ function ShuaituCaseCover() {
         )
       ),
       React.createElement('figure', { className: 'stu-case__hero stu-anim stu-anim-3' },
-        React.createElement('video', {
-          className: 'stu-case__demo',
-          src: 'assets/shuaitu/motion-demo.mp4',
-          poster: 'assets/shuaitu/character-detail.jpg',
-          controls: true,
-          playsInline: true,
-          preload: 'none',
-          width: 2070,
-          height: 1280,
-          'aria-label': '率土之滨司马懿武将详情与战法交互动效演示'
-        }),
-        React.createElement('figcaption', { className: 'stu-case__demo-caption' },
-          '点击播放 · 人物局部循环、战法卡反馈与详情浮层'
-        )
+        React.createElement(PortfolioImage, {
+          src: 'assets/shuaitu/character-detail.jpg',
+          alt: '率土之滨司马懿武将详情最终效果图',
+          width: 2340,
+          height: 1080
+        })
       )
     )
   );
@@ -245,25 +237,12 @@ function ShuaituStructureComponents() {
     { title: '基础属性', text: '等级、兵力与体力的状态条对齐；五项战斗属性分为两列，成长值以绿色区分。', bounds: [1308,210,980,409] },
     { title: '战法与宝物', text: '三张等宽战法卡统一名称、品质与等级的位置；承影移至独立横栏。', bounds: [1308,617,980,342] }
   ];
-  var colors = [
-    { name: '墨黑', hex: '#0B0D0E' }, { name: '深灰', hex: '#111416' },
-    { name: '青铜金', hex: '#98713B' }, { name: '鎏金', hex: '#D6A84A' },
-    { name: '朱砂红', hex: '#A52B22' }
-  ];
-  return React.createElement('section', {
+  return React.createElement('div', {
     ref: result[0], id: 'game-ui-shuaitu-structure',
-    className: 'stu-case stu-case--compact snap-slide' + (result[1] ? ' in-view' : ''),
-    'aria-labelledby': 'game-ui-shuaitu-structure-title'
+    className: 'stu-case stu-inline-details' + (result[1] ? ' in-view' : ''),
+    'aria-label': '武将界面局部'
   },
-    React.createElement('div', { className: 'stu-case__inner' },
-      React.createElement('div', { className: 'stu-case__topline stu-anim' },
-        React.createElement('span', null, 'UI DETAILS'),
-        React.createElement('span', null, 'PAGE 02 / 02')
-      ),
-      React.createElement('header', { className: 'stu-case__compact-head stu-anim stu-anim-2' },
-        React.createElement('h2', { id: 'game-ui-shuaitu-structure-title' }, '信息层级与关键细节'),
-        React.createElement('p', null, '角色展示建立视觉主次；右侧集中属性与技能，外围保留页签及功能入口。')
-      ),
+    React.createElement('div', { className: 'stu-case__inner', id: 'game-ui-shuaitu-visual' },
       React.createElement('div', { className: 'stu-case__compact-details stu-anim stu-anim-3', id: 'game-ui-shuaitu-details-title' },
         details.map(function(item) {
           var b = item.bounds;
@@ -281,19 +260,6 @@ function ShuaituStructureComponents() {
             )
           );
         })
-      ),
-      React.createElement('div', { className: 'stu-case__compact-colors stu-anim', id: 'game-ui-shuaitu-visual' },
-        React.createElement('div', null,
-          React.createElement('h3', null, '视觉基调'),
-          React.createElement('p', null, '深色承载信息，金色建立重点，红色提示状态。')
-        ),
-        React.createElement('ul', { 'aria-label': '界面主要色彩' }, colors.map(function(color) {
-          return React.createElement('li', { key: color.hex },
-            React.createElement('span', { className: 'stu-case__compact-swatch', style: { backgroundColor: color.hex } }),
-            React.createElement('span', null, color.name),
-            React.createElement('small', null, color.hex)
-          );
-        }))
       )
     )
   );
@@ -464,8 +430,8 @@ function HorizontalGUICase(data) {
       React.createElement(RainReveal, { as: 'figure', className: 'horizontal-gui-case__visual', delay: 130 },
         React.createElement(PortfolioImage, {
           src: data.image,
-          width: 1334,
-          height: 750,
+          width: data.width || 1334,
+          height: data.height || 750,
           alt: data.alt,
           loading: 'lazy',
           decoding: 'async'
@@ -474,6 +440,7 @@ function HorizontalGUICase(data) {
       React.createElement('div', { className: 'horizontal-gui-case__notes' },
         data.notes.map(function(note, index) {
           return React.createElement(RainReveal, { as: 'div', className: 'horizontal-gui-case__note', delay: 160 + index * 90, key: note.title },
+            note.emblem && React.createElement(PortfolioImage, { src: note.emblem, width: 512, height: 512, loading: 'lazy', alt: '初心剧团银色悲喜面具与断链徽记', style: { width: 'min(32%, 140px)', height: 'auto', float: 'right', marginLeft: '1em' } }),
             React.createElement('h3', null, note.title),
             React.createElement('p', null, note.body)
           );
@@ -485,16 +452,14 @@ function HorizontalGUICase(data) {
 
 function DuoyiGUICase() {
   return HorizontalGUICase({
-    id: 'game-ui-duoyi',
-    theme: 'lotus',
-    title: '青莲照水',
-    subtitle: '国风角色信息界面',
-    intro: '以青绿山水、莲灯与青玉建立东方奇幻氛围，让角色表现与高密度养成信息保持清晰的阅读主次。',
-    image: 'assets/duoyi/character-detail.png',
-    alt: '青莲照水完整角色信息界面，左侧为角色立绘，右侧为战力、属性、技能与养成操作',
+    id: 'game-ui-duoyi', theme: 'lotus',
+    title: '银冠之誓', subtitle: '紫龙游戏校招测试 · 角色总览与阵营徽记',
+    intro: '教堂拱窗与金色圆环框出角色侧脸，握剑的手臂将视线引向右侧养成面板。',
+    image: 'assets/silver-crown/overview.png', width: 1920, height: 1080,
+    alt: '银冠之誓角色总览，左侧为持剑角色，右侧排列等级、六项属性、四个技能与升级和进阶入口',
     notes: [
-      { title: '角色与状态', body: '立绘与身份先建立角色印象，战力、等级和体力随后成为信息区的首层。' },
-      { title: '属性与操作', body: '六项属性和四个技能依序展开，进阶是主操作，重置与传承保持次级。' }
+      { title: '数值与状态', body: '属性值按列右对齐，方便逐项比较。蓝色按钮用于升级，金色进阶按钮上方标明条件已满足。' },
+      { title: '初心剧团 · 阵营徽记', emblem: 'assets/silver-crown/emblem.png', body: '笑与愁铸在同一张银面上。右侧断开的链环和一道暗红擦痕，点出喜剧背后的代价。' }
     ]
   });
 }

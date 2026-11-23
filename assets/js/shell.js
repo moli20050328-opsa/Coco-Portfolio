@@ -224,7 +224,7 @@ function ProjectAssetWarmup() {
       { selector: '#game-ui-motion-preview', assets: ['assets/giant/gala-reward.jpg'] },
       { selector: '#game-ui-giant', assets: ['assets/shuaitu/character-detail.jpg'] },
       { selector: '#game-ui-shuaitu-visual', assets: ['assets/signin/signin-rewards.jpg', 'assets/signin/entry.png'] },
-      { selector: '#game-ui-signin', assets: ['assets/duoyi/character-detail.png'] },
+      { selector: '#game-ui-signin', assets: ['assets/silver-crown/overview.png'] },
       { selector: '#section-02', assets: ['slides/mp-01.png', 'slides/mp-02.png'] },
       { selector: '#section-03', assets: [
         'packaging-assets/psd-extract/board-02-asset-01-pixel-1379-721-531x356.png',
@@ -461,7 +461,7 @@ function Hero() {
           React.createElement('span', { className: 'hero-direction-primary' }, '游戏 GUI 与视觉设计'),
           React.createElement('span', { className: 'hero-direction-detail' }, '界面、包装与动态视觉')
         ),
-        React.createElement('a', { href: '#toc', className: 'liquid-glass rounded-full px-6 py-3 text-sm text-white font-medium hover:bg-white/10 transition-colors whitespace-nowrap' }, '开始探索 →')
+        React.createElement('a', { href: '#about', className: 'liquid-glass rounded-full px-6 py-3 text-sm text-white font-medium hover:bg-white/10 transition-colors whitespace-nowrap' }, '开始探索 →')
       )
     )
   );
@@ -714,7 +714,7 @@ var projectSections = [
   {
     num: '01', title: '交互游戏设计', subtitle: 'INTERACTIVE GAME DESIGN',
     slides: [
-      { image: 'slides/slide-game-cover.png', title: '泰山皮影·镇妖记', desc: '以经典IP《画皮》为故事内核，深度融合泰山皮影民俗文化，打造沉浸式交互游戏体验。' },
+      { image: 'slides/slide-game-cover.png', title: '泰山皮影·捉妖记', desc: '以经典IP《画皮》为故事内核，深度融合泰山皮影民俗文化，打造沉浸式交互游戏体验。' },
       { image: 'slides/slide-game-shigandang.png', title: '石敢当', desc: '泰山皮影五分侧脸技法，重彩饱和度高，锋利眉线，泰山神将冠顶红珠。' },
       { image: 'slides/slide-game-couple.png', title: '王生和女子（妖怪化形）', desc: '书生竹纹白衣与妖女红金华服对比，正色辟邪与妖异感交织。' },
       { image: 'slides/slide-game-elder.png', title: '老者', desc: '褚黄、玄黑、朱红配色，还原皮影自然质感，增强立体感。' },
@@ -975,7 +975,7 @@ function AboutRightPanel() {
     { name:'Claude Code', icon:React.createElement('span',{style:{fontWeight:700,fontSize:'16px',color:'#D97757',fontFamily:"'Sora',sans-serif",letterSpacing:'-0.02em'}},'CC') }
   ];
   var projects = [
-    { name:'泰山皮影镇妖记', desc:'交互游戏视觉设计', href:'#section-01', image:'assets/about-thumbnails/taishan.webp', width:288, height:162 },
+    { name:'泰山皮影捉妖记', desc:'交互游戏视觉设计', href:'#section-01', image:'assets/about-thumbnails/taishan.webp', width:288, height:162 },
     { name:'视传作品集小程序', desc:'UI界面设计', href:'#section-02', image:'assets/about-thumbnails/mini-program.webp', width:87, height:176 },
     { name:'西湖龙井×霸王茶姬', desc:'联名包装设计', href:'#packaging-project-visual', image:'assets/about-thumbnails/tea-packaging.webp', width:263, height:176 },
     { name:'雨前归纳者', desc:'游戏关卡 GUI 设计', href:'#game-ui-rain-cover', image:'assets/about-thumbnails/rain-archive.webp', width:288, height:120 }
@@ -1108,7 +1108,7 @@ function AboutToolStack() {
 /* ---------- About Sub-Section: Featured Projects ---------- */
 function AboutFeaturedProjects() {
   var projects = [
-    { name:'《泰山皮影镇妖记》交互游戏视觉设计', role:'主视觉设计师', desc:'非遗皮影IP全套角色、纹样、游戏UI规范设计，适配前端交互开发标准。', image:'slides/slide-game-cover.png' },
+    { name:'《泰山皮影捉妖记》交互游戏视觉设计', role:'主视觉设计师', desc:'非遗皮影IP全套角色、纹样、游戏UI规范设计，适配前端交互开发标准。', image:'slides/slide-game-cover.png' },
     { name:'视传作品集小程序界面设计', role:'独立设计师', desc:'轻量化文艺界面，搭建完整页面组件、交互逻辑与全局视觉规范。', image:'slides/slide-mp-landing.png' },
     { name:'西湖龙井 × 霸王茶姬 联名包装设计', role:'独立设计师', desc:'融合东方茶文化与品牌基因，完成全套包装纹样、色彩体系与物料设计。', image:'slides/slide-pkg-scene1.png' },
     { name:'AI漫剧动态影像项目', role:'主创', desc:'依托天工画境完成漫剧分镜与AI画面生成，搭配剪辑动效输出完整成片。', image:'slides/slide-poster-dege1.png' }
@@ -1312,7 +1312,7 @@ var guiProjectGroups = [
   { label: '浅色案例', projects: [
     { title: '率土之滨', detail: '角色信息', href: '#game-ui-shuaitu-cover' },
     { title: '签到豪礼', detail: '活动与状态', href: '#game-ui-signin' },
-    { title: '青莲照水', detail: '国风角色', href: '#game-ui-duoyi' }
+    { title: '银冠之誓', detail: '角色总览与徽记', href: '#game-ui-duoyi' }
   ] }
 ];
 
@@ -1506,6 +1506,7 @@ function App() {
     function scrollToCurrentHash() {
       var id = window.location.hash ? window.location.hash.slice(1) : '';
       if (!id) return;
+      if (id === 'toc') id = 'about';
       var target = document.getElementById(id);
       if (target) target.scrollIntoView({ block: 'start', behavior: 'instant' });
     }
@@ -1526,9 +1527,7 @@ function App() {
     React.createElement(ScrollProgress),
     React.createElement(Navbar),
     React.createElement(Hero),
-    React.createElement(TableOfContents),
     React.createElement(About),
-    React.createElement(AboutHonorsExperience),
     React.createElement(LazyChapter, { key: 'chapter-game', name: 'gameDesign', chapter: ccChapters.game, sectionId: 'section-01', reserve: '900svh' }),
     React.createElement(LazyChapter, { key: 'chapter-game-ui', name: 'gameUI', chapter: ccChapters.gameUI, sectionId: 'section-game-ui', reserve: '1500svh', resumeDirection: 'gui' }),
     React.createElement(LazyChapter, { key: 'chapter-digital', name: 'digital', chapter: ccChapters.digital, sectionId: 'section-02', reserve: '930svh' }),

@@ -286,7 +286,335 @@ function InformationArchitecture() {
 }
 
 /* ---------- Interface details, grounded in the exported screens ---------- */
+var dsPrinciples = [
+  { title:'Minimal', desc:'减少视觉干扰，突出作品内容' },
+  { title:'Professional', desc:'建立统一视觉语言，提高信息可信度' },
+  { title:'Explorative', desc:'鼓励作品探索与设计交流' }
+];
+
 var dsColors = [
+  { hex:'#45622A', name:'Primary Green', color:'primary', uses:['Brand Core','核心交互','主按钮','品牌识别'] },
+  { hex:'#91A56F', name:'Secondary Green', color:'secondary', uses:['Supporting Element','标签','边框','Hover状态'] },
+  { hex:'#CFE3B6', name:'Light Green', color:'light', uses:['Background Decoration','卡片背景','辅助区域'] },
+  { hex:'#FFFFFF', name:'White', color:'white', uses:['Content Area','页面背景','信息承载'] }
+];
+
+var dsColorRatio = [
+  { hex:'#45622A', pct:50, label:'Primary' },
+  { hex:'#91A56F', pct:25, label:'Secondary' },
+  { hex:'#CFE3B6', pct:15, label:'Light' },
+  { hex:'#FFFFFF', pct:10, label:'White' }
+];
+
+var dsSpacing = [
+  { px:'4', h:4, use:'Icon spacing' },
+  { px:'8', h:8, use:'Component spacing', base:true },
+  { px:'16', h:16, use:'Card padding' },
+  { px:'24', h:24, use:'Section spacing' },
+  { px:'32', h:32, use:'Content spacing' },
+  { px:'48', h:48, use:'Layout spacing' }
+];
+
+var dsFonts = [
+  { name:'Montserrat', cn:'英文字体', uses:['English','Navigation','Numbers','Labels'], sample:'Visual Portfolio Platform', sampleCls:'ds-font-sample' },
+  { name:'Source Han Sans CN', cn:'思源黑体', uses:['中文标题','正文描述','内容信息'], sample:'视觉作品集平台', sampleCls:'ds-font-zh' }
+];
+
+var dsScale = [
+  { label:'H1', px:'48px', cls:'ds-scale-h1', text:'Visual Portfolio', use:'标题' },
+  { label:'H2', px:'32px', cls:'ds-scale-h2', text:'设计作品集', use:'导航' },
+  { label:'Body', px:'16px', cls:'ds-scale-body', text:'探索优秀设计作品', use:'正文' },
+  { label:'Caption', px:'12px', cls:'ds-scale-cap', text:'KEEP EXPLORING', use:'辅助信息' }
+];
+
+var dsGridInfo = [
+  { label:'Desktop Grid', value:'12 Columns' },
+  { label:'Max Width', value:'1440px' },
+  { label:'Spacing Unit', value:'8px' }
+];
+
+function DesignSystem() {
+  var result = useInView({ threshold: 0.15 });
+  var ref = result[0]; var inView = result[1];
+  var viewClass = inView ? ' in-view' : '';
+
+  useEffect(function() {
+    if (inView) {
+      document.body.classList.add('ds-active');
+    } else {
+      document.body.classList.remove('ds-active');
+    }
+  }, [inView]);
+
+  /* Design Principles */
+  var principles = dsPrinciples.map(function(p, i) {
+    return React.createElement('div', { key: i, className: 'ds-principle' },
+      React.createElement('span', { className: 'ds-principle-title' }, p.title),
+      React.createElement('span', { className: 'ds-principle-desc' }, p.desc)
+    );
+  });
+
+  /* Color Palette */
+  var colorRows = dsColors.map(function(c, i) {
+    var useItems = c.uses.map(function(u, j) {
+      return React.createElement('span', { key: j, className: 'ds-color-use' }, u);
+    });
+    return React.createElement('div', { key: i, className: 'ds-color-row' },
+      React.createElement('div', { className: 'ds-color-swatch', style: { background: c.hex } }),
+      React.createElement('div', { className: 'ds-color-info' },
+        React.createElement('span', { className: 'ds-color-name' }, c.name),
+        React.createElement('span', { className: 'ds-color-hex' }, c.hex)
+      ),
+      React.createElement('div', { className: 'ds-color-uses' }, useItems)
+    );
+  });
+
+  /* Color ratio bar */
+  var ratioSegs = dsColorRatio.map(function(r, i) {
+    return React.createElement('div', { key: i, className: 'ds-color-ratio-seg', style: { width: r.pct + '%', background: r.hex } });
+  });
+  var ratioLabels = dsColorRatio.map(function(r, i) {
+    return React.createElement('span', { key: i }, r.label + ' ' + r.pct + '%');
+  });
+
+  /* Spacing */
+  var spacingItems = dsSpacing.map(function(sp, i) {
+    return React.createElement('div', { key: i, className: 'ds-sp-item' },
+      React.createElement('div', { className: 'ds-sp-bar' + (sp.base ? ' is-base' : ''), style: { height: sp.h + 'px' } }),
+      React.createElement('span', { className: 'ds-sp-px' }, sp.px + 'px'),
+      React.createElement('span', { className: 'ds-sp-use' }, sp.use)
+    );
+  });
+
+  /* Typography */
+  var fontCards = dsFonts.map(function(f, i) {
+    var useItems = f.uses.map(function(u, j) {
+      return React.createElement('span', { key: j, className: 'ds-font-use' }, u);
+    });
+    return React.createElement('div', { key: i, className: 'ds-font' },
+      React.createElement('span', { className: 'ds-font-name' }, f.name),
+      React.createElement('span', { className: 'ds-font-cn' }, f.cn),
+      React.createElement('div', { className: 'ds-font-uses' }, useItems),
+      React.createElement('p', { className: f.sampleCls }, f.sample)
+    );
+  });
+
+  var scaleRows = dsScale.map(function(s, i) {
+    return React.createElement('div', { key: i, className: 'ds-scale-row' },
+      React.createElement('span', { className: 'ds-scale-label' }, s.label),
+      React.createElement('span', { className: 'ds-scale-px' }, s.px),
+      React.createElement('span', { className: 'ds-scale-text ' + s.cls }, s.text),
+      React.createElement('span', { className: 'ds-scale-use' }, s.use)
+    );
+  });
+
+  /* Grid System */
+  var gridItems = dsGridInfo.map(function(g, i) {
+    return React.createElement('div', { key: i, className: 'ds-grid-item' },
+      React.createElement('span', { className: 'ds-grid-label' }, g.label),
+      React.createElement('span', { className: 'ds-grid-value' }, g.value)
+    );
+  });
+
+  return React.createElement('section', { id: 'mini-result', ref: ref, className: 'ds-section snap-slide' + viewClass },
+    /* Meta row */
+    React.createElement('div', { className: 'ds-meta-row ds-anim ds-anim-1' },
+      React.createElement('span', { className: 'ds-meta-num' }, '04'),
+      React.createElement('span', { className: 'ds-meta-label' }, 'DESIGN SYSTEM — CHAPTER FOUR')
+    ),
+    /* Title block */
+    React.createElement('div', { className: 'ds-title-block ds-anim ds-anim-2' },
+      React.createElement('h2', { className: 'ds-title-en' }, 'Design System'),
+      React.createElement('p', { className: 'ds-title-cn' }, '设计系统')
+    ),
+    /* Divider */
+    React.createElement('div', { className: 'ds-divider ds-anim ds-anim-3' }),
+    /* Design Principles */
+    React.createElement('div', { className: 'ds-principles ds-anim ds-anim-4' }, principles),
+    /* Two-column main */
+    React.createElement('div', { className: 'ds-main' },
+      /* Left column: Color + Spacing + Typography + Grid */
+      React.createElement('div', { className: 'ds-left' },
+        /* Color System */
+        React.createElement('div', { className: 'ds-anim ds-anim-5' },
+          React.createElement('p', { className: 'ds-sub-label' }, '01  Color System'),
+          React.createElement('div', { className: 'ds-colors' }, colorRows),
+          React.createElement('div', { className: 'ds-color-ratio' },
+            React.createElement('div', { className: 'ds-color-ratio-bar' }, ratioSegs),
+            React.createElement('div', { className: 'ds-color-ratio-pct' }, ratioLabels)
+          )
+        ),
+        /* Spacing System */
+        React.createElement('div', { className: 'ds-anim ds-anim-6' },
+          React.createElement('p', { className: 'ds-sub-label' }, '02  Spacing System'),
+          React.createElement('div', { className: 'ds-spacing' }, spacingItems),
+          React.createElement('p', { className: 'ds-sp-grid-note' }, 'Based on 8px Grid System')
+        ),
+        /* Typography */
+        React.createElement('div', { className: 'ds-anim ds-anim-7' },
+          React.createElement('p', { className: 'ds-sub-label' }, '03  Typography'),
+          React.createElement('div', { className: 'ds-typo-fonts' }, fontCards),
+          React.createElement('div', { className: 'ds-typo-scale' }, scaleRows)
+        ),
+        /* Grid System */
+        React.createElement('div', { className: 'ds-anim ds-anim-7' },
+          React.createElement('p', { className: 'ds-sub-label' }, '04  Grid System'),
+          React.createElement('div', { className: 'ds-grid-info' }, gridItems)
+        )
+      ),
+      /* Right column: UI Components + Interaction States */
+      React.createElement('div', { className: 'ds-right' },
+        /* UI Components */
+        React.createElement('div', { className: 'ds-anim ds-anim-5' },
+          React.createElement('p', { className: 'ds-sub-label' }, '05  UI Components'),
+          React.createElement('div', { className: 'ds-components' },
+            /* Navigation */
+            React.createElement('div', { className: 'ds-comp-row' },
+              React.createElement('span', { className: 'ds-comp-label' }, 'Navigation'),
+              React.createElement('div', { className: 'ds-comp-demo' },
+                React.createElement('div', { className: 'ds-demo-nav' },
+                  React.createElement('span', { className: 'ds-demo-nav-item active' }, 'Home'),
+                  React.createElement('span', { className: 'ds-demo-nav-item' }, 'Explore'),
+                  React.createElement('span', { className: 'ds-demo-nav-item' }, 'Community'),
+                  React.createElement('span', { className: 'ds-demo-nav-item' }, 'Profile')
+                )
+              )
+            ),
+            /* Button */
+            React.createElement('div', { className: 'ds-comp-row' },
+              React.createElement('span', { className: 'ds-comp-label' }, 'Button'),
+              React.createElement('div', { className: 'ds-comp-demo' },
+                React.createElement('span', { className: 'ds-demo-btn ds-demo-btn-primary' }, 'Primary'),
+                React.createElement('span', { className: 'ds-demo-btn ds-demo-btn-secondary' }, 'Secondary'),
+                React.createElement('span', { className: 'ds-demo-btn ds-demo-btn-hover' }, 'Hover')
+              )
+            ),
+            /* Card */
+            React.createElement('div', { className: 'ds-comp-row' },
+              React.createElement('span', { className: 'ds-comp-label' }, 'Card'),
+              React.createElement('div', { className: 'ds-comp-demo' },
+                React.createElement('div', { className: 'ds-demo-card' },
+                  React.createElement('div', { className: 'ds-demo-card-img' }),
+                  React.createElement('div', { className: 'ds-demo-card-body' },
+                    React.createElement('div', { className: 'ds-demo-card-title' }, 'Brand Design'),
+                    React.createElement('div', { className: 'ds-demo-card-designer' }, '王玉璇'),
+                    React.createElement('span', { className: 'ds-demo-card-tag' }, 'Design')
+                  )
+                )
+              )
+            ),
+            /* Portfolio Card */
+            React.createElement('div', { className: 'ds-comp-row' },
+              React.createElement('span', { className: 'ds-comp-label' }, 'Portfolio'),
+              React.createElement('div', { className: 'ds-comp-demo' },
+                React.createElement('div', { className: 'ds-demo-pf' },
+                  React.createElement('div', { className: 'ds-demo-pf-img' }),
+                  React.createElement('div', { className: 'ds-demo-pf-body' },
+                    React.createElement('div', { className: 'ds-demo-pf-title' }, 'Portfolio Case'),
+                    React.createElement('div', { className: 'ds-demo-pf-designer' }, '王玉璇'),
+                    React.createElement('span', { className: 'ds-demo-pf-tag' }, 'Design'),
+                    React.createElement('div', { className: 'ds-demo-pf-btn' }, 'View Case')
+                  )
+                )
+              )
+            ),
+            /* Tag */
+            React.createElement('div', { className: 'ds-comp-row' },
+              React.createElement('span', { className: 'ds-comp-label' }, 'Tag'),
+              React.createElement('div', { className: 'ds-comp-demo' },
+                React.createElement('span', { className: 'ds-demo-tag ds-demo-tag-green' }, 'Design'),
+                React.createElement('span', { className: 'ds-demo-tag ds-demo-tag-outline' }, 'UI/UX'),
+                React.createElement('span', { className: 'ds-demo-tag ds-demo-tag-outline' }, 'Brand')
+              )
+            ),
+            /* Input / Search */
+            React.createElement('div', { className: 'ds-comp-row' },
+              React.createElement('span', { className: 'ds-comp-label' }, 'Input'),
+              React.createElement('div', { className: 'ds-comp-demo' },
+                React.createElement('div', { className: 'ds-demo-input' },
+                  React.createElement('span', { className: 'ds-demo-input-icon' }, '\u2315'),
+                  React.createElement('span', { className: 'ds-demo-input-text' }, 'Search works...')
+                )
+              )
+            ),
+            /* Modal / Detail */
+            React.createElement('div', { className: 'ds-comp-row' },
+              React.createElement('span', { className: 'ds-comp-label' }, 'Modal'),
+              React.createElement('div', { className: 'ds-comp-demo' },
+                React.createElement('div', { className: 'ds-demo-modal' },
+                  React.createElement('div', { className: 'ds-demo-modal-header' }, 'Detail'),
+                  React.createElement('div', { className: 'ds-demo-modal-body' }, '作品详情'),
+                  React.createElement('div', { className: 'ds-demo-modal-footer' },
+                    React.createElement('span', { className: 'ds-demo-modal-btn' }, 'View')
+                  )
+                )
+              )
+            )
+          )
+        ),
+        /* Interaction States */
+        React.createElement('div', { className: 'ds-anim ds-anim-7' },
+          React.createElement('p', { className: 'ds-sub-label' }, '06  Interaction States'),
+          React.createElement('div', { className: 'ds-states' },
+            React.createElement('div', { className: 'ds-state-item' },
+              React.createElement('span', { className: 'ds-state-btn ds-state-default' }, 'Button'),
+              React.createElement('span', { className: 'ds-state-label' }, 'Default'),
+              React.createElement('span', { className: 'ds-state-desc' }, '基础展示状态')
+            ),
+            React.createElement('div', { className: 'ds-state-item' },
+              React.createElement('span', { className: 'ds-state-btn ds-state-hover' }, 'Button'),
+              React.createElement('span', { className: 'ds-state-label' }, 'Hover'),
+              React.createElement('span', { className: 'ds-state-desc' }, '鼠标悬停反馈')
+            ),
+            React.createElement('div', { className: 'ds-state-item' },
+              React.createElement('span', { className: 'ds-state-btn ds-state-active' }, 'Button'),
+              React.createElement('span', { className: 'ds-state-label' }, 'Active'),
+              React.createElement('span', { className: 'ds-state-desc' }, '当前选中状态')
+            ),
+            React.createElement('div', { className: 'ds-state-item' },
+              React.createElement('span', { className: 'ds-state-btn ds-state-disabled' }, 'Button'),
+              React.createElement('span', { className: 'ds-state-label' }, 'Disabled'),
+              React.createElement('span', { className: 'ds-state-desc' }, '不可用状态')
+            )
+          ),
+          React.createElement('div', { className: 'ds-states-note' },
+            React.createElement('span', null, 'Applied to:'),
+            React.createElement('br'),
+            React.createElement('span', null, 'Buttons / Navigation / Portfolio Cards')
+          )
+        ),
+        /* Icon System */
+        React.createElement('div', { className: 'ds-anim ds-anim-8' },
+          React.createElement('p', { className: 'ds-sub-label' }, '07  Icon System'),
+          React.createElement('div', { className: 'ds-icon-system' },
+            React.createElement('div', { className: 'ds-icon-left' },
+              React.createElement('span', { className: 'ds-icon-left-label' }, 'Icon Style')
+            ),
+            React.createElement('div', { className: 'ds-icon-right' },
+              React.createElement('span', { className: 'ds-icon-style' }, 'Rounded Line Icon'),
+              React.createElement('div', { className: 'ds-icon-spec' },
+                React.createElement('span', { className: 'ds-icon-spec-item' },
+                  React.createElement('span', { className: 'ds-icon-spec-label' }, 'Stroke:'), ' 1.5px'
+                ),
+                React.createElement('span', { className: 'ds-icon-spec-item' },
+                  React.createElement('span', { className: 'ds-icon-spec-label' }, 'Size:'), ' 16px / 20px / 24px'
+                )
+              ),
+              React.createElement('p', { className: 'ds-icon-note' }, '统一导航、分类、标签图标语言。')
+            )
+          )
+        )
+      )
+    ),
+    /* Footer */
+    React.createElement('div', { className: 'ds-footer ds-anim ds-anim-9' },
+      React.createElement('span', { className: 'ds-footer-word' }, 'Keep'),
+      React.createElement('span', { className: 'ds-footer-word' }, 'Exploring')
+    )
+  );
+}
+
+var detailPalette = [
   { hex: '#45622A', name: '深绿', use: '底部导航与主要操作' },
   { hex: '#91A56F', name: '辅助绿', use: '输入与辅助区域' },
   { hex: '#CFE3B6', name: '浅绿', use: '兴趣标签与内容底色' },
@@ -306,7 +634,7 @@ var dsInterfaceExamples = [
   }
 ];
 
-function DesignSystem() {
+function InterfaceDetails() {
   var result = useInView({ threshold: 0.15 });
   var ref = result[0]; var inView = result[1];
   var viewClass = inView ? ' in-view' : '';
@@ -319,7 +647,7 @@ function DesignSystem() {
     }
   }, [inView]);
 
-  var colorRows = dsColors.map(function(c) {
+  var colorRows = detailPalette.map(function(c) {
     return React.createElement('div', { key: c.name, className: 'ds-color-row' },
       React.createElement('div', { className: 'ds-color-swatch', style: { background: c.hex }, 'aria-hidden': 'true' }),
       React.createElement('div', { className: 'ds-color-info' },
@@ -344,7 +672,7 @@ function DesignSystem() {
     );
   });
 
-  return React.createElement('section', { ref: ref, className: 'ds-section mp-distilled snap-slide' + viewClass },
+  return React.createElement('section', { id: 'mini-interface-details', ref: ref, className: 'ds-section mp-distilled snap-slide' + viewClass },
     React.createElement('div', { className: 'ds-title-block ds-anim ds-anim-1' },
       React.createElement('h2', { className: 'ds-title-en' }, 'Interface Details'),
       React.createElement('p', { className: 'ds-title-cn' }, '色彩与界面细节')
@@ -368,8 +696,7 @@ function DesignSystem() {
 window.PortfolioChapters.digital = function() {
   return [
     React.createElement(MiniProgramShowcase, { key: 'mp-showcase' }),
-    React.createElement(DesignDirection, { key: 'design-direction' }),
-    React.createElement(InformationArchitecture, { key: 'info-architecture' }),
-    React.createElement(DesignSystem, { key: 'design-system' })
+    React.createElement(DesignSystem, { key: 'design-system' }),
+    React.createElement(InterfaceDetails, { key: 'interface-details' })
   ];
 };

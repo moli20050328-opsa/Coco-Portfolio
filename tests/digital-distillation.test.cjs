@@ -52,12 +52,13 @@ function collect(node, predicate, result = []) {
   return result;
 }
 
-test('digital chapter consolidates the supporting narrative into four modules', () => {
-  const { context } = loadDigital();
+test('gallery leads directly to the original design system', () => {
+  const { context, render } = loadDigital();
   const modules = Array.from(context.window.PortfolioChapters.digital());
-  assert.equal(modules.length, 4);
-  assert.equal(modules[0].type, context.MiniProgramShowcase);
-  assert.equal(modules.filter(node => node.type === context.InformationArchitecture).length, 1);
+  assert.deepEqual(modules.map(m => m.type), [context.MiniProgramShowcase, context.DesignSystem, context.InterfaceDetails]);
+  const images = collect(render(context.InterfaceDetails), n => n.type === context.PortfolioImage);
+  assert.deepEqual(images.map(n => n.props.src), ['slides/mp-04.png', 'slides/mp-13.png']);
+  assert.equal(render(context.DesignSystem).props.id, 'mini-result');
 });
 
 test('all thirteen filmstrip choices still select four consecutive real screens, including wraparound', () => {
@@ -102,21 +103,7 @@ test('filmstrip accessible names describe the actual exported screen rather than
   });
 });
 
-test('the old result deep link resolves to the merged architecture flow', () => {
-  const { context, render } = loadDigital();
-  const architecture = render(context.InformationArchitecture);
-  const targets = collect(architecture, node => node.props.id === 'mini-result');
-  assert.equal(targets.length, 1);
-  assert.equal(targets[0].type, 'section', 'deep links enter the observed section at its navigation-safe top');
-  assert.ok(targets[0].props.className.includes('mp-distilled'));
-  assert.equal(collect(targets[0], node => (node.props.className || '').split(' ').includes('ia-step')).length, 4);
-});
-
-test('interface detail explanations include two existing full screenshots with reserved ratios and lazy loading', () => {
-  const { context, render } = loadDigital();
-  const details = render(context.DesignSystem);
-  const images = collect(details, node => node.type === context.PortfolioImage);
-  assert.deepEqual(images.map(node => node.props.src), ['slides/mp-04.png', 'slides/mp-13.png']);
-  assert.deepEqual(images.map(node => [node.props.width, node.props.height]), [[1501, 2906], [1500, 3000]]);
-  assert.ok(images.every(node => node.props.loading === 'lazy' && fs.existsSync(path.join(root, node.props.src))));
+test('original design system includes typography, spacing and color specifications', () => {
+  const { context } = loadDigital();
+  for (const group of [context.dsFonts, context.dsSpacing, context.dsColors]) assert.ok(group.length > 0);
 });

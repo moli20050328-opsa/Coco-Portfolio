@@ -85,7 +85,7 @@ test('the lazily discovered sign-in section warms Duoyi once without a backwards
   h.observer.emit(signin, true);
   h.observer.emit(signin, true);
   h.chapterReady();
-  assert.deepEqual(h.links.map(link => link.href), ['assets/duoyi/character-detail.png']);
+  assert.deepEqual(h.links.map(link => link.href), ['assets/silver-crown/overview.png']);
   assert.equal(h.observer.observed.has(signin), false, 'chapter-ready does not reattach a completed target');
   assert.ok(h.links.every(link => fs.existsSync(path.join(root, link.href))), 'every warmed image is deployable');
   h.dispose();
@@ -102,7 +102,7 @@ test('GUI warmup follows each new dark-to-light adjacency without duplicate or p
     ['#game-ui-motion-preview', ['assets/giant/gala-reward.jpg']],
     ['#game-ui-giant', ['assets/shuaitu/character-detail.jpg']],
     ['#game-ui-shuaitu-visual', ['assets/signin/signin-rewards.jpg', 'assets/signin/entry.png']],
-    ['#game-ui-signin', ['assets/duoyi/character-detail.png']]
+    ['#game-ui-signin', ['assets/silver-crown/overview.png']]
   ];
   const h = mountWarmup([...steps.map(([selector]) => selector), '#game-ui-duoyi']);
   assert.equal(h.links.length, 0, 'mounting the chapter does not preload the whole GUI gallery');
